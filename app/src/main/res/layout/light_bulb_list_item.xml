@@ -10,7 +10,7 @@
 
 
     <Button
-        android:id="@+id/toggle_light_bulb_list_item"
+        android:id="@+id/toggle_light_Lay_light_bulb_list_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Toggle"
@@ -19,7 +19,7 @@
 
 
     <Button
-        android:id="@+id/set_time_light_bulb_list_item"
+        android:id="@+id/set_time_Lay_light_bulb_list_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Set time"
@@ -29,7 +29,7 @@
 
 
     <TextView
-        android:id="@+id/text_view_light_bulb_list_item"
+        android:id="@+id/text_view_Lay_light_bulb_list_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"

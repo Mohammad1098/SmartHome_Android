@@ -20,8 +20,8 @@ public class LightBulbBoundary extends AppCompatActivity {
         setContentView(R.layout.light_bulb_list_item);
 
         //buttons to set listener when it is clicked
-        Button toggleLightBulbButton = (Button) findViewById(R.id.toggle_light_bulb_list_item);
-        Button setTimeButton = (Button) findViewById(R.id.set_time_light_bulb_list_item);
+        Button toggleLightBulbButton = (Button) findViewById(R.id.toggle_light_Lay_light_bulb_list_item);
+        Button setTimeButton = (Button) findViewById(R.id.set_time_Lay_light_bulb_list_item);
 
 
         //Create instance to class LightBulbController() to use it's functions
