@@ -1,23 +1,26 @@
 package com.example.android.smarthome.Devices;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
+import android.support.v7.app.AppCompatActivity;
 
-import com.example.android.smarthome.LightBulb.LightBulbBoundary;
 import com.example.android.smarthome.R;
 
-public class RetrieveListOfDevicesController extends AppCompatActivity {
+public class RetrieveSpecificDeviceController extends AppCompatActivity {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+        //Some Info will come from the RetrieveListOfDevicesController class to specify the type of device LightBulb or Tv etc ..
+
         //TODO
 
 
     }
+
 
 
 }

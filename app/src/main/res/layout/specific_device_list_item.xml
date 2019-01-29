@@ -26,6 +26,17 @@
 
         />
 
+    <TextView
+        android:id="@+id/device_status_Lay_specific_device_list_item"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="On"
+        android:textSize="20sp"
+        android:gravity="center"
+
+        />
+
 
 
 

@@ -35,7 +35,12 @@ public final class Schema   {
 
         public static final String ID = BaseColumns._ID;
 
-        public static final String NAME ="Name";
+        public static final String NAME ="NAME";
+
+        public static final String ROOM ="ROOM";
+
+        public static final String STATUS ="STATUS";
+
 
 
     }
@@ -64,11 +69,15 @@ public final class Schema   {
 
         public static final String ID =BaseColumns._ID;
 
-        public static final String NAME ="Name";
+        public static final String NAME ="NAME";
 
-        public static final String PIN_CONNECTED ="PinConnected";
+        public static final String PIN_CONNECTED ="PINCONNECTED";
 
         public static final String TIME ="TIME";
+
+        public static final String ROOM ="ROOM";
+
+        public static final String STATUS ="STATUS";
 
 
 

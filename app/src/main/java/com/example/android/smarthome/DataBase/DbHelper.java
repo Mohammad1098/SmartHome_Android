@@ -27,7 +27,9 @@ public class DbHelper extends SQLiteOpenHelper {
         String Device_Table = "CREATE TABLE "+Schema.Device.TABLE_NAME +"("
 
                 +Schema.Device.ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                +Schema.Device.NAME +" TEXT NOT NULL );";
+                +Schema.Device.NAME +" TEXT NOT NULL ,"
+                +Schema.Device.ROOM+"TEXT NOT NULL ,"
+                +Schema.Device.STATUS+"INTEGER );";
 
 
 
@@ -36,7 +38,9 @@ public class DbHelper extends SQLiteOpenHelper {
                 +Schema.LightBulb.ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 +Schema.LightBulb.NAME +" TEXT NOT NULL , "
                 +Schema.LightBulb.PIN_CONNECTED +" INTEGER NOT NULL ,"
-                +Schema.LightBulb.TIME +" INTEGER ); ";
+                +Schema.LightBulb.TIME +" INTEGER ,"
+                +Schema.Device.ROOM+"TEXT NOT NULL ,"
+                +Schema.Device.STATUS+"INTEGER );";
 
         db.execSQL(Device_Table);
         db.execSQL(LightBulb_Table);

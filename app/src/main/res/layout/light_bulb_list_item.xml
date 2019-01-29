@@ -1,41 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
 
 
 
-    <Button
-        android:id="@+id/toggle_light_Lay_light_bulb_list_item"
-        android:layout_width="wrap_content"
+
+
+
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Toggle"
-        android:layout_marginLeft="20dp"
-        />
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal">
 
 
-    <Button
-        android:id="@+id/set_time_Lay_light_bulb_list_item"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Set time"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-         />
+        <TextView
+            android:id="@+id/name_view_light_bulb_list_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="34dp"
+            android:text="Light Bulb Name"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/text_view_Lay_light_bulb_list_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/name_view_light_bulb_list_item"
+            android:layout_marginLeft="56dp"
+            android:layout_marginTop="15dp"
+            android:text="00:00"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/set_time_Lay_light_bulb_list_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_toLeftOf="@id/toggle_light_Lay_light_bulb_list_item"
+            android:text="Set time" />
 
 
-    <TextView
-        android:id="@+id/text_view_Lay_light_bulb_list_item"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:text=""
-        android:textSize="20sp"
-        />
+        <Button
+            android:id="@+id/toggle_light_Lay_light_bulb_list_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:text="Toggle" />
+    </RelativeLayout>
 
 </LinearLayout>
