@@ -28,6 +28,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
                 +Schema.Device.ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 +Schema.Device.NAME +" TEXT NOT NULL ,"
+                +Schema.Device.TYPE +" INTEGER NOT NULL ,"
                 +Schema.Device.ROOM+"TEXT NOT NULL ,"
                 +Schema.Device.STATUS+"INTEGER );";
 

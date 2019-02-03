@@ -37,6 +37,8 @@ public final class Schema   {
 
         public static final String NAME ="NAME";
 
+        public static final String TYPE ="TYPE";
+
         public static final String ROOM ="ROOM";
 
         public static final String STATUS ="STATUS";
