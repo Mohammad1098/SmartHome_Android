@@ -33,6 +33,6 @@ public class RetrieveListOfDevicesBoundary extends AppCompatActivity {
 
 
             }
-        })
+        });
     }
 }
