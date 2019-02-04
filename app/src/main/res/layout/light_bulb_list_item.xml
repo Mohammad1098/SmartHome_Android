@@ -5,18 +5,10 @@
     android:orientation="vertical">
 
 
-
-
-
-
-
-
-
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorPrimaryDark"
         android:orientation="horizontal">
 
 
@@ -27,6 +19,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="34dp"
             android:text="Light Bulb Name"
+            android:textColor="@color/text"
             android:textSize="16sp" />
 
         <TextView
@@ -37,6 +30,7 @@
             android:layout_marginLeft="56dp"
             android:layout_marginTop="15dp"
             android:text="00:00"
+            android:textColor="@color/text"
             android:textSize="12sp" />
 
         <Button
@@ -47,7 +41,9 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:layout_toLeftOf="@id/toggle_light_Lay_light_bulb_list_item"
-            android:text="Set time" />
+            android:background="@drawable/command"
+            android:text="Set time"
+            android:textColor="@color/text" />
 
 
         <Button
@@ -58,7 +54,9 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:text="Toggle" />
+            android:background="@drawable/command"
+            android:text="Toggle"
+            android:textColor="@color/text" />
     </RelativeLayout>
 
 </LinearLayout>
