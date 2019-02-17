@@ -1,41 +1,52 @@
 package com.example.android.smarthome.Adapters;
 
+import com.example.android.smarthome.DeviceCategory.DeviceCategory;
+import com.example.android.smarthome.Devices.Device;
+import com.example.android.smarthome.R;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CursorAdapter;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.example.android.smarthome.DataBase.Schema;
-import com.example.android.smarthome.R;
+import java.util.ArrayList;
 
-import org.w3c.dom.Text;
 
 // this class will use to list the all Device in the system
-public class RetrieveListOfDevicesAdapter extends CursorAdapter {
-
-    public RetrieveListOfDevicesAdapter(Context context , Cursor cursor , String deviceType){
+public class RetrieveListOfDevicesAdapter extends ArrayAdapter<DeviceCategory> {
 
 
-        super(context , cursor , false);
+    public RetrieveListOfDevicesAdapter(Context context , ArrayList<DeviceCategory> list){
+
+
+        super(context , 0 , list);
     }
+
 
     @Override
-    public View newView(Context context, Cursor cursor, ViewGroup parent) {
+    public View getView(int position,  View convertView,  ViewGroup parent) {
 
-        return null;
+        if(convertView == null){
+
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.device_list_item, parent , false);
+        }
+
+
+        DeviceCategory currentDevice = getItem(position);
+
+
+        TextView deviceName = (TextView) convertView.findViewById(R.id.device_name_Lay_device_list_item);
+
+        deviceName.setText(currentDevice.getCategoryName());
+
+        //TODO the Image as well
+
+        return convertView;
+
+
     }
 
-    @Override
-    public void bindView(View view, Context context, Cursor cursor) {
 
-
-
-
-
-
-    }
 }

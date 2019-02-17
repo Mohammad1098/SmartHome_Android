@@ -16,7 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Devices.RetrieveListOfDevicesController">
+        <activity android:name=".Devices.RetrieveListOfDevicesBoundary">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,8 +24,15 @@
             </intent-filter>
         </activity>
 
-        <activity android:parentActivityName=".Devices.RetrieveListOfDevicesController" android:name=".LightBulb.LightBulbBoundary"></activity>
-        <activity android:parentActivityName=".Devices.RetrieveListOfDevicesController" android:name=".LightBulb.LightBulbController"></activity>
+        <activity android:parentActivityName=".Devices.RetrieveListOfDevicesBoundary" android:name=".Operation.RetrieveListOfOperationBoundary"></activity>
+        <activity android:parentActivityName=".Devices.RetrieveListOfDevicesBoundary" android:name=".Devices.RetrieveSpecificDeviceBoundary"></activity>
+
+
+
+        <provider
+            android:authorities="com.example.android.SmartHome"
+            android:name=".DataBase.Smart_Home_Provider"
+            android:exported="false"></provider>
 
 
     </application>

@@ -7,13 +7,10 @@ public class Device {
 
     private String name;
     private int type;
-    private int room;
+    private String room;
+    private long id;
 
 
-    public Device (){
-
-
-    }
 
     public String getName() {
         return name;
@@ -23,20 +20,25 @@ public class Device {
         return type;
     }
 
-    public int getRoom() {
+    public String getRoom() {
         return room;
     }
 
-    public void setName(String name) {
+    public long getId() { return id; }
 
-        this.name = name;
-    }
+
+
+
+    public void setName(String name) {this.name = name;}
 
     public void setType(int type) {
         this.type = type;
     }
 
-    public void setRoom(int room) {
+    public void setRoom(String room) {
         this.room = room;
     }
+
+    public void setId(long id) { this.id = id;}
+
 }

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/operation_name_Lay_retrieve_list_of_operation_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Test operation Name "
+        android:textSize="23sp"
+        android:textColor="@color/colorPrimaryDark"
+
+        />
+
+    <TextView
+        android:id="@+id/operation_implementation_Lay_retrieve_list_of_operation_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="implementation "
+        android:textSize="23sp"
+        android:textColor="@color/colorPrimaryDark"
+
+        />
+
+</LinearLayout>

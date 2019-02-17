@@ -23,14 +23,21 @@ public class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
+        String DeviceCategory_Table = "CREATE TABLE "+Schema.DeviceCategory.TABLE_NAME +"("
+
+                +Schema.DeviceCategory.ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                +Schema.DeviceCategory.NAME +" TEXT NOT NULL ,"
+                +Schema.DeviceCategory.TYPE +" INTEGER NOT NULL );";
+
+
 
         String Device_Table = "CREATE TABLE "+Schema.Device.TABLE_NAME +"("
 
                 +Schema.Device.ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 +Schema.Device.NAME +" TEXT NOT NULL ,"
                 +Schema.Device.TYPE +" INTEGER NOT NULL ,"
-                +Schema.Device.ROOM+"TEXT NOT NULL ,"
-                +Schema.Device.STATUS+"INTEGER );";
+                +Schema.Device.ROOM+" TEXT NOT NULL ,"
+                +Schema.Device.STATUS+" INTEGER );";
 
 
 
@@ -40,11 +47,27 @@ public class DbHelper extends SQLiteOpenHelper {
                 +Schema.LightBulb.NAME +" TEXT NOT NULL , "
                 +Schema.LightBulb.PIN_CONNECTED +" INTEGER NOT NULL ,"
                 +Schema.LightBulb.TIME +" INTEGER ,"
-                +Schema.Device.ROOM+"TEXT NOT NULL ,"
-                +Schema.Device.STATUS+"INTEGER );";
+                +Schema.LightBulb.ROOM+" TEXT NOT NULL ,"
+                +Schema.LightBulb.STATUS+" INTEGER ,"
+                +Schema.LightBulb.DEVICE_ID+" INTEGER ,"
+                +"FOREIGN KEY ("+ Schema.LightBulb.DEVICE_ID+") REFERENCES "+Schema.Device.TABLE_NAME+"("+Schema.Device.ID+"));";
 
+
+
+        String Operation_Table ="CREATE TABLE "+Schema.Operation.TABLE_NAME +"("
+
+                +Schema.Operation.ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                +Schema.Operation.NAME+" TEXT NOT NULL , "
+                +Schema.Operation.IMPLEMENTATION+" TEXT NOT NULL , "
+                +Schema.Operation.DEVICE_ID+" INTEGER ,"
+                +"FOREIGN KEY ("+ Schema.Operation.DEVICE_ID+") REFERENCES "+Schema.Device.TABLE_NAME+"("+Schema.Device.ID+"));";
+
+
+
+        db.execSQL(DeviceCategory_Table);
         db.execSQL(Device_Table);
         db.execSQL(LightBulb_Table);
+        db.execSQL(Operation_Table);
 
     }
 
