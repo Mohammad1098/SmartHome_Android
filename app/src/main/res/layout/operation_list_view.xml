@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Devices.RetrieveListOfDevicesController">
+    >
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/add_new_operation_Lay_operation_list_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="380dp"
+        android:layout_marginRight="16dp"
+        android:clickable="true"
+        android:src="@drawable/ic_add_black_24dp"
+        />
 
     <ListView
         android:id="@+id/operation_list_view_Lay_operation_list_of_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></ListView>
 
-</LinearLayout>
+</RelativeLayout>

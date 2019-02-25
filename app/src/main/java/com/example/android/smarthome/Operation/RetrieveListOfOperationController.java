@@ -32,7 +32,6 @@ public class RetrieveListOfOperationController extends AppCompatActivity {
 
         if(operationArrayList != null){
 
-            Log.e("OperationController" , "id is "+id +"  Null");
             retrieveListOfOperationAdapter = new RetrieveListOfOperationAdapter(activity.getApplicationContext() , operationArrayList);
 
             listView.setAdapter(retrieveListOfOperationAdapter);

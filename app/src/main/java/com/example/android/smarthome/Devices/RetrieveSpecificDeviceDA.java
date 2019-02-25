@@ -3,6 +3,8 @@ package com.example.android.smarthome.Devices;
 
 import android.app.Activity;
 import android.database.Cursor;
+import android.util.Log;
+
 import com.example.android.smarthome.DataBase.Schema;
 import java.util.ArrayList;
 
@@ -15,11 +17,11 @@ public class RetrieveSpecificDeviceDA {
     private Cursor cursor;
 
 
-    public RetrieveSpecificDeviceDA(Activity activity) {
+    public RetrieveSpecificDeviceDA(Activity activity , int type) {
 
         this.activity = activity;
 
-        String selection = "TYPE=1";
+        String selection = "TYPE="+type;
         cursor = activity.getApplicationContext().getContentResolver().query(Schema.Device.CONTENT_URI, null, selection, null, null);
 
 

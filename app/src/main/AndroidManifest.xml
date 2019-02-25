@@ -24,8 +24,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:parentActivityName=".Devices.RetrieveListOfDevicesBoundary" android:name=".Operation.RetrieveListOfOperationBoundary"></activity>
+        <activity android:parentActivityName=".Devices.RetrieveSpecificDeviceBoundary" android:name=".Operation.RetrieveListOfOperationBoundary"></activity>
         <activity android:parentActivityName=".Devices.RetrieveListOfDevicesBoundary" android:name=".Devices.RetrieveSpecificDeviceBoundary"></activity>
+        <activity android:parentActivityName=".Devices.RetrieveSpecificDeviceBoundary" android:name=".Devices.Add_new_device"></activity>
+        <activity android:parentActivityName=".Operation.RetrieveListOfOperationBoundary" android:name=".Operation.Add_new_operation"></activity>
+
+
 
 
 

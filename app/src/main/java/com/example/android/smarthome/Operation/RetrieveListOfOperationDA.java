@@ -22,14 +22,15 @@ public class RetrieveListOfOperationDA extends AppCompatActivity {
     private ArrayList<Operation> operationsArrayList;
     private Activity activity;
     private Cursor cursor;
-    private long device_ID;
 
     public RetrieveListOfOperationDA(Activity activity , long id){
 
         this.activity = activity;
-        this.device_ID = id;
 
-        String selection = "DEVICEID="+this.device_ID;
+        Log.e("OperationDA" ,String.valueOf(id) );
+
+
+        String selection = "DEVICEID="+id;
 
 
         cursor = activity.getApplicationContext().getContentResolver().query(Schema.Operation.CONTENT_URI , null , selection , null , null);

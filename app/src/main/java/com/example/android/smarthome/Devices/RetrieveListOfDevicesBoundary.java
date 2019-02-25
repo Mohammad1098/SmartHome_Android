@@ -25,12 +25,13 @@ public class RetrieveListOfDevicesBoundary extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.retrieve_list_of_devices);
 
+        setTitle("Smart Home");
 
         // Adding dummy DEVICE category
-
+/*
             ContentValues content = new ContentValues();
             content.put(Schema.DeviceCategory.NAME, "Light Bulb");
-            content.put(Schema.DeviceCategory.TYPE, 1);
+            content.put(Schema.DeviceCategory.TYPE, 0); // 0 for Light Bulb
             getContentResolver().insert(Schema.DeviceCategory.CONTENT_URI, content);
 
 
@@ -51,7 +52,7 @@ public class RetrieveListOfDevicesBoundary extends AppCompatActivity {
         content3.put(Schema.Operation.DEVICE_ID, 1);
         getContentResolver().insert(Schema.Operation.CONTENT_URI, content3);
 
-
+*/
 
 
         deviceListView = findViewById(R.id.device_list_view_Lay_retrieve_list_of_devices);
@@ -79,6 +80,7 @@ public class RetrieveListOfDevicesBoundary extends AppCompatActivity {
 
                 //send the info of selected category device
                 openSpecificDeviceLayoutIntent.putExtra("ID" , deviceCategory.getId());
+                openSpecificDeviceLayoutIntent.putExtra("TYPE" , deviceCategory.getType());
 
 
                 startActivity(openSpecificDeviceLayoutIntent);
@@ -89,5 +91,13 @@ public class RetrieveListOfDevicesBoundary extends AppCompatActivity {
 
             }
         });
+    }
+
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //TODO call function to retrieve devices
     }
 }

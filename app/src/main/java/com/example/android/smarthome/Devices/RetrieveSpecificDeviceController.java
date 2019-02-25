@@ -31,9 +31,9 @@ public class RetrieveSpecificDeviceController extends AppCompatActivity {
     }
 
 
-    public boolean retrieveSpecificDevices (){
+    public boolean retrieveSpecificDevices (int type){
 
-        retrieveSpecificDeviceDA = new RetrieveSpecificDeviceDA(this.activity);
+        retrieveSpecificDeviceDA = new RetrieveSpecificDeviceDA(this.activity , type);
 
         ArrayList<Device> specificDevicesList = retrieveSpecificDeviceDA.retrieveSpecificDevicesDA();
 

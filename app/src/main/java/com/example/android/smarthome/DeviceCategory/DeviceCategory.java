@@ -5,17 +5,18 @@ public class DeviceCategory {
 
     private String categoryName;
     private int categoryImage;
-    private int type;
+    private int type;             // 0 Light Bulb
     private int id;
 
 
 
 
 
-    public DeviceCategory(String categoryName , int categoryImage ){
+    public DeviceCategory(String categoryName , int categoryImage , int type ){
 
         this.categoryName = categoryName;
         this.categoryImage = categoryImage;
+        this.type = type;
 
     }
 

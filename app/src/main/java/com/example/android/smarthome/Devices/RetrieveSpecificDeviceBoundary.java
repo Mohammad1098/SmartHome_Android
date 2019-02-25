@@ -2,12 +2,13 @@ package com.example.android.smarthome.Devices;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import com.example.android.smarthome.Operation.RetrieveListOfOperationBoundary;
 import com.example.android.smarthome.R;
 
@@ -16,29 +17,70 @@ public class RetrieveSpecificDeviceBoundary extends AppCompatActivity {
 
     private ListView specificDeviceListView;
     private RetrieveSpecificDeviceController retrieveSpecificDeviceController;
-
+    private int type;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.retrieve_list_of_specific_device);
 
+        setTitle("Specific Device");
+
+        CreateAddDeviceButton();
+
+        retrieveSpecificDevices();
+
+        attachListViewToListener();
+
+
+
+
+    }
+
+
+
+    private void CreateAddDeviceButton(){
+
+
+        FloatingActionButton floatingActionButtonAddNewDevice = findViewById(R.id.add_new_device_Lay_retrieve_list_of_specific_devices);
+
+        floatingActionButtonAddNewDevice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent addNewDeviceIntent = new Intent(RetrieveSpecificDeviceBoundary.this , Add_new_device.class);
+
+                startActivity(addNewDeviceIntent);
+
+
+
+            }
+        });
+    }
+
+    private void retrieveSpecificDevices(){
+
 
         Intent intent = getIntent();
 
-        long deviceCategory_ID = intent.getLongExtra("ID" ,0);
-
-
+        type = intent.getIntExtra("TYPE" , -1);
 
         specificDeviceListView = findViewById(R.id.specific_device_list_view_Lay_retrieve_list_of_specific_device);
 
         retrieveSpecificDeviceController = new RetrieveSpecificDeviceController(RetrieveSpecificDeviceBoundary.this, specificDeviceListView);
 
-        boolean isListEmpty = retrieveSpecificDeviceController.retrieveSpecificDevices();
+        boolean isListEmpty = retrieveSpecificDeviceController.retrieveSpecificDevices(type);
 
         if (isListEmpty == false) {
             Toast.makeText(this, "No Devices Available !", Toast.LENGTH_LONG).show();
         }
+
+
+
+    }
+
+
+    private void attachListViewToListener(){
 
         specificDeviceListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -49,8 +91,11 @@ public class RetrieveSpecificDeviceBoundary extends AppCompatActivity {
 
                 Intent openSpecificDeviceLayoutIntent = new Intent(RetrieveSpecificDeviceBoundary.this, RetrieveListOfOperationBoundary.class);
 
-                //send the info of selected category device
-                openSpecificDeviceLayoutIntent.putExtra("ID", device.getId());
+                Log.e("SpecificBoundary" ,String.valueOf(device.getId()) );
+
+                //send the id of selected device to RetrieveListOfOperationBoundary class
+                openSpecificDeviceLayoutIntent.putExtra("DEVICEID", device.getId());
+
 
 
                 startActivity(openSpecificDeviceLayoutIntent);
@@ -60,5 +105,6 @@ public class RetrieveSpecificDeviceBoundary extends AppCompatActivity {
         });
 
     }
+
 
 }

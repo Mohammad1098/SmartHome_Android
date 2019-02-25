@@ -25,7 +25,7 @@
                 android:id="@+id/device_pin_Lay_add_new_specific_device"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
+                android:inputType="number"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
 
@@ -56,6 +56,17 @@
                 >
 
             </Spinner>
+
+
+            <Button
+                android:id="@+id/add_device_button_Lay_add_new_device"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Device"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="45dp"
+
+                />
 
         </LinearLayout>
 

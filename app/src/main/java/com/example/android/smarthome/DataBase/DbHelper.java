@@ -37,6 +37,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 +Schema.Device.NAME +" TEXT NOT NULL ,"
                 +Schema.Device.TYPE +" INTEGER NOT NULL ,"
                 +Schema.Device.ROOM+" TEXT NOT NULL ,"
+                +Schema.Device.PIN+" INTEGER NOT NULL ,"
                 +Schema.Device.STATUS+" INTEGER );";
 
 
@@ -44,11 +45,7 @@ public class DbHelper extends SQLiteOpenHelper {
         String LightBulb_Table = "CREATE TABLE "+Schema.LightBulb.TABLE_NAME +"("
 
                 +Schema.LightBulb.ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                +Schema.LightBulb.NAME +" TEXT NOT NULL , "
-                +Schema.LightBulb.PIN_CONNECTED +" INTEGER NOT NULL ,"
                 +Schema.LightBulb.TIME +" INTEGER ,"
-                +Schema.LightBulb.ROOM+" TEXT NOT NULL ,"
-                +Schema.LightBulb.STATUS+" INTEGER ,"
                 +Schema.LightBulb.DEVICE_ID+" INTEGER ,"
                 +"FOREIGN KEY ("+ Schema.LightBulb.DEVICE_ID+") REFERENCES "+Schema.Device.TABLE_NAME+"("+Schema.Device.ID+"));";
 
