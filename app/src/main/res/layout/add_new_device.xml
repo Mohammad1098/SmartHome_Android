@@ -6,7 +6,6 @@
     android:orientation="vertical"
     >
 
-
             <EditText
                 android:hint="Device Name"
                 android:id="@+id/device_name_Lay_add_new_specific_device"
