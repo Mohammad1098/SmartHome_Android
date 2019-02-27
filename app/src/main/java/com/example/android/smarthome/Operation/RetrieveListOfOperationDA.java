@@ -27,7 +27,6 @@ public class RetrieveListOfOperationDA extends AppCompatActivity {
 
         this.activity = activity;
 
-        Log.e("OperationDA" ,String.valueOf(id) );
 
 
         String selection = "DEVICEID="+id;

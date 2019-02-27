@@ -106,7 +106,6 @@ public class Smart_Home_Provider extends  ContentProvider {
 
             case 5:
 
-                Log.e("Provider" ,selection );
 
                 cursor = db.query(Schema.Operation.TABLE_NAME , projection , selection , selectionArgs , null , null , sortOrder );
                 break;

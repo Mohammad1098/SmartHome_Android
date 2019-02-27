@@ -50,6 +50,8 @@ public class RetrieveSpecificDeviceBoundary extends AppCompatActivity {
 
                 Intent addNewDeviceIntent = new Intent(RetrieveSpecificDeviceBoundary.this , Add_new_device.class);
 
+                addNewDeviceIntent.putExtra("TYPE" ,type );
+
                 startActivity(addNewDeviceIntent);
 
 
@@ -64,6 +66,8 @@ public class RetrieveSpecificDeviceBoundary extends AppCompatActivity {
         Intent intent = getIntent();
 
         type = intent.getIntExtra("TYPE" , -1);
+
+        Log.e("SpificDeviceBnd method " ,String.valueOf(type) );
 
         specificDeviceListView = findViewById(R.id.specific_device_list_view_Lay_retrieve_list_of_specific_device);
 
@@ -91,10 +95,13 @@ public class RetrieveSpecificDeviceBoundary extends AppCompatActivity {
 
                 Intent openSpecificDeviceLayoutIntent = new Intent(RetrieveSpecificDeviceBoundary.this, RetrieveListOfOperationBoundary.class);
 
-                Log.e("SpecificBoundary" ,String.valueOf(device.getId()) );
 
                 //send the id of selected device to RetrieveListOfOperationBoundary class
                 openSpecificDeviceLayoutIntent.putExtra("DEVICEID", device.getId());
+                openSpecificDeviceLayoutIntent.putExtra("TYPE", device.getType());
+
+
+
 
 
 

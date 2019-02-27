@@ -21,19 +21,6 @@
 
 
             <EditText
-                android:hint="Device Pin"
-                android:id="@+id/device_pin_Lay_add_new_specific_device"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-
-                />
-
-
-
-            <EditText
                 android:hint="Room"
                 android:id="@+id/device_room_Lay_add_new_specific_device"
                 android:layout_width="match_parent"
@@ -46,13 +33,102 @@
                 />
 
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp"
+
+                >
+
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+
+                <RadioButton
+                    android:id="@+id/device_one_pin_selected_Lay_add_new_specific_device"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1 pin"
+                    android:layout_marginRight="15dp"
+
+                    />
+
+                <RadioButton
+                    android:id="@+id/device_three_pins_selected_Lay_add_new_specific_device"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3 pins"
+                    />
+
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <EditText
+                    android:hint="pin1"
+                    android:id="@+id/first_pin_Lay_add_new_specific_device"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="55dp"
+
+                    />
+
+                <EditText
+                    android:hint="pin2"
+                    android:id="@+id/second_pin_Lay_add_new_specific_device"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="55dp"
+
+                    />
+
+
+                <EditText
+                    android:hint="pin3"
+                    android:id="@+id/third_pin_Lay_add_new_specific_device"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="15dp"
+
+                    />
+
+            </LinearLayout>
+
+            </LinearLayout>
+
+
             <Spinner
-                android:layout_marginTop="30dp"
                 android:id="@+id/spinner_device_category_Lay_add_new_specific_device"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-
+                android:layout_marginTop="15dp"
                 >
 
             </Spinner>
