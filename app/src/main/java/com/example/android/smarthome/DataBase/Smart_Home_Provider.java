@@ -52,6 +52,10 @@ public class Smart_Home_Provider extends  ContentProvider {
         sUriMatcher.addURI(Schema.DeviceCategory.CONTENT_AUTHORITY, Schema.DeviceCategory.PATH , 6);
 
 
+        //## for MicroController table
+
+        sUriMatcher.addURI(Schema.MicroController.CONTENT_AUTHORITY , Schema.MicroController.PATH , 7);
+
     }
 
 
@@ -115,6 +119,12 @@ public class Smart_Home_Provider extends  ContentProvider {
                 cursor = db.query(Schema.DeviceCategory.TABLE_NAME , projection , selection , selectionArgs , null , null , sortOrder );
                 break;
 
+
+            case 7 :
+
+                cursor = db.query(Schema.MicroController.TABLE_NAME , projection , selection , selectionArgs , null , null , sortOrder );
+                break;
+
             default:
                 throw  new IllegalArgumentException("Error "+ uri);
 
@@ -150,6 +160,10 @@ public class Smart_Home_Provider extends  ContentProvider {
                 // Helper method
                 return insertRecord(uri , values , match);
 
+            case 7:
+                // Helper method
+                return insertRecord(uri , values , match);
+
             default:
                 throw new IllegalArgumentException("Error " + uri);
 
@@ -176,6 +190,10 @@ public class Smart_Home_Provider extends  ContentProvider {
 
             case 6:
                 id = db.insert(Schema.DeviceCategory.TABLE_NAME, null, contentValues);
+                break;
+
+            case 7:
+                id = db.insert(Schema.MicroController.TABLE_NAME, null, contentValues);
                 break;
 
             default:

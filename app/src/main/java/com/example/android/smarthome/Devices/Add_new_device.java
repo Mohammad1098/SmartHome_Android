@@ -196,7 +196,8 @@ public class Add_new_device extends AppCompatActivity {
 
         String deviceName = deviceNameEditText.getText().toString().trim();
 
-        //String devicePin = devicePinEditText.getText().toString().trim();
+        // TODO this must be change later
+        String devicePin = firstPinEditText.getText().toString().trim();
 
         String deviceRoom = deviceRoomEditText.getText().toString().trim();
 
@@ -208,7 +209,7 @@ public class Add_new_device extends AppCompatActivity {
 
         }
 
-        /*
+
         if(TextUtils.isEmpty(devicePin)){
 
             Toast.makeText(getApplicationContext() , "Please write the Device Pin" , Toast.LENGTH_LONG).show();
@@ -216,7 +217,6 @@ public class Add_new_device extends AppCompatActivity {
 
         }
 
-*/
         if(selectedCategory == -1){
 
             Toast.makeText(getApplicationContext() , "Please select Device Category" , Toast.LENGTH_LONG).show();
@@ -227,13 +227,13 @@ public class Add_new_device extends AppCompatActivity {
         ContentValues contentValues = new ContentValues();
 
         contentValues.put(Schema.Device.NAME , deviceName);
-        //contentValues.put(Schema.Device.PIN , devicePin);
+        contentValues.put(Schema.Device.PIN , devicePin);
         contentValues.put(Schema.Device.ROOM , deviceRoom);
         contentValues.put(Schema.Device.TYPE , selectedCategory);
 
         getContentResolver().insert(Schema.Device.CONTENT_URI, contentValues);
 
-        finish();
+        returnToPreviousLayout();
 
 
     }

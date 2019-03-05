@@ -6,9 +6,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 import com.example.android.smarthome.DataBase.Schema;
+import com.example.android.smarthome.MicroController.Add_new_microController;
+import com.example.android.smarthome.MicroController.RetrieveListOfMicroControllerBoundary;
+import com.example.android.smarthome.Operation.RetrieveListOfOperationBoundary;
 import com.example.android.smarthome.R;
 import com.example.android.smarthome.DeviceCategory.DeviceCategory;
 
@@ -22,10 +26,31 @@ public class RetrieveListOfDevicesBoundary extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
 
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.retrieve_list_of_devices);
-
         setTitle("Smart Home");
+
+
+        retrieveDevices();
+        attachListViewToListener();
+
+        Button btn = findViewById(R.id.openMicro);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent addNewDeviceIntent = new Intent(RetrieveListOfDevicesBoundary.this , RetrieveListOfMicroControllerBoundary.class);
+
+
+                startActivity(addNewDeviceIntent);
+
+
+
+            }
+        });
 
         // Adding dummy DEVICE category
 /*
@@ -55,6 +80,14 @@ public class RetrieveListOfDevicesBoundary extends AppCompatActivity {
 */
 
 
+
+
+
+    }
+
+
+    private void retrieveDevices(){
+
         deviceListView = findViewById(R.id.device_list_view_Lay_retrieve_list_of_devices);
 
 
@@ -68,6 +101,12 @@ public class RetrieveListOfDevicesBoundary extends AppCompatActivity {
         if(isListEmpty ==false){
             Toast.makeText(this , "No Devices Available !" , Toast.LENGTH_LONG).show();
         }
+
+
+    }
+
+
+    private void attachListViewToListener(){
 
         deviceListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -85,15 +124,10 @@ public class RetrieveListOfDevicesBoundary extends AppCompatActivity {
 
                 startActivity(openSpecificDeviceLayoutIntent);
 
-
-
-
-
             }
         });
+
     }
-
-
 
     @Override
     protected void onResume() {

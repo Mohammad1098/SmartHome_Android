@@ -3,6 +3,7 @@ package com.example.android.smarthome.Devices;
 import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
 import com.example.android.smarthome.Adapters.RetrieveListOfDevicesAdapter;
 import com.example.android.smarthome.DeviceCategory.DeviceCategory;
@@ -50,6 +51,7 @@ public class RetrieveListOfDevicesController extends AppCompatActivity {
 
 
     }
+
 
 
 }

@@ -67,7 +67,6 @@ public class RetrieveSpecificDeviceBoundary extends AppCompatActivity {
 
         type = intent.getIntExtra("TYPE" , -1);
 
-        Log.e("SpificDeviceBnd method " ,String.valueOf(type) );
 
         specificDeviceListView = findViewById(R.id.specific_device_list_view_Lay_retrieve_list_of_specific_device);
 

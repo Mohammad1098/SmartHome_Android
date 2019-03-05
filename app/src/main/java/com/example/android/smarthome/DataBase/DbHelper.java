@@ -23,6 +23,14 @@ public class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
+
+        String MicroController_Table = "CREATE TABLE "+Schema.MicroController.TABLE_NAME +"("
+
+                +Schema.MicroController.ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                +Schema.MicroController.NAME +" TEXT NOT NULL ,"
+                +Schema.MicroController.ROOM +" TEXT NOT NULL );";
+
+
         String DeviceCategory_Table = "CREATE TABLE "+Schema.DeviceCategory.TABLE_NAME +"("
 
                 +Schema.DeviceCategory.ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -61,6 +69,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
 
 
+        db.execSQL(MicroController_Table);
         db.execSQL(DeviceCategory_Table);
         db.execSQL(Device_Table);
         db.execSQL(LightBulb_Table);

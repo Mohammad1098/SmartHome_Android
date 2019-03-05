@@ -13,6 +13,38 @@ public final class Schema   {
 
 
 
+    // Arduino table
+
+    public static abstract class MicroController implements BaseColumns{
+
+        public static final String CONTENT_AUTHORITY ="com.example.android.SmartHome";
+
+        public static final Uri BASE_URI = Uri.parse("content://"+CONTENT_AUTHORITY);
+
+        public static final String PATH = "MicroController";
+
+        public static final Uri CONTENT_URI = Uri.withAppendedPath(BASE_URI , PATH);
+
+        public static final String TABLE_NAME = "MicroController";
+
+        public static final String ID = BaseColumns._ID;
+
+        public static final String NAME ="NAME";
+
+        public static final String ROOM ="ROOM";
+
+
+    }
+
+
+
+
+
+
+
+
+
+
     //Device category table
 
 
