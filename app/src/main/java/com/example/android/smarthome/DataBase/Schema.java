@@ -11,9 +11,7 @@ public final class Schema   {
     //Each Class represent Table
 
 
-
-
-    // Arduino table
+    // MicroController table
 
     public static abstract class MicroController implements BaseColumns{
 
@@ -37,12 +35,32 @@ public final class Schema   {
     }
 
 
+    //Shield category table
+
+
+    public static abstract class Shield implements BaseColumns{
+
+        public static final String CONTENT_AUTHORITY ="com.example.android.SmartHome";
+
+        public static final Uri BASE_URI = Uri.parse("content://"+CONTENT_AUTHORITY);
+
+        public static final String PATH = "Shield";
+
+        public static final Uri CONTENT_URI = Uri.withAppendedPath(BASE_URI , PATH);
+
+        public static final String TABLE_NAME = "Shield";
+
+        public static final String ID=BaseColumns._ID;
+
+        public static final String NAME="NAME";
+
+        public static final String MICROCONTROLLER_ID ="MICROCONTROLLER_ID";
+
+        public static final String TYPE ="TYPE";
 
 
 
-
-
-
+    }
 
 
     //Device category table
@@ -71,6 +89,8 @@ public final class Schema   {
 
 
     }
+
+
 
 
     //Device Table
@@ -107,6 +127,8 @@ public final class Schema   {
         public static final String PIN ="PIN";
 
         public static final String STATUS ="STATUS";
+
+        public static final String MICROCONTROLLER_ID ="MICROCONTROLLER_ID";
 
 
 

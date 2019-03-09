@@ -12,11 +12,9 @@ public class RetrieveListOfDevicesDA extends AppCompatActivity  {
 
 
     private ArrayList<DeviceCategory> devicesarrayList;
-    private Activity activity;
     private Cursor cursor;
 
     public RetrieveListOfDevicesDA(Activity activity ){
-        this.activity = activity;
         cursor = activity.getApplicationContext().getContentResolver().query(Schema.DeviceCategory.CONTENT_URI , null , null , null , null);
 
     }

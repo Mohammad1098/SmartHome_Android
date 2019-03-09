@@ -31,6 +31,16 @@ public class DbHelper extends SQLiteOpenHelper {
                 +Schema.MicroController.ROOM +" TEXT NOT NULL );";
 
 
+
+        String Shield_Table = "CREATE TABLE "+Schema.Shield.TABLE_NAME +"("
+
+                +Schema.Shield.ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                +Schema.Shield.NAME +" TEXT NOT NULL ,"
+                +Schema.Shield.TYPE +" INTEGER NOT NULL ,"
+                +Schema.Shield.MICROCONTROLLER_ID +" INTEGER ,"
+                +"FOREIGN KEY ("+ Schema.Shield.MICROCONTROLLER_ID+") REFERENCES "+Schema.MicroController.TABLE_NAME+"("+Schema.MicroController.ID+"));";
+
+
         String DeviceCategory_Table = "CREATE TABLE "+Schema.DeviceCategory.TABLE_NAME +"("
 
                 +Schema.DeviceCategory.ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -46,7 +56,9 @@ public class DbHelper extends SQLiteOpenHelper {
                 +Schema.Device.TYPE +" INTEGER NOT NULL ,"
                 +Schema.Device.ROOM+" TEXT NOT NULL ,"
                 +Schema.Device.PIN+" INTEGER NOT NULL ,"
-                +Schema.Device.STATUS+" INTEGER );";
+                +Schema.Device.STATUS+" INTEGER ,"
+                +Schema.Device.MICROCONTROLLER_ID +" INTEGER ,"
+                +"FOREIGN KEY ("+ Schema.Device.MICROCONTROLLER_ID+") REFERENCES "+Schema.MicroController.TABLE_NAME+"("+Schema.MicroController.ID+"));";
 
 
 
@@ -70,6 +82,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
 
         db.execSQL(MicroController_Table);
+        db.execSQL(Shield_Table);
         db.execSQL(DeviceCategory_Table);
         db.execSQL(Device_Table);
         db.execSQL(LightBulb_Table);

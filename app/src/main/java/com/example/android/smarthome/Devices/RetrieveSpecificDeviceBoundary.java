@@ -18,6 +18,8 @@ public class RetrieveSpecificDeviceBoundary extends AppCompatActivity {
     private ListView specificDeviceListView;
     private RetrieveSpecificDeviceController retrieveSpecificDeviceController;
     private int type;
+    private long MicroControllerID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -63,16 +65,32 @@ public class RetrieveSpecificDeviceBoundary extends AppCompatActivity {
     private void retrieveSpecificDevices(){
 
 
-        Intent intent = getIntent();
-
-        type = intent.getIntExtra("TYPE" , -1);
-
-
         specificDeviceListView = findViewById(R.id.specific_device_list_view_Lay_retrieve_list_of_specific_device);
 
         retrieveSpecificDeviceController = new RetrieveSpecificDeviceController(RetrieveSpecificDeviceBoundary.this, specificDeviceListView);
 
-        boolean isListEmpty = retrieveSpecificDeviceController.retrieveSpecificDevices(type);
+        Intent previousintent = getIntent();
+
+        type = previousintent.getIntExtra("TYPE" , -1);
+
+        MicroControllerID =  previousintent.getLongExtra("MICROCONTROLLER_ID" , -1);
+
+        boolean isListEmpty=false;
+
+        if(type != -1){
+
+            isListEmpty = retrieveSpecificDeviceController.retrieveSpecificDevicesByCategory(type);
+
+        }
+
+        if(MicroControllerID != -1){
+
+            isListEmpty = retrieveSpecificDeviceController.retrieveSpecificDevicesByMicroController(MicroControllerID);
+
+        }
+
+
+
 
         if (isListEmpty == false) {
             Toast.makeText(this, "No Devices Available !", Toast.LENGTH_LONG).show();

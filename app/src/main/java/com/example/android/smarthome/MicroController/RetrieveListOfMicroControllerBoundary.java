@@ -1,5 +1,6 @@
 package com.example.android.smarthome.MicroController;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -52,9 +53,13 @@ public class RetrieveListOfMicroControllerBoundary extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
 
+                MicroController currentMicroController = (MicroController) parent.getItemAtPosition(position);
 
+                Intent SpecificMicroControllerIntent = new Intent(RetrieveListOfMicroControllerBoundary.this , RetrieveSpecificMicroControllerBoundary.class);
 
-                //TODO
+                SpecificMicroControllerIntent.putExtra("MICROCONTROLLER_ID", currentMicroController.getLong_id());
+
+                startActivity(SpecificMicroControllerIntent);
 
             }
         });

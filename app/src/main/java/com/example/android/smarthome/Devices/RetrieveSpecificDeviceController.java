@@ -31,11 +31,11 @@ public class RetrieveSpecificDeviceController extends AppCompatActivity {
     }
 
 
-    public boolean retrieveSpecificDevices (int type){
+    public boolean retrieveSpecificDevicesByCategory (int type){
 
         retrieveSpecificDeviceDA = new RetrieveSpecificDeviceDA(this.activity , type);
 
-        ArrayList<Device> specificDevicesList = retrieveSpecificDeviceDA.retrieveSpecificDevicesDA();
+        ArrayList<Device> specificDevicesList = retrieveSpecificDeviceDA.retrieveSpecificDevicesDAByCategory();
 
 
         if(specificDevicesList != null) {
@@ -49,6 +49,28 @@ public class RetrieveSpecificDeviceController extends AppCompatActivity {
         }
 
     }
+
+
+
+    public boolean retrieveSpecificDevicesByMicroController (long MicroControllerId){
+
+        retrieveSpecificDeviceDA = new RetrieveSpecificDeviceDA(this.activity , MicroControllerId);
+
+        ArrayList<Device> specificDevicesList = retrieveSpecificDeviceDA.retrieveSpecificDevicesByMicroController();
+
+
+        if(specificDevicesList != null) {
+            retrieveSpecificDeviceAdapter = new RetrieveSpecificDeviceAdapter(activity.getApplicationContext(), specificDevicesList);
+            listView.setAdapter(retrieveSpecificDeviceAdapter);
+            return true;
+        }
+        else{
+
+            return false;
+        }
+
+    }
+
 
 
 

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    android:orientation="horizontal"
+    >
+
+    <TextView
+        android:id="@+id/shield_name_Lay_shield_list_item"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="Relay"
+        android:textSize="24sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        />
+
+
+    <ImageView
+        android:id="@+id/shield_image_Lay_shield_list_item"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="Relay"
+        android:textSize="24sp"
+        android:src="@mipmap/ic_launcher"
+        />
+
+
+
+</LinearLayout>
