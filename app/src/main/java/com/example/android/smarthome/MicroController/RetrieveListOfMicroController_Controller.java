@@ -2,6 +2,8 @@ package com.example.android.smarthome.MicroController;
 
 
 import android.app.Activity;
+import android.view.View;
+import android.widget.GridView;
 import android.widget.ListView;
 
 import com.example.android.smarthome.Adapters.RetrieveListOfDevicesAdapter;
@@ -17,12 +19,12 @@ public class RetrieveListOfMicroController_Controller {
     private RetrieveListOfMicroControllerDA retrieveListOfMicroControllerDA;
     private RetrieveListOfMicroControllerAdapter retrieveListOfMicroControllerAdapter;
     private Activity activity;
-    private ListView listView;
+    private GridView gridView;
 
-    public RetrieveListOfMicroController_Controller(Activity activity , ListView listView){
+    public RetrieveListOfMicroController_Controller(Activity activity , GridView gridView){
 
         this.activity = activity;
-        this.listView = listView;
+        this.gridView = gridView;
 
     }
 
@@ -35,7 +37,7 @@ public class RetrieveListOfMicroController_Controller {
 
         if(microControllers != null) {
             retrieveListOfMicroControllerAdapter = new RetrieveListOfMicroControllerAdapter(activity.getApplicationContext(), microControllers);
-            listView.setAdapter(retrieveListOfMicroControllerAdapter);
+            gridView.setAdapter(retrieveListOfMicroControllerAdapter);
             return true;
         }
         else{

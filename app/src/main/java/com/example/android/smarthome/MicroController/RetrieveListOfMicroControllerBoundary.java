@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Toast;
 import com.example.android.smarthome.R;
@@ -13,7 +14,7 @@ import com.example.android.smarthome.R;
 
 public class RetrieveListOfMicroControllerBoundary extends AppCompatActivity {
 
-    private ListView microControllerListView;
+    private GridView microControllerGridView;
     private RetrieveListOfMicroController_Controller retrieveListOfMicroController_controller;
 
     @Override
@@ -31,10 +32,10 @@ public class RetrieveListOfMicroControllerBoundary extends AppCompatActivity {
     private void retrieveMicroControllers(){
 
 
-        microControllerListView = findViewById(R.id.micro_controller_list_view_Lay_retrieve_list_of_micro_controller);
+        microControllerGridView = findViewById(R.id.micro_controller_list_view_Lay_retrieve_list_of_micro_controller);
 
 
-        retrieveListOfMicroController_controller = new RetrieveListOfMicroController_Controller(RetrieveListOfMicroControllerBoundary.this , microControllerListView);
+        retrieveListOfMicroController_controller = new RetrieveListOfMicroController_Controller(RetrieveListOfMicroControllerBoundary.this , microControllerGridView);
 
         boolean isListEmpty = retrieveListOfMicroController_controller.retrieveMicroControllers();
 
@@ -47,7 +48,7 @@ public class RetrieveListOfMicroControllerBoundary extends AppCompatActivity {
 
     private void attachListViewToListener(){
 
-        microControllerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        microControllerGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 

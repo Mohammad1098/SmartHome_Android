@@ -1,28 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <Button
+    <!--<Button-->
+        <!--android:id="@+id/addMicro"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="add micro"-->
+        <!--/>-->
+
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/addMicro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="add micro"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="24dp"
+        android:clickable="true"
+        android:backgroundTint="@color/colorPrimaryDark"
+        app:borderWidth="0dp"
+        android:src="@drawable/ic_add_black_24dp"
         />
 
-    <ListView
+    <GridView
         android:id="@+id/micro_controller_list_view_Lay_retrieve_list_of_micro_controller"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:numColumns="2"
         android:divider="@android:color/transparent"
         android:dividerHeight="10dp"
-        android:layout_marginTop="18dp"></ListView>
+        android:layout_marginTop="18dp">
+
+    </GridView>
 
 
 
 
-</LinearLayout>
+</RelativeLayout>
