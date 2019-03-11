@@ -43,7 +43,7 @@ public class RetrieveListOfShieldsAdapter extends ArrayAdapter<Shield> {
         ImageView shieldImage = convertView.findViewById(R.id.shield_image_Lay_shield_list_item);
 
 
-
+        return null;
     }
 
 
@@ -62,6 +62,7 @@ public class RetrieveListOfShieldsAdapter extends ArrayAdapter<Shield> {
 
         }
 
+        return 0;
 
     }
 

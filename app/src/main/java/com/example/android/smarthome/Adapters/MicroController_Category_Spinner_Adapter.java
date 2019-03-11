@@ -12,11 +12,11 @@ import com.example.android.smarthome.R;
 import java.util.ArrayList;
 
 
-public class microController_Category_spinner_adapter extends ArrayAdapter<MicroController_Category> {
+public class MicroController_Category_Spinner_Adapter extends ArrayAdapter<MicroController_Category> {
 
 
 
-    public microController_Category_spinner_adapter(Context context , ArrayList<MicroController_Category> list){
+    public MicroController_Category_Spinner_Adapter(Context context , ArrayList<MicroController_Category> list){
 
         super(context , 0 , list );
 

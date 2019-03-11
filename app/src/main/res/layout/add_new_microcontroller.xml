@@ -8,7 +8,6 @@
 
 
 
-
     <EditText
         android:hint="Room"
         android:id="@+id/micro_controller_room_Lay_add_new_microcontroller"

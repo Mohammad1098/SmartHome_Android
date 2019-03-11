@@ -3,6 +3,8 @@ package com.example.android.smarthome.MicroController;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,7 +23,7 @@ public class RetrieveSpecificMicroControllerBoundary extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.specific_micro_controller);
-
+        createViews();
 
     }
 
@@ -44,10 +46,11 @@ public class RetrieveSpecificMicroControllerBoundary extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
                 Intent MicroControllerDeviceIntent = new Intent(RetrieveSpecificMicroControllerBoundary.this , RetrieveSpecificDeviceBoundary.class);
 
                 MicroControllerDeviceIntent.putExtra("MICROCONTROLLER_ID" , MicroControllerID);
+
+                startActivity(MicroControllerDeviceIntent);
 
             }
         });
@@ -61,9 +64,39 @@ public class RetrieveSpecificMicroControllerBoundary extends AppCompatActivity {
 
                 MicroControllerShieldIntent.putExtra("MICROCONTROLLER_ID" , MicroControllerID);
 
+                startActivity(MicroControllerShieldIntent);
+
 
             }
         });
+
+    }
+
+
+    private void returnToPreviousLayout(){
+
+        Intent openRetrieveMicroControllerLayoutIntent = new Intent(RetrieveSpecificMicroControllerBoundary.this, RetrieveListOfMicroControllerBoundary.class);
+
+        startActivity(openRetrieveMicroControllerLayoutIntent);
+
+
+    }
+
+
+    @Override
+    public void onBackPressed() {
+
+        returnToPreviousLayout();
+
+    }
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+            returnToPreviousLayout();
+            return true;
 
     }
 

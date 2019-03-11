@@ -1,5 +1,6 @@
 package com.example.android.smarthome.MicroController;
 
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,10 +14,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-import com.example.android.smarthome.Adapters.microController_Category_spinner_adapter;
-import com.example.android.smarthome.Devices.Add_new_device;
+import com.example.android.smarthome.Adapters.MicroController_Category_Spinner_Adapter;
+import com.example.android.smarthome.DataBase.Schema;
 import com.example.android.smarthome.Devices.RetrieveListOfDevicesBoundary;
-import com.example.android.smarthome.Devices.RetrieveSpecificDeviceBoundary;
 import com.example.android.smarthome.R;
 import java.util.ArrayList;
 
@@ -29,7 +29,7 @@ public class Add_new_microController extends AppCompatActivity {
 
     private Button add_microController_button;
 
-    private microController_Category_spinner_adapter microControllerSpinnerAdapter;
+    private MicroController_Category_Spinner_Adapter microControllerSpinnerAdapter;
 
     private ArrayList<MicroController_Category> microController_categoryArrayList = new ArrayList<>();
 
@@ -42,6 +42,7 @@ public class Add_new_microController extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_new_microcontroller);
+
         CreateViews();
         CreateSpinnerAdapter();
         attachSpinnerToListener();
@@ -59,7 +60,7 @@ public class Add_new_microController extends AppCompatActivity {
 
     private void CreateSpinnerAdapter(){
 
-        microControllerSpinnerAdapter =  new microController_Category_spinner_adapter(this , CreateMicroControllerCategory());
+        microControllerSpinnerAdapter =  new MicroController_Category_Spinner_Adapter(this , CreateMicroControllerCategory());
 
         microControllerSpinner = findViewById(R.id.spinner_microController_Lay_add_new_microController);
 
@@ -77,8 +78,8 @@ public class Add_new_microController extends AppCompatActivity {
 
                 MicroController_Category MicroController = (MicroController_Category) parent.getItemAtPosition(position);
 
-                selectedMicroControllerName = MicroController.getCategoryName(); // 0 Light Bulb
-                selectedMicroController = MicroController.getType();
+                selectedMicroControllerName = MicroController.getCategoryName();
+                selectedMicroController = MicroController.getType();  // Type of micro controller  0 --> Arduino Uno R3
 
 
             }
@@ -137,16 +138,16 @@ public class Add_new_microController extends AppCompatActivity {
 
         }
 
-        /*
+
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put(Schema.Device.NAME , deviceName);
-        contentValues.put(Schema.Device.PIN , devicePin);
-        contentValues.put(Schema.Device.ROOM , deviceRoom);
-        contentValues.put(Schema.Device.TYPE , selectedCategory);
+        contentValues.put(Schema.MicroController.NAME , selectedMicroControllerName);
+        contentValues.put(Schema.MicroController.ROOM , microControllerRoom);
+        getContentResolver().insert(Schema.MicroController.CONTENT_URI, contentValues);
 
-        getContentResolver().insert(Schema.Device.CONTENT_URI, contentValues);
-        */
+        //TODO GET THE MICROCONTROLLER ID AND ADD 14 PINS TO PIN TABLE 
+
+
         returnToPreviousLayout();
 
 
@@ -155,7 +156,7 @@ public class Add_new_microController extends AppCompatActivity {
 
     private void returnToPreviousLayout(){
 
-        Intent Intent = new Intent(Add_new_microController.this, RetrieveListOfDevicesBoundary.class);
+        Intent Intent = new Intent(Add_new_microController.this, RetrieveListOfMicroControllerBoundary.class);
 
 
         startActivity(Intent);

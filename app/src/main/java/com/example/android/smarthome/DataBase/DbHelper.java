@@ -41,6 +41,15 @@ public class DbHelper extends SQLiteOpenHelper {
                 +"FOREIGN KEY ("+ Schema.Shield.MICROCONTROLLER_ID+") REFERENCES "+Schema.MicroController.TABLE_NAME+"("+Schema.MicroController.ID+"));";
 
 
+        String Pin_Table = "CREATE TABLE "+Schema.Pin.TABLE_NAME +"("
+
+                +Schema.Pin.ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                +Schema.Pin.PIN_NUMBER +" INTEGER NOT NULL ,"
+                +Schema.Pin.AVAILABILITY +" INTEGER NOT NULL ,"
+                +Schema.Pin.MICROCONTROLLER_ID +" INTEGER ,"
+                +"FOREIGN KEY ("+ Schema.Pin.MICROCONTROLLER_ID+") REFERENCES "+Schema.MicroController.TABLE_NAME+"("+Schema.MicroController.ID+"));";
+
+
         String DeviceCategory_Table = "CREATE TABLE "+Schema.DeviceCategory.TABLE_NAME +"("
 
                 +Schema.DeviceCategory.ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -83,6 +92,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
         db.execSQL(MicroController_Table);
         db.execSQL(Shield_Table);
+        db.execSQL(Pin_Table);
         db.execSQL(DeviceCategory_Table);
         db.execSQL(Device_Table);
         db.execSQL(LightBulb_Table);

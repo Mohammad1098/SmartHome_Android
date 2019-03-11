@@ -1,14 +1,19 @@
 package com.example.android.smarthome.Devices;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.example.android.smarthome.MicroController.RetrieveSpecificMicroControllerBoundary;
 import com.example.android.smarthome.Operation.RetrieveListOfOperationBoundary;
 import com.example.android.smarthome.R;
 
@@ -127,6 +132,47 @@ public class RetrieveSpecificDeviceBoundary extends AppCompatActivity {
 
             }
         });
+
+    }
+
+
+    private void returnToPreviousLayout(){
+
+        Intent openSpecificMicroControllerLayoutIntent = new Intent(RetrieveSpecificDeviceBoundary.this, RetrieveSpecificMicroControllerBoundary.class);
+
+
+        //send the id of selected device to RetrieveListOfOperationBoundary class
+        openSpecificMicroControllerLayoutIntent.putExtra("MICROCONTROLLER_ID", MicroControllerID);
+
+
+        startActivity(openSpecificMicroControllerLayoutIntent);
+
+
+    }
+
+    @Override
+    public void onBackPressed() {
+
+
+        if(MicroControllerID != -1) {
+            returnToPreviousLayout();
+        }
+
+
+    }
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(MicroControllerID !=-1) {
+            returnToPreviousLayout();
+            return true;
+
+        }
+
+        return true;
 
     }
 

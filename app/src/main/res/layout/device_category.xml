@@ -6,7 +6,7 @@
 
     <ImageView
         android:id="@+id/category_Image_Lay_device_category"
-        android:layout_width="0dp"
+        android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_weight="1"
         />

@@ -50,7 +50,7 @@ public final class Schema   {
 
         public static final String TABLE_NAME = "Shield";
 
-        public static final String ID=BaseColumns._ID;
+        public static final String ID =BaseColumns._ID;
 
         public static final String NAME="NAME";
 
@@ -61,6 +61,40 @@ public final class Schema   {
 
 
     }
+
+
+    // Pins Table
+
+    public static abstract class Pin implements BaseColumns{
+
+
+        public static final String CONTENT_AUTHORITY ="com.example.android.SmartHome";
+
+        public static final Uri BASE_URI = Uri.parse("content://"+CONTENT_AUTHORITY);
+
+        public static final String PATH = "Pin";
+
+        public static final Uri CONTENT_URI = Uri.withAppendedPath(BASE_URI , PATH);
+
+        public static final String TABLE_NAME = "Pin";
+
+        public static final String ID = BaseColumns._ID;
+
+        public static final String PIN_NUMBER = "PINNUMBER";
+
+        public static final String MICROCONTROLLER_ID = "MICROCONTROLLERID";
+
+        public static final String AVAILABILITY = "AVAILABILITY";
+
+
+    }
+
+
+
+
+
+
+
 
 
     //Device category table
