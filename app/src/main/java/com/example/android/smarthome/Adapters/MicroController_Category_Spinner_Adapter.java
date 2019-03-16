@@ -45,7 +45,7 @@ public class MicroController_Category_Spinner_Adapter extends ArrayAdapter<Micro
 
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.device_category, parent, false
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.spinner_item, parent, false
             );
         }
 

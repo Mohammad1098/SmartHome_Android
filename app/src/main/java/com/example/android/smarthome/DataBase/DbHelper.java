@@ -46,6 +46,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 +Schema.Pin.ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 +Schema.Pin.PIN_NUMBER +" INTEGER NOT NULL ,"
                 +Schema.Pin.AVAILABILITY +" INTEGER NOT NULL ,"
+                +Schema.Pin.TYPE +" INTEGER NOT NULL ,"
                 +Schema.Pin.MICROCONTROLLER_ID +" INTEGER ,"
                 +"FOREIGN KEY ("+ Schema.Pin.MICROCONTROLLER_ID+") REFERENCES "+Schema.MicroController.TABLE_NAME+"("+Schema.MicroController.ID+"));";
 

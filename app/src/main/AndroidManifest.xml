@@ -32,6 +32,7 @@
         <activity android:parentActivityName=".Devices.RetrieveListOfDevicesBoundary" android:name=".MicroController.RetrieveListOfMicroControllerBoundary"></activity>
         <activity android:parentActivityName=".MicroController.RetrieveListOfMicroControllerBoundary" android:name=".MicroController.RetrieveSpecificMicroControllerBoundary"></activity>
         <activity android:parentActivityName=".MicroController.RetrieveSpecificMicroControllerBoundary" android:name=".Shield.RetrieveShieldBoundary"></activity>
+        <activity android:parentActivityName=".MicroController.RetrieveSpecificMicroControllerBoundary" android:name=".Shield.Add_new_Shield"></activity>
 
 
 

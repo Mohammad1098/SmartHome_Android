@@ -12,8 +12,7 @@ import android.widget.Toast;
 
 import com.example.android.smarthome.Devices.RetrieveListOfDevicesBoundary;
 import com.example.android.smarthome.R;
-
-
+import com.example.android.smarthome.Shield.Add_new_Shield;
 
 
 public class RetrieveListOfMicroControllerBoundary extends AppCompatActivity {
@@ -47,7 +46,7 @@ public class RetrieveListOfMicroControllerBoundary extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent addNewDeviceIntent = new Intent(RetrieveListOfMicroControllerBoundary.this , Add_new_microController.class);
+                Intent addNewDeviceIntent = new Intent(RetrieveListOfMicroControllerBoundary.this , Add_new_Shield.class);
 
 
                 startActivity(addNewDeviceIntent);

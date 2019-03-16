@@ -86,6 +86,9 @@ public final class Schema   {
 
         public static final String AVAILABILITY = "AVAILABILITY";
 
+        public static final String TYPE = "TYPE";
+
+
 
     }
 

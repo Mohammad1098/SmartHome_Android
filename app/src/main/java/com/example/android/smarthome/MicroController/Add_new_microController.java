@@ -3,6 +3,7 @@ package com.example.android.smarthome.MicroController;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -139,14 +140,42 @@ public class Add_new_microController extends AppCompatActivity {
         }
 
 
-        ContentValues contentValues = new ContentValues();
+        ContentValues contentValuesMicroControllerTable = new ContentValues();
 
-        contentValues.put(Schema.MicroController.NAME , selectedMicroControllerName);
-        contentValues.put(Schema.MicroController.ROOM , microControllerRoom);
-        getContentResolver().insert(Schema.MicroController.CONTENT_URI, contentValues);
+        contentValuesMicroControllerTable.put(Schema.MicroController.NAME , selectedMicroControllerName);
+        contentValuesMicroControllerTable.put(Schema.MicroController.ROOM , microControllerRoom);
+        Uri uri = getContentResolver().insert(Schema.MicroController.CONTENT_URI, contentValuesMicroControllerTable);
 
-        //TODO GET THE MICROCONTROLLER ID AND ADD 14 PINS TO PIN TABLE 
+        long MicroControllerID = Long.valueOf(uri.getLastPathSegment());
 
+
+
+        // insert the required pins
+        ContentValues contentValuesPinTable = new ContentValues();
+
+        for (int i=0 ; i <14 ; i++) {
+
+            contentValuesPinTable.put("PINNUMBER", i);
+            contentValuesPinTable.put("MICROCONTROLLERID", MicroControllerID);
+            // 0 means it's available
+            contentValuesPinTable.put("AVAILABILITY", 0);
+            // 0 means it's Digital
+            contentValuesPinTable.put("TYPE", 0);
+        }
+
+
+        for (int i=0 ; i <7 ; i++) {
+
+            contentValuesPinTable.put("PINNUMBER", i);
+            contentValuesPinTable.put("MICROCONTROLLERID", MicroControllerID);
+            // 0 means it's available
+            contentValuesPinTable.put("AVAILABILITY", 0);
+            // 0 means it's Analog
+            contentValuesPinTable.put("TYPE", 1);
+        }
+
+
+        getContentResolver().insert(Schema.Pin.CONTENT_URI, contentValuesPinTable);
 
         returnToPreviousLayout();
 

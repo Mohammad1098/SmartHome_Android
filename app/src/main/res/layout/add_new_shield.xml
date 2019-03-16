@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <Spinner
+        android:id="@+id/spinner_Shield_Lay_add_new_shield"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="35dp"
+        android:layout_gravity="left"
+        >
+
+    </Spinner>
+
+
+
+
+
+    <LinearLayout
+        android:id="@+id/LinearLayout_relay_channel_Lay_add_new_shield"
+        android:layout_width="wrap_content"
+        android:layout_height="250dp"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical"
+        >
+
+
+
+        <EditText
+            android:id="@+id/relay_channel_1_Lay_add_new_shield"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:inputType="numberSigned"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:hint="Channel 1 pin "
+            />
+
+
+        <EditText
+            android:id="@+id/relay_channel_2_Lay_add_new_shield"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:inputType="numberSigned"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:hint="Channel 2 pin "
+            />
+
+        <EditText
+            android:id="@+id/IR_Pin_Lay_add_new_shield"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:inputType="numberSigned"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:hint="IR Pin"
+            />
+
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/add_shield_Lay_add_new_shield"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="45dp"
+        android:textColor="@color/colorPrimary"
+        android:background="@drawable/bg_command"
+        android:layout_gravity="right"
+        />
+
+</LinearLayout>
+
+
+
+
+
+
+

@@ -8,16 +8,17 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.android.smarthome.DeviceCategory.DeviceCategory;
+import com.example.android.smarthome.MicroController.MicroController_Category;
 import com.example.android.smarthome.R;
+import com.example.android.smarthome.Shield.Shield;
+
 import java.util.ArrayList;
 
-
-public class Device_Category_Spinner_Adapter extends ArrayAdapter<DeviceCategory> {
-
+public class Shield_Spinner_Adapter extends ArrayAdapter<Shield> {
 
 
-    public Device_Category_Spinner_Adapter(Context context , ArrayList<DeviceCategory> list){
+
+    public Shield_Spinner_Adapter(Context context , ArrayList<Shield> list){
 
         super(context , 0 , list );
 
@@ -51,20 +52,23 @@ public class Device_Category_Spinner_Adapter extends ArrayAdapter<DeviceCategory
         }
 
 
-        DeviceCategory currentCategory = getItem(position);
+        Shield currentShield = getItem(position);
 
 
 
-        ImageView categoryImage =  convertView.findViewById(R.id.category_Image_Lay_device_category);
+        ImageView shieldImage =  convertView.findViewById(R.id.category_Image_Lay_device_category);
 
-        TextView categoryName =  convertView.findViewById(R.id.category_name_Lay_device_category);
+        TextView shieldName =  convertView.findViewById(R.id.category_name_Lay_device_category);
 
 
-        if(currentCategory != null) {
-            categoryImage.setImageResource(currentCategory.getCategoryImage());
+        if(currentShield != null) {
 
-            categoryName.setText(currentCategory.getCategoryName());
+            shieldImage.setImageResource(currentShield.getShieldImage());
+
+            shieldName.setText(currentShield.getName());
         }
+
+
         return convertView;
     }
 }

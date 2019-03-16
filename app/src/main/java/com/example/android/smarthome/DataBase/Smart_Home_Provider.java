@@ -61,6 +61,11 @@ public class Smart_Home_Provider extends  ContentProvider {
         sUriMatcher.addURI(Schema.Shield.CONTENT_AUTHORITY , Schema.Shield.PATH , 8);
 
 
+        //## for Pin table
+
+        sUriMatcher.addURI(Schema.Pin.CONTENT_AUTHORITY , Schema.Pin.PATH , 9);
+
+
     }
 
 
@@ -136,6 +141,11 @@ public class Smart_Home_Provider extends  ContentProvider {
                 cursor = db.query(Schema.Shield.TABLE_NAME , projection , selection , selectionArgs , null , null , sortOrder );
                 break;
 
+            case 9 :
+
+                cursor = db.query(Schema.Pin.TABLE_NAME , projection , selection , selectionArgs , null , null , sortOrder );
+                break;
+
             default:
                 throw  new IllegalArgumentException("Error "+ uri);
 
@@ -179,6 +189,10 @@ public class Smart_Home_Provider extends  ContentProvider {
                 // Helper method
                 return insertRecord(uri , values , match);
 
+            case 9:
+                // Helper method
+                return insertRecord(uri , values , match);
+
             default:
                 throw new IllegalArgumentException("Error " + uri);
 
@@ -213,6 +227,10 @@ public class Smart_Home_Provider extends  ContentProvider {
 
             case 8:
                 id = db.insert(Schema.Shield.TABLE_NAME, null, contentValues);
+                break;
+
+            case 9:
+                id = db.insert(Schema.Pin.TABLE_NAME, null, contentValues);
                 break;
 
             default:
