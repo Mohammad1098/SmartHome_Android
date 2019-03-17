@@ -8,8 +8,7 @@
         android:id="@+id/category_Image_Lay_device_category"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:layout_weight="1"
-        />
+        android:layout_weight="1" />
 
     <TextView
         android:id="@+id/category_name_Lay_device_category"
@@ -23,7 +22,6 @@
         android:layout_weight="3"
         android:gravity="center"
         android:text=""
-        android:textSize="15sp"
-        />
+        android:textSize="15sp" />
 
 </LinearLayout>

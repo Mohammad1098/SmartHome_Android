@@ -3,19 +3,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
 
     <ListView
         android:id="@+id/device_list_view_Lay_specific_micro_controller_devices_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="18dp"
         android:divider="@android:color/transparent"
-        android:dividerHeight="10dp"
-        android:layout_marginTop="18dp"></ListView>
-
-
+        android:dividerHeight="10dp"></ListView>
 
 
 </LinearLayout>

@@ -8,22 +8,19 @@
     tools:context=".Devices.RetrieveListOfDevicesController">
 
     <Button
+        android:id="@+id/openMicro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Micro"
-        android:id="@+id/openMicro"
-        />
+        android:text="Micro" />
 
 
     <ListView
         android:id="@+id/device_list_view_Lay_retrieve_list_of_devices"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
         android:divider="@android:color/transparent"
-        android:dividerHeight="10dp"
-        android:layout_marginTop="18dp"></ListView>
-
-
+        android:dividerHeight="10dp"></ListView>
 
 
 </LinearLayout>

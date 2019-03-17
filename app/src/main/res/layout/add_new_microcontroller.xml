@@ -1,34 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
-
+    android:orientation="vertical">
 
 
     <EditText
-        android:hint="Room"
         android:id="@+id/micro_controller_room_Lay_add_new_microcontroller"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"
         android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
         android:layout_marginTop="55dp"
-        android:backgroundTint="@color/colorPrimary"
-        />
+        android:layout_marginRight="15dp"
+        android:hint="Room"
+        android:inputType="text" />
 
 
     <Spinner
         android:id="@+id/spinner_microController_Lay_add_new_microController"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
         android:layout_gravity="left"
-        >
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp">
 
     </Spinner>
 
@@ -37,13 +31,12 @@
         android:id="@+id/add_microController_Lay_add_new_microController"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="45dp"
-        android:textColor="@color/colorPrimary"
-        android:background="@drawable/bg_command"
         android:layout_gravity="right"
-        />
+        android:layout_marginTop="45dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/bg_command"
+        android:text="Add"
+        android:textColor="@color/colorPrimary" />
 
 </LinearLayout>
 
