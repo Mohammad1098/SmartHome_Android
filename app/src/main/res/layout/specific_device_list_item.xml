@@ -3,34 +3,32 @@
     android:layout_width="match_parent"
     android:layout_height="80dp"
     android:background="@color/colorPrimary"
+    android:elevation="3dp"
     android:orientation="vertical"
     android:paddingTop="12dp"
-    android:paddingBottom="12dp"
-    android:elevation="3dp">
+    android:paddingBottom="12dp">
 
     <TextView
         android:id="@+id/device_name_Lay_specific_device_list_item"
         android:layout_width="wrap_content"
-        android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:text="device name"
-        android:textSize="23sp"
-        android:gravity="center"
-        android:textColor="@color/text"
         android:layout_marginLeft="24dp"
-        />
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="device name"
+        android:textColor="@color/text"
+        android:textSize="23sp" />
 
     <TextView
         android:id="@+id/device_room_Lay_specific_device_list_item"
         android:layout_width="wrap_content"
-        android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:text="device room"
-        android:textSize="18sp"
-        android:gravity="center"
-        android:textColor="@color/text"
         android:layout_marginLeft="28dp"
-        />
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="device room"
+        android:textColor="@color/text"
+        android:textSize="12sp" />
 
 
 </LinearLayout>

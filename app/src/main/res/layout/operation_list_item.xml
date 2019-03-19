@@ -1,43 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
+    android:layout_height="wrap_content"
     android:background="@color/colorPrimary"
+    android:elevation="3dp"
     android:orientation="vertical"
     android:paddingTop="12dp"
-    android:paddingBottom="12dp"
-    android:elevation="3dp">
+    android:paddingBottom="12dp">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-    <TextView
-        android:id="@+id/operation_name_Lay_retrieve_list_of_operation_item"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:text="Test operation Name "
-        android:textSize="23sp"
-        android:textColor="@color/text"/>
 
-    <TextView
-        android:id="@+id/operation_implementation_Lay_retrieve_list_of_operation_item"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:text="implementation "
-        android:textSize="18sp"
-        android:textColor="@color/text"/>
+        <TextView
+            android:id="@+id/operation_name_Lay_retrieve_list_of_operation_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:text="Test operation Name "
+            android:textColor="@color/text"
+            android:textSize="23sp" />
+
+        <TextView
+            android:id="@+id/operation_implementation_Lay_retrieve_list_of_operation_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="28dp"
+            android:text="implementation "
+            android:textColor="@color/text"
+            android:textSize="12sp" />
     </LinearLayout>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:layout_marginRight="35dp"
-        android:text="Toggle"
-        android:clickable="true"
         android:background="@drawable/bg_command"
-        android:layout_alignParentRight="true"/>
+        android:clickable="true"
+        android:text="Toggle"
+        android:textColor="@color/colorPrimary"/>
 
 </RelativeLayout>

@@ -3,9 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="60dp"
     android:background="@color/colorPrimary"
-    android:paddingTop="6dp"
-    android:paddingBottom="6dp"
-    android:elevation="3dp">
+    android:elevation="3dp"
+    android:paddingTop="12dp"
+    android:paddingBottom="12dp">
 
 
     <TextView
@@ -13,11 +13,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginTop="9dp"
         android:layout_marginLeft="24dp"
-        android:text=""
-        android:textSize="23sp"
-        android:textColor="@color/text"/>
+        android:text="Something"
+        android:textColor="@color/text"
+        android:textSize="23sp" />
 
 
 </LinearLayout>
