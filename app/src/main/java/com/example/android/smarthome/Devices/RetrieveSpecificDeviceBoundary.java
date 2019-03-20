@@ -59,6 +59,9 @@ public class RetrieveSpecificDeviceBoundary extends AppCompatActivity {
 
                 addNewDeviceIntent.putExtra("TYPE" ,type );
 
+                addNewDeviceIntent.putExtra("MICROCONTROLLER_ID" ,MicroControllerID );
+
+
                 startActivity(addNewDeviceIntent);
 
 
@@ -154,9 +157,9 @@ public class RetrieveSpecificDeviceBoundary extends AppCompatActivity {
     public void onBackPressed() {
 
 
-        if(MicroControllerID != -1) {
+
             returnToPreviousLayout();
-        }
+
 
 
     }
@@ -166,13 +169,12 @@ public class RetrieveSpecificDeviceBoundary extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if(MicroControllerID !=-1) {
+
             returnToPreviousLayout();
             return true;
 
-        }
 
-        return true;
+
 
     }
 

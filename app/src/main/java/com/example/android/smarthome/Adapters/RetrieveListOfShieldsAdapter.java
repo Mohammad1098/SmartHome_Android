@@ -34,7 +34,6 @@ public class RetrieveListOfShieldsAdapter extends ArrayAdapter<Shield> {
 
         Shield currentShield = getItem(position);
 
-
         TextView shieldName = convertView.findViewById(R.id.shield_name_Lay_shield_list_item);
 
         shieldName.setText(currentShield.getName());
@@ -42,23 +41,27 @@ public class RetrieveListOfShieldsAdapter extends ArrayAdapter<Shield> {
 
         ImageView shieldImage = convertView.findViewById(R.id.shield_image_Lay_shield_list_item);
 
+        returnImageId(currentShield.getType() , shieldImage);
 
-        return null;
+        return convertView;
     }
 
 
-    private int returnImageId(int type){
+    private int returnImageId(int type , ImageView imageView){
 
-        int imageId=0;
+
 
         switch (type){
 
-
             case 1 :
-
-                //TODO
-
-
+                imageView.setImageResource(R.drawable.relay);
+                break;
+            case 2 :
+                imageView.setImageResource(R.drawable.relay);
+                break;
+            case 3 :
+                imageView.setImageResource(R.drawable.ir);
+                break;
 
         }
 

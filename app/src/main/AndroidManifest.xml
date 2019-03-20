@@ -16,7 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Devices.RetrieveListOfDevicesBoundary">
+        <activity android:name=".HomeScreen.HomeScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,6 +24,7 @@
             </intent-filter>
         </activity>
 
+        <activity android:parentActivityName=".HomeScreen.HomeScreen" android:name=".Devices.RetrieveListOfDevicesBoundary"></activity>
         <activity android:parentActivityName=".Devices.RetrieveSpecificDeviceBoundary" android:name=".Operation.RetrieveListOfOperationBoundary"></activity>
         <activity android:parentActivityName=".Devices.RetrieveListOfDevicesBoundary" android:name=".Devices.RetrieveSpecificDeviceBoundary"></activity>
         <activity android:parentActivityName=".Devices.RetrieveSpecificDeviceBoundary" android:name=".Devices.Add_new_device"></activity>

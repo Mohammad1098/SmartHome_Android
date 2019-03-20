@@ -7,11 +7,7 @@
     android:orientation="vertical"
     tools:context=".Devices.RetrieveListOfDevicesController">
 
-    <Button
-        android:id="@+id/openMicro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Micro" />
+
 
 
     <ListView

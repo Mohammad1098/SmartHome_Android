@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -11,6 +12,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.android.smarthome.Devices.RetrieveListOfDevicesBoundary;
+import com.example.android.smarthome.HomeScreen.HomeScreen;
 import com.example.android.smarthome.R;
 import com.example.android.smarthome.Shield.Add_new_Shield;
 
@@ -46,7 +48,7 @@ public class RetrieveListOfMicroControllerBoundary extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent addNewDeviceIntent = new Intent(RetrieveListOfMicroControllerBoundary.this , Add_new_Shield.class);
+                Intent addNewDeviceIntent = new Intent(RetrieveListOfMicroControllerBoundary.this , Add_new_microController.class);
 
 
                 startActivity(addNewDeviceIntent);
@@ -91,6 +93,34 @@ public class RetrieveListOfMicroControllerBoundary extends AppCompatActivity {
 
             }
         });
+
+    }
+
+
+    private void returnToPreviousLayout(){
+
+        Intent openHomeScreenLayoutIntent = new Intent(RetrieveListOfMicroControllerBoundary.this, HomeScreen.class);
+
+        startActivity(openHomeScreenLayoutIntent);
+
+
+    }
+
+
+    @Override
+    public void onBackPressed() {
+
+        returnToPreviousLayout();
+
+    }
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        returnToPreviousLayout();
+        return true;
 
     }
 
