@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal">
 
 
-    <ImageView
+    <Button
         android:id="@+id/DevicesImage_Lay_specific_micro_controller"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="40dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/air_conditioner" />
+        android:text="Devices"
+        />
 
-    <ImageView
+    <Button
         android:id="@+id/ShieldsImage_Lay_specific_micro_controller"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="40dp"
         android:layout_toRightOf="@+id/DevicesImage_Lay_specific_micro_controller"
-        android:scaleType="centerCrop"
-        android:src="@drawable/air_conditioner" />
+        android:text="Shields"
+        />
 
-</RelativeLayout>
+</LinearLayout>
 
 
 

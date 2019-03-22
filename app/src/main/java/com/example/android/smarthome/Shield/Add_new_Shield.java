@@ -1,10 +1,14 @@
 package com.example.android.smarthome.Shield;
 
 import android.content.ContentValues;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -17,12 +21,19 @@ import android.widget.Toast;
 import com.example.android.smarthome.Adapters.Shield_Spinner_Adapter;
 import com.example.android.smarthome.DataBase.Schema;
 import com.example.android.smarthome.DeviceCategory.DeviceCategory;
+import com.example.android.smarthome.Devices.Add_new_device;
+import com.example.android.smarthome.Devices.RetrieveSpecificDeviceBoundary;
+import com.example.android.smarthome.Pins.RetrieveListOfPinsController;
 import com.example.android.smarthome.R;
 
 import java.util.ArrayList;
 
 public class Add_new_Shield extends AppCompatActivity {
 
+
+    private RetrieveListOfPinsController retrieveListOfPinsController;
+
+    private long Microcontroller_ID;
 
     private Spinner shieldCategorySpinner;
 
@@ -38,6 +49,9 @@ public class Add_new_Shield extends AppCompatActivity {
 
     private Button btn_AddShield;
 
+
+
+
     protected void onCreate(Bundle sa){
 
         super.onCreate(sa);
@@ -49,6 +63,10 @@ public class Add_new_Shield extends AppCompatActivity {
 
 
     private void createView(){
+
+        Intent previousIntent = getIntent();
+
+        Microcontroller_ID = previousIntent.getLongExtra("MICROCONTROLLER_ID", -1);
 
         shieldCategorySpinner = findViewById(R.id.spinner_Shield_Lay_add_new_shield);
 
@@ -96,7 +114,7 @@ public class Add_new_Shield extends AppCompatActivity {
 
                 Shield selectedShieldObj = (Shield) parent.getItemAtPosition(position);
 
-                selectedShield = selectedShieldObj.getType(); // 0 --> Relay , 1 --> IR
+                selectedShield = selectedShieldObj.getType(); // 1 for Relay 1 CHANNEL , 2 for Relay 2 CHANNEL , 3 for IR
 
                 createAppropriateEditText(selectedShield);
 
@@ -121,13 +139,16 @@ public class Add_new_Shield extends AppCompatActivity {
 
         shieldList.add(new Shield("Relay 1 Channel" , R.drawable.relay , 1 )); // 1 for Relay 1 CHANNEL
         shieldList.add(new Shield("Relay 2 Channel" , R.drawable.relay , 2)); //2 for Relay 2 CHANNEL
-        shieldList.add(new Shield("IR" , R.drawable.relay , 3)); //3 for IR
+        shieldList.add(new Shield("IR" , R.drawable.ir , 3)); //3 for IR
 
         Shield_Spinner_Adapter shieldSpinnerAdapter = new Shield_Spinner_Adapter(this , shieldList);
 
 
         return shieldSpinnerAdapter;
     }
+
+
+
 
 
     private void createAppropriateEditText(int type_of_Shield){
@@ -164,6 +185,7 @@ public class Add_new_Shield extends AppCompatActivity {
 
     private void addShieldToDB(){
 
+
         if(selectedShield == -1){
 
             // means the user did't select any shield
@@ -172,36 +194,50 @@ public class Add_new_Shield extends AppCompatActivity {
         }
 
 
-        if(TextUtils.isEmpty(deviceName) ){
+        boolean availability = checkAvailabilityOfPins(selectedShield);
 
-            Toast.makeText(getApplicationContext() , "Please write the Device Name" , Toast.LENGTH_LONG).show();
+
+
+        if(!availability){
+
+            Toast.makeText(this , "Please enter Valid pin number" , Toast.LENGTH_LONG).show();
             return;
 
         }
 
 
-        if(TextUtils.isEmpty(devicePin)){
-
-            Toast.makeText(getApplicationContext() , "Please write the Device Pin" , Toast.LENGTH_LONG).show();
-            return;
-
-        }
-
-        if(selectedCategory == -1){
-
-            Toast.makeText(getApplicationContext() , "Please select Device Category" , Toast.LENGTH_LONG).show();
-            return;
-
-        }
 
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put(Schema.Device.NAME , deviceName);
-        contentValues.put(Schema.Device.PIN , devicePin);
-        contentValues.put(Schema.Device.ROOM , deviceRoom);
-        contentValues.put(Schema.Device.TYPE , selectedCategory);
+        if(selectedShield == 1){
 
-        getContentResolver().insert(Schema.Device.CONTENT_URI, contentValues);
+
+            contentValues.put(Schema.Shield.NAME , "Relay 1 channel");
+            //TODO WE NEED TO UPDATE THE STATE OF PIN IN PIN TABLE
+
+        }
+
+        if(selectedShield == 2){
+
+
+            contentValues.put(Schema.Shield.NAME , "Relay 2 channel");
+            //TODO WE NEED TO UPDATE THE STATE OF PIN IN PIN TABLE
+        }
+
+        if(selectedShield == 3){
+
+
+            contentValues.put(Schema.Shield.NAME , "IR");
+            //TODO WE NEED TO UPDATE THE STATE OF PIN IN PIN TABLE
+        }
+
+
+        contentValues.put(Schema.Shield.MICROCONTROLLER_ID ,Microcontroller_ID);
+        contentValues.put(Schema.Shield.TYPE ,selectedShield);
+
+
+
+        getContentResolver().insert(Schema.Shield.CONTENT_URI, contentValues);
 
         returnToPreviousLayout();
 
@@ -217,12 +253,23 @@ public class Add_new_Shield extends AppCompatActivity {
 
         if(type_of_Shield == 1){
 
+
             String pin1 = relay_Channel_1.getText().toString().trim();
+
+            Log.e("Add shield" , pin1);
+
+            if(TextUtils.isEmpty(pin1)){
+
+                Log.e("Add shield" , "isEmpty");
+
+                return false;
+
+            }
 
             // convert String to Integer
             pins.add(Integer.valueOf(pin1));
 
-            checkAvailabilityOfPinsInDA(pins);
+            return checkAvailabilityOfPinsInDA(pins);
 
         }
 
@@ -232,11 +279,18 @@ public class Add_new_Shield extends AppCompatActivity {
             String pin1 = relay_Channel_1.getText().toString().trim();
             String pin2 = relay_Channel_2.getText().toString().trim();
 
+            if(TextUtils.isEmpty(pin1) || TextUtils.isEmpty(pin2)  ){
+
+                Toast.makeText(getApplicationContext() , "Please write the Device Pin" , Toast.LENGTH_LONG).show();
+                return false;
+
+            }
+
             // convert String to Integer
             pins.add(Integer.valueOf(pin1));
             pins.add(Integer.valueOf(pin2));
 
-            checkAvailabilityOfPinsInDA(pins);
+            return checkAvailabilityOfPinsInDA(pins);
 
         }
 
@@ -245,14 +299,21 @@ public class Add_new_Shield extends AppCompatActivity {
 
             String pin1 = IR_pin.getText().toString().trim();
 
+            if(TextUtils.isEmpty(pin1)){
+
+                Toast.makeText(getApplicationContext() , "Please write the Device Pin" , Toast.LENGTH_LONG).show();
+                return false;
+
+            }
+
             // convert String to Integer
             pins.add(Integer.valueOf(pin1));
 
-            checkAvailabilityOfPinsInDA(pins);
+            return checkAvailabilityOfPinsInDA(pins);
 
         }
 
-
+        return false;
 
 
     }
@@ -261,7 +322,68 @@ public class Add_new_Shield extends AppCompatActivity {
     private boolean checkAvailabilityOfPinsInDA(ArrayList<Integer> pins){
 
 
+        retrieveListOfPinsController = new RetrieveListOfPinsController(this);
+
+        return retrieveListOfPinsController.checkAvailabilityOfPins(pins ,Microcontroller_ID);
+    }
+
+
+
+    private void returnToPreviousLayout(){
+
+        Intent openShieldLayoutIntent = new Intent(Add_new_Shield.this, RetrieveShieldBoundary.class);
+
+
+        //send the id of selected device to RetrieveListOfOperationBoundary class
+        openShieldLayoutIntent.putExtra("MICROCONTROLLER_ID", Microcontroller_ID);
+
+
+        startActivity(openShieldLayoutIntent);
 
 
     }
+
+
+    @Override
+    public void onBackPressed() {
+
+        new AlertDialog.Builder(this)
+                .setTitle("Really Exit?")
+                .setMessage("Are you sure you want to exit?")
+                .setNegativeButton(android.R.string.no, null)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        returnToPreviousLayout();
+
+                    }
+                }).create().show();
+
+
+    }
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                new AlertDialog.Builder(this)
+                        .setTitle("Really Exit?")
+                        .setMessage("Are you sure you want to exit?")
+                        .setNegativeButton(android.R.string.no, null)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                returnToPreviousLayout();
+
+                            }
+                        }).create().show();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 }

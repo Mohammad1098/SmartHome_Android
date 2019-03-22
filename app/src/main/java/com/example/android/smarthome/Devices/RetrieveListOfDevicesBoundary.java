@@ -30,27 +30,14 @@ public class RetrieveListOfDevicesBoundary extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.retrieve_list_of_devices);
-        setTitle("Smart Home");
+        setTitle("Devices");
 
 
         retrieveDevices();
         attachListViewToListener();
 
-        Button btn = findViewById(R.id.openMicro);
-
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent addNewDeviceIntent = new Intent(RetrieveListOfDevicesBoundary.this , RetrieveListOfMicroControllerBoundary.class);
 
 
-                startActivity(addNewDeviceIntent);
-
-
-
-            }
-        });
 
         // Adding dummy DEVICE category
 /*

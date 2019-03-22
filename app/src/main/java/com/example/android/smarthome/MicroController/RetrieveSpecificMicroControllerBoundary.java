@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -36,10 +37,9 @@ public class RetrieveSpecificMicroControllerBoundary extends AppCompatActivity {
 
 
 
+        Button MicroControllerDevicesImage = findViewById(R.id.DevicesImage_Lay_specific_micro_controller);
 
-        ImageView MicroControllerDevicesImage = findViewById(R.id.DevicesImage_Lay_specific_micro_controller);
-
-        ImageView MicroControllerShieldsImage = findViewById(R.id.ShieldsImage_Lay_specific_micro_controller);
+        Button MicroControllerShieldsImage = findViewById(R.id.ShieldsImage_Lay_specific_micro_controller);
 
 
         MicroControllerDevicesImage.setOnClickListener(new View.OnClickListener() {

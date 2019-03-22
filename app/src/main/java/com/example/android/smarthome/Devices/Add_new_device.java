@@ -29,6 +29,8 @@ import java.util.ArrayList;
 
 public class Add_new_device extends AppCompatActivity {
 
+    private long MicroControllerID;
+
     private ArrayList<DeviceCategory> deviceCategoryList = new ArrayList<>();;
 
     private Device_Category_Spinner_Adapter device_category_spinner_adapter;
@@ -124,6 +126,8 @@ public class Add_new_device extends AppCompatActivity {
         Intent intent = getIntent();
 
         type = intent.getIntExtra("TYPE" , -1);
+
+        MicroControllerID = intent.getIntExtra("MICROCONTROLLER_ID" , -1);
 
          deviceNameEditText = findViewById(R.id.device_name_Lay_add_new_specific_device);
 
@@ -247,6 +251,7 @@ public class Add_new_device extends AppCompatActivity {
 
         //send the id of selected device to RetrieveListOfOperationBoundary class
         openSpecificDeviceLayoutIntent.putExtra("TYPE", type);
+        openSpecificDeviceLayoutIntent.putExtra("MICROCONTROLLER_ID", MicroControllerID);
 
 
         startActivity(openSpecificDeviceLayoutIntent);

@@ -2,6 +2,7 @@ package com.example.android.smarthome.Pins;
 
 import android.app.Activity;
 import android.database.Cursor;
+import android.util.Log;
 
 import com.example.android.smarthome.DataBase.Schema;
 
@@ -24,18 +25,26 @@ public class RetrieveListOfPinsDA {
 
     public boolean checkAvailabilityOfPins(ArrayList<Integer> pins){
 
-        if(cursor == null){
-
-            return false;
-        }
-
+        boolean availability;
 
 
         for (int i=0 ; i<pins.size() ; i++){
 
-            if(pins.get(i) == 1)
+            if(!checkArduinoPins(pins.get(i))){
+
+                return false;
+            }
+
+            availability =checkIndividualPin(pins.get(i));
+
+            if(availability ==false){
+
+                return false;
+            }
 
         }
+
+        return true;
 
 
     }
@@ -43,9 +52,12 @@ public class RetrieveListOfPinsDA {
 
     private boolean checkIndividualPin(Integer pin){
 
+        if(cursor == null){
+
+            return false;
+        }
 
         cursor.moveToFirst();
-
 
         for (int i=0 ; i<cursor.getCount() ; i++){
 
@@ -67,5 +79,18 @@ public class RetrieveListOfPinsDA {
 
         return true;
 
+    }
+
+
+    private boolean checkArduinoPins(int pin ){
+
+          //arduino uno has 0-13 pin
+
+                if(pin >13 || pin <0){
+
+                    return false;
+                }
+
+                return true;
     }
 }
