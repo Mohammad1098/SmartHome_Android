@@ -14,15 +14,10 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import com.example.android.smarthome.Adapters.Shield_Spinner_Adapter;
 import com.example.android.smarthome.DataBase.Schema;
-import com.example.android.smarthome.DeviceCategory.DeviceCategory;
-import com.example.android.smarthome.Devices.Add_new_device;
-import com.example.android.smarthome.Devices.RetrieveSpecificDeviceBoundary;
 import com.example.android.smarthome.Pins.RetrieveListOfPinsController;
 import com.example.android.smarthome.R;
 
@@ -207,13 +202,27 @@ public class Add_new_Shield extends AppCompatActivity {
 
 
 
-        ContentValues contentValues = new ContentValues();
+        ContentValues contentValues = new ContentValues(); // To add shield
+
+        ContentValues contentValues_update = new ContentValues(); // To update pin table
+
 
         if(selectedShield == 1){
 
 
             contentValues.put(Schema.Shield.NAME , "Relay 1 channel");
-            //TODO WE NEED TO UPDATE THE STATE OF PIN IN PIN TABLE
+
+            String pin1 = relay_Channel_1.getText().toString().trim();
+
+
+            if(TextUtils.isEmpty(pin1)){
+                return ;
+            }
+
+            Integer pinNumber = Integer.valueOf(pin1);
+
+            contentValues_update.put(Schema.Pin.PIN_NUMBER , pinNumber);
+
 
         }
 
@@ -221,23 +230,60 @@ public class Add_new_Shield extends AppCompatActivity {
 
 
             contentValues.put(Schema.Shield.NAME , "Relay 2 channel");
-            //TODO WE NEED TO UPDATE THE STATE OF PIN IN PIN TABLE
+
+            String pin1 = relay_Channel_1.getText().toString().trim();
+            String pin2 = relay_Channel_2.getText().toString().trim();
+
+            if(TextUtils.isEmpty(pin1) || TextUtils.isEmpty(pin2)  ){
+
+                Toast.makeText(getApplicationContext() , "Please write the Device Pin" , Toast.LENGTH_LONG).show();
+                return ;
+
+            }
+
+            Integer pinNumber1 = Integer.valueOf(pin1);
+
+            Integer pinNumber2 = Integer.valueOf(pin2);
+
+
+            contentValues_update.put(Schema.Pin.PIN_NUMBER , pinNumber1);
+            contentValues_update.put(Schema.Pin.PIN_NUMBER , pinNumber2);
+
+
         }
 
         if(selectedShield == 3){
 
 
             contentValues.put(Schema.Shield.NAME , "IR");
-            //TODO WE NEED TO UPDATE THE STATE OF PIN IN PIN TABLE
+
+
+            String pin1 = relay_Channel_1.getText().toString().trim();
+
+
+            if(TextUtils.isEmpty(pin1)){
+                return ;
+            }
+
+            Integer pinNumber = Integer.valueOf(pin1);
+
+            contentValues_update.put(Schema.Pin.PIN_NUMBER , pinNumber);
+
         }
 
-
+        // to add shield
         contentValues.put(Schema.Shield.MICROCONTROLLER_ID ,Microcontroller_ID);
         contentValues.put(Schema.Shield.TYPE ,selectedShield);
 
-
+        // to update pin table
+        contentValues_update.put(Schema.Pin.MICROCONTROLLER_ID ,Microcontroller_ID);
+        contentValues_update.put(Schema.Pin.TYPE ,selectedShield);
 
         getContentResolver().insert(Schema.Shield.CONTENT_URI, contentValues);
+
+        getContentResolver().update(Schema.Pin.CONTENT_URI, contentValues_update , null , null);
+
+
 
         returnToPreviousLayout();
 
