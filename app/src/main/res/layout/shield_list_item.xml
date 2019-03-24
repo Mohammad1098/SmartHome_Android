@@ -20,7 +20,7 @@
             android:layout_weight="1"
             android:text="Relay"
             android:textSize="23sp"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/colorPrimary"
             />
 
 

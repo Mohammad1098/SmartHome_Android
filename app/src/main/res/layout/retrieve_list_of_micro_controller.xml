@@ -21,7 +21,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginRight="24dp"
         android:layout_marginBottom="24dp"
-        android:backgroundTint="@color/colorPrimaryDark"
+        android:backgroundTint="@color/colorPrimary"
         android:clickable="true"
         android:src="@drawable/ic_add_black_24dp"
         app:borderWidth="0dp" />
@@ -30,9 +30,13 @@
         android:id="@+id/micro_controller_list_view_Lay_retrieve_list_of_micro_controller"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
         android:divider="@android:color/transparent"
         android:dividerHeight="10dp"
+        android:horizontalSpacing="32dp"
+        android:verticalSpacing="32dp"
         android:numColumns="2">
 
     </GridView>
