@@ -25,49 +25,24 @@
         android:inputType="text" />
 
 
-    <LinearLayout
+    <Spinner
+        android:id="@+id/spinner_number_of_pins_Lay_add_new_specific_device"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
-        android:orientation="vertical">
+        android:layout_marginBottom="15dp"
+        >
+
+    </Spinner>
+
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
             android:orientation="horizontal"
-
+            android:layout_marginLeft="15dp"
             >
-
-            <RadioGroup
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/device_one_pin_selected_Lay_add_new_specific_device"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
-                    android:text="1 pin" />
-
-                <RadioButton
-                    android:id="@+id/device_three_pins_selected_Lay_add_new_specific_device"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="3 pins" />
-
-
-            </RadioGroup>
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/first_pin_Lay_add_new_specific_device"
@@ -99,9 +74,20 @@
 
         </LinearLayout>
 
+
+    <Button
+        android:id="@+id/add_device_button_Lay_add_new_device"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/bg_command"
+        android:text="Add"
+        android:textColor="@color/colorPrimary" />
     </LinearLayout>
 
-
+    <!--
     <Spinner
         android:id="@+id/spinner_device_category_Lay_add_new_specific_device"
         android:layout_width="wrap_content"
@@ -111,18 +97,10 @@
 
     </Spinner>
 
+    -->
 
-    <Button
-        android:id="@+id/add_device_button_Lay_add_new_device"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginRight="15dp"
-        android:background="@drawable/bg_command"
-        android:text="Add"
-        android:textColor="@color/colorPrimary" />
 
-</LinearLayout>
+
 
 
 
