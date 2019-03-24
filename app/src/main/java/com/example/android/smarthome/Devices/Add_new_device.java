@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -72,8 +74,17 @@ public class Add_new_device extends AppCompatActivity {
     }
 
 
+//    submit button for add
 
-    private ArrayList<DeviceCategory> CreateDeviceCategory(){
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_check, menu);
+        return true;
+    }
+
+
+        private ArrayList<DeviceCategory> CreateDeviceCategory(){
 
 
 
