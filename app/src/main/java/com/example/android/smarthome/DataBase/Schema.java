@@ -29,6 +29,8 @@ public final class Schema   {
 
         public static final String NAME ="NAME";
 
+        public static final String TYPE ="TYPE";
+
         public static final String ROOM ="ROOM";
 
 
@@ -81,6 +83,8 @@ public final class Schema   {
         public static final String ID = BaseColumns._ID;
 
         public static final String PIN_NUMBER = "PINNUMBER";
+
+        public static final String DEVICE_ID = "DEVICE_ID";
 
         public static final String MICROCONTROLLER_ID = "MICROCONTROLLERID";
 
@@ -160,10 +164,6 @@ public final class Schema   {
         public static final String TYPE ="TYPE";
 
         public static final String ROOM ="ROOM";
-
-        public static final String PIN ="PIN";
-
-        public static final String STATUS ="STATUS";
 
         public static final String MICROCONTROLLER_ID ="MICROCONTROLLER_ID";
 

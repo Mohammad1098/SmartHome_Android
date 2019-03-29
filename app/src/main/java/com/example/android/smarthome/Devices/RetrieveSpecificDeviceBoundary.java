@@ -79,9 +79,13 @@ public class RetrieveSpecificDeviceBoundary extends AppCompatActivity {
 
         Intent previousintent = getIntent();
 
+
+
         type = previousintent.getIntExtra("TYPE" , -1);
 
         MicroControllerID =  previousintent.getLongExtra("MICROCONTROLLER_ID" , -1);
+
+
 
         boolean isListEmpty=false;
 

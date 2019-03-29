@@ -31,19 +31,9 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="15dp"
             android:layout_marginRight="15dp"
-            android:hint="Channel 1 pin "
+            android:hint="Relay pin "
             android:inputType="numberSigned" />
 
-
-        <EditText
-            android:id="@+id/relay_channel_2_Lay_add_new_shield"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="15dp"
-            android:hint="Channel 2 pin "
-            android:inputType="numberSigned" />
 
         <EditText
             android:id="@+id/IR_Pin_Lay_add_new_shield"

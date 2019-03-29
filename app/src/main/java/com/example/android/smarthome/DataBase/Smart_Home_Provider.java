@@ -259,14 +259,14 @@ public class Smart_Home_Provider extends  ContentProvider {
 
 
     @Override
-    public int update(Uri uri, ContentValues contentValues, String selection ,String[] selectionArgs) {
+    public int update(Uri uri, ContentValues contentValues, String selection ,String[] selectionArgs  ) {
 
 
         int match = sUriMatcher.match(uri);
 
         switch (match) {
             case 9:
-                return updatePet(uri, contentValues, selection, selectionArgs);
+                return updatePet(uri, contentValues, selection, selectionArgs , match);
 
             default:
                 throw new IllegalArgumentException("Update is not supported for " + uri);
@@ -274,76 +274,23 @@ public class Smart_Home_Provider extends  ContentProvider {
     }
 
 
-    private int updatePet(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
-
-
-
-        if (values.containsKey(Schema.Pin.PIN_NUMBER)) {
-            Integer pinNumber = values.getAsInteger(Schema.Pin.PIN_NUMBER);
-
-            Log.e("Provider update" , "pin " +pinNumber);
-
-
-            if (pinNumber == null) {
-                throw new IllegalArgumentException("Pin number required ");
-            }
-        }
-
-
-        if (values.containsKey(Schema.Pin.MICROCONTROLLER_ID)) {
-            Integer microControllerId = values.getAsInteger(Schema.Pin.MICROCONTROLLER_ID);
-
-            Log.e("Provider update" , "microcontroller id" +microControllerId);
-
-            if (microControllerId == null) {
-                throw new IllegalArgumentException("microController Id  required ");
-            }
-        }
-
-
-
-        if (values.containsKey(Schema.Pin.TYPE)) {
-            Integer type = values.getAsInteger(Schema.Pin.TYPE);
-            Log.e("Provider update" , "type" +type);
-
-            if (type == null) {
-                throw new IllegalArgumentException("type  required ");
-            }
-        }
-
-
-        if (values.containsKey(Schema.Pin.AVAILABILITY)) {
-            Integer type = values.getAsInteger(Schema.Pin.AVAILABILITY);
-
-            if (type == 0) {
-                values.put(Schema.Pin.AVAILABILITY , 1);
-                Log.e("Provider update" , "value was 0 changed to 1");
-            }
-
-            if (type == 1) {
-                values.put(Schema.Pin.AVAILABILITY , 0);
-                Log.e("Provider update" , "value was 1 changed to 0");
-
-            }
-        }
-
-
-        // If there are no values to update, then don't try to update the database
-        if (values.size() == 0) {
-            return 0;
-        }
+    private int updatePet(Uri uri, ContentValues values, String selection, String[] selectionArgs , int match) {
 
         SQLiteDatabase database = mDataBase.getWritableDatabase();
+        int rowsUpdated=-1;
 
-        int rowsUpdated = database.update(Schema.Pin.TABLE_NAME, values, selection, selectionArgs);
+        switch (match) {
 
+            case 9 :
+                return rowsUpdated = database.update(Schema.Pin.TABLE_NAME, values, selection, selectionArgs);
 
-        if (rowsUpdated != 0) {
-            getContext().getContentResolver().notifyChange(uri, null);
+            default:
+                return -1;
+
         }
 
-        // Return the number of rows updated
-        return rowsUpdated;
+
+
     }
 
     @Override

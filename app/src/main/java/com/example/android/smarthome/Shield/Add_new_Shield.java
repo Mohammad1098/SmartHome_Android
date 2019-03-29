@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -36,11 +35,9 @@ public class Add_new_Shield extends AppCompatActivity {
 
     private LinearLayout LinearLayout_relay_channel;
 
-    private EditText relay_Channel_1;
+    private EditText relayPin;
 
-    private EditText relay_Channel_2;
-
-    private EditText IR_pin;
+    private EditText irPin;
 
     private int selectedShield=-1;
 
@@ -91,19 +88,15 @@ public class Add_new_Shield extends AppCompatActivity {
 
         LinearLayout_relay_channel= findViewById(R.id.LinearLayout_relay_channel_Lay_add_new_shield);
 
-        relay_Channel_1 = findViewById(R.id.relay_channel_1_Lay_add_new_shield);
+        relayPin = findViewById(R.id.relay_channel_1_Lay_add_new_shield);
 
-        relay_Channel_2 = findViewById(R.id.relay_channel_2_Lay_add_new_shield);
-
-        IR_pin = findViewById(R.id.IR_Pin_Lay_add_new_shield);
+        irPin = findViewById(R.id.IR_Pin_Lay_add_new_shield);
 
         LinearLayout_relay_channel.setVisibility(View.GONE);
 
-        relay_Channel_1.setVisibility(View.GONE);
+        relayPin.setVisibility(View.GONE);
 
-        relay_Channel_2.setVisibility(View.GONE);
-
-        IR_pin.setVisibility(View.GONE);
+        irPin.setVisibility(View.GONE);
 
     }
 
@@ -143,9 +136,8 @@ public class Add_new_Shield extends AppCompatActivity {
         ArrayList<Shield> shieldList = new ArrayList();
 
 
-        shieldList.add(new Shield("Relay 1 Channel" , R.drawable.relay , 1 )); // 1 for Relay 1 CHANNEL
-        shieldList.add(new Shield("Relay 2 Channel" , R.drawable.relay , 2)); //2 for Relay 2 CHANNEL
-        shieldList.add(new Shield("IR" , R.drawable.ir , 3)); //3 for IR
+        shieldList.add(new Shield("Relay" , R.drawable.relay , 1 )); // 1 for Relay 1 CHANNEL
+        shieldList.add(new Shield("IR" , R.drawable.ir , 2)); //2 for IR
 
         Shield_Spinner_Adapter shieldSpinnerAdapter = new Shield_Spinner_Adapter(this , shieldList);
 
@@ -163,24 +155,16 @@ public class Add_new_Shield extends AppCompatActivity {
         if(type_of_Shield == 1){
 
             LinearLayout_relay_channel.setVisibility(View.VISIBLE);
-            relay_Channel_1.setVisibility(View.VISIBLE);
-            relay_Channel_2.setVisibility(View.GONE);
+            relayPin.setVisibility(View.VISIBLE);
+            irPin.setVisibility(View.GONE);
+
 
         }
-
 
         if(type_of_Shield == 2){
             LinearLayout_relay_channel.setVisibility(View.VISIBLE);
-            relay_Channel_1.setVisibility(View.VISIBLE);
-            relay_Channel_2.setVisibility(View.VISIBLE);
-
-        }
-
-        if(type_of_Shield == 3){
-            LinearLayout_relay_channel.setVisibility(View.VISIBLE);
-            relay_Channel_1.setVisibility(View.GONE);
-            relay_Channel_2.setVisibility(View.GONE);
-            IR_pin.setVisibility(View.VISIBLE);
+            relayPin.setVisibility(View.GONE);
+            irPin.setVisibility(View.VISIBLE);
 
         }
 
@@ -213,86 +197,63 @@ public class Add_new_Shield extends AppCompatActivity {
 
 
 
-        ContentValues contentValues = new ContentValues(); // To add shield
+        ContentValues contentValues = new ContentValues(); //SHIELD TABLE
 
-        ContentValues contentValues_update = new ContentValues(); // To update pin table
-
+        Integer pinNumber = -1;
 
         if(selectedShield == 1){
 
+            contentValues.put(Schema.Shield.NAME , "Relay");
 
-            contentValues.put(Schema.Shield.NAME , "Relay 1 channel");
-
-            String pin1 = relay_Channel_1.getText().toString().trim();
+            String relay_pin = relayPin.getText().toString().trim();
 
 
-            if(TextUtils.isEmpty(pin1)){
+            if(TextUtils.isEmpty(relay_pin)){
                 return ;
             }
 
-            Integer pinNumber = Integer.valueOf(pin1);
+            pinNumber = Integer.valueOf(relay_pin);
 
-            contentValues_update.put(Schema.Pin.PIN_NUMBER , pinNumber);
 
 
         }
+
 
         if(selectedShield == 2){
 
-
-            contentValues.put(Schema.Shield.NAME , "Relay 2 channel");
-
-            String pin1 = relay_Channel_1.getText().toString().trim();
-            String pin2 = relay_Channel_2.getText().toString().trim();
-
-            if(TextUtils.isEmpty(pin1) || TextUtils.isEmpty(pin2)  ){
-
-                Toast.makeText(getApplicationContext() , "Please write the Device Pin" , Toast.LENGTH_LONG).show();
-                return ;
-
-            }
-
-            Integer pinNumber1 = Integer.valueOf(pin1);
-
-            Integer pinNumber2 = Integer.valueOf(pin2);
-
-
-            contentValues_update.put(Schema.Pin.PIN_NUMBER , pinNumber1);
-            contentValues_update.put(Schema.Pin.PIN_NUMBER , pinNumber2);
-
-
-        }
-
-        if(selectedShield == 3){
-
-
             contentValues.put(Schema.Shield.NAME , "IR");
 
+            String ir_pin = irPin.getText().toString().trim();
 
-            String pin1 = relay_Channel_1.getText().toString().trim();
 
-
-            if(TextUtils.isEmpty(pin1)){
+            if(TextUtils.isEmpty(ir_pin)){
                 return ;
             }
 
-            Integer pinNumber = Integer.valueOf(pin1);
+            pinNumber = Integer.valueOf(ir_pin);
 
-            contentValues_update.put(Schema.Pin.PIN_NUMBER , pinNumber);
 
         }
 
-        // to add shield
-        contentValues.put(Schema.Shield.MICROCONTROLLER_ID ,Microcontroller_ID);
-        contentValues.put(Schema.Shield.TYPE ,selectedShield);
-
-        // to update pin table
-        contentValues_update.put(Schema.Pin.MICROCONTROLLER_ID ,Microcontroller_ID);
-        contentValues_update.put(Schema.Pin.TYPE ,selectedShield);
-
+        //SHIELD TABLE
+        contentValues.put(Schema.Shield.MICROCONTROLLER_ID , Microcontroller_ID);
+        contentValues.put(Schema.Shield.TYPE , selectedShield);      // 1 relay  , 2 Ir
         getContentResolver().insert(Schema.Shield.CONTENT_URI, contentValues);
 
-        getContentResolver().update(Schema.Pin.CONTENT_URI, contentValues_update , null , null);
+
+
+
+
+        //PIN TABLE
+        ContentValues contentValues1_PinTable = new ContentValues(); //PIN TABLE
+
+        contentValues1_PinTable.put(Schema.Pin.PIN_NUMBER , pinNumber);
+        contentValues1_PinTable.put(Schema.Pin.AVAILABILITY , 0);
+        contentValues1_PinTable.put(Schema.Pin.MICROCONTROLLER_ID ,Microcontroller_ID);
+
+        getContentResolver().update(Schema.Pin.CONTENT_URI, contentValues1_PinTable  , null , null);
+
+
 
 
 
@@ -311,20 +272,16 @@ public class Add_new_Shield extends AppCompatActivity {
         if(type_of_Shield == 1){
 
 
-            String pin1 = relay_Channel_1.getText().toString().trim();
+            String relay_pin = relayPin.getText().toString().trim();
 
-            Log.e("Add shield" , pin1);
-
-            if(TextUtils.isEmpty(pin1)){
-
-                Log.e("Add shield" , "isEmpty");
+            if(TextUtils.isEmpty(relay_pin)){
 
                 return false;
 
             }
 
             // convert String to Integer
-            pins.add(Integer.valueOf(pin1));
+            pins.add(Integer.valueOf(relay_pin));
 
             return checkAvailabilityOfPinsInDA(pins);
 
@@ -333,38 +290,17 @@ public class Add_new_Shield extends AppCompatActivity {
 
         if(type_of_Shield == 2){
 
-            String pin1 = relay_Channel_1.getText().toString().trim();
-            String pin2 = relay_Channel_2.getText().toString().trim();
 
-            if(TextUtils.isEmpty(pin1) || TextUtils.isEmpty(pin2)  ){
+            String ir_pin = irPin.getText().toString().trim();
 
-                Toast.makeText(getApplicationContext() , "Please write the Device Pin" , Toast.LENGTH_LONG).show();
+            if(TextUtils.isEmpty(ir_pin)){
+
                 return false;
 
             }
 
             // convert String to Integer
-            pins.add(Integer.valueOf(pin1));
-            pins.add(Integer.valueOf(pin2));
-
-            return checkAvailabilityOfPinsInDA(pins);
-
-        }
-
-        if(type_of_Shield == 3){
-
-
-            String pin1 = IR_pin.getText().toString().trim();
-
-            if(TextUtils.isEmpty(pin1)){
-
-                Toast.makeText(getApplicationContext() , "Please write the Device Pin" , Toast.LENGTH_LONG).show();
-                return false;
-
-            }
-
-            // convert String to Integer
-            pins.add(Integer.valueOf(pin1));
+            pins.add(Integer.valueOf(ir_pin));
 
             return checkAvailabilityOfPinsInDA(pins);
 
@@ -381,8 +317,13 @@ public class Add_new_Shield extends AppCompatActivity {
 
         retrieveListOfPinsController = new RetrieveListOfPinsController(this);
 
-        return retrieveListOfPinsController.checkAvailabilityOfPins(pins ,Microcontroller_ID);
+        return retrieveListOfPinsController.checkAvailabilityOfPins(pins , Microcontroller_ID );
     }
+
+
+
+
+
 
 
 

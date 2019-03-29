@@ -1,9 +1,13 @@
 package com.example.android.smarthome.MicroController;
 
-public class MicroController {
+import android.content.ContentValues;
+
+import java.util.ArrayList;
+
+public abstract class MicroController {
 
 
-    private String name;
+    private String name,roomName;
     private int image;
     private long long_id;
 
@@ -17,10 +21,12 @@ public class MicroController {
 
     }
 
-    public MicroController(){
+    public MicroController(){}
 
-    }
 
+    public String getRoomName() {return roomName;}
+
+    public void setRoomName(String roomName) { this.roomName = roomName;}
 
     public void setName(String name) {this.name = name;}
 
@@ -39,4 +45,8 @@ public class MicroController {
     }
 
     public long getLong_id() {return long_id;}
+
+
+    public abstract ArrayList<ContentValues> returnPinTableContentValues();
+
 }

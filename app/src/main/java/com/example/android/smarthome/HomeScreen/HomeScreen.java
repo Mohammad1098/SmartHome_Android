@@ -7,8 +7,12 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.android.smarthome.Devices.RetrieveListOfDevicesBoundary;
+import com.example.android.smarthome.Devices.RetrieveListOfDevicesDA;
 import com.example.android.smarthome.MicroController.RetrieveListOfMicroControllerBoundary;
+import com.example.android.smarthome.MicroController.RetrieveListOfMicroControllerDA;
+import com.example.android.smarthome.Pins.RetrieveListOfPinsDA;
 import com.example.android.smarthome.R;
+import com.example.android.smarthome.Shield.RetrieveShieldDA;
 
 public class HomeScreen extends AppCompatActivity {
 
@@ -55,6 +59,16 @@ public class HomeScreen extends AppCompatActivity {
 
             }
         });
+
+
+        RetrieveListOfDevicesDA retrieveListOfDevicesDA = new RetrieveListOfDevicesDA(HomeScreen.this);
+        retrieveListOfDevicesDA.TEST_displayDeviceTable();
+
+
+        RetrieveListOfMicroControllerDA retrieveListOfMicroControllerDA = new RetrieveListOfMicroControllerDA(HomeScreen.this);
+        retrieveListOfMicroControllerDA.TEST_displayMicroControllerTable();
+
+
 
 
     }

@@ -1,8 +1,10 @@
 package com.example.android.smarthome.Devices;
 
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -126,7 +128,7 @@ public class Add_new_device extends AppCompatActivity {
 
         type = intent.getIntExtra("TYPE" , -1);
 
-        MicroControllerID = intent.getIntExtra("MICROCONTROLLER_ID" , -1);
+        MicroControllerID = intent.getLongExtra("MICROCONTROLLER_ID" , -1);
 
         categorySpinner = findViewById(R.id.spinner_number_of_pins_Lay_add_new_specific_device);
 
@@ -201,86 +203,37 @@ public class Add_new_device extends AppCompatActivity {
 
         }
 
-        ArrayList<ContentValues> contentValuesList = returnAppropriateContentValues(selectedPins);
 
-        ContentValues contentValues =  contentValuesList.get(0);  // which is the contentValues that contains Device Info
-        ContentValues contentValues2 = contentValuesList.get(1);
+        ContentValues contentValues =  new ContentValues();
 
 
         contentValues.put(Schema.Device.NAME , deviceName);
+        contentValues.put(Schema.Device.TYPE , 5); // 0 ---->Light Bulb     1 ----> Rgb led strip       2 ----> TV      3 ----> Receiver      4 ----> AC      5 ----> OTHER
         contentValues.put(Schema.Device.ROOM , deviceRoom);
-        contentValues.put(Schema.Device.TYPE , 10);
         contentValues.put(Schema.Device.MICROCONTROLLER_ID , MicroControllerID);
 
-        contentValues2.put(Schema.Pin.MICROCONTROLLER_ID ,MicroControllerID);
-        contentValues2.put(Schema.Pin.TYPE ,10);
+        Uri uri = getContentResolver().insert(Schema.Device.CONTENT_URI, contentValues);
 
-        getContentResolver().insert(Schema.Device.CONTENT_URI, contentValues);
-        getContentResolver().update(Schema.Pin.CONTENT_URI, contentValues2  , null , null); //contentValues2 which is the contentValues that contains Pin Info
+        long deviceId = ContentUris.parseId(uri);
+
+
+
+
+
+        ArrayList<ContentValues> contentValuesList = returnAppropriateContentValues(selectedPins);
+
+        for(int i = 0 ; i < contentValuesList.size() ; i++){
+
+            contentValuesList.get(i).put(Schema.Pin.MICROCONTROLLER_ID ,MicroControllerID);
+            contentValuesList.get(i).put(Schema.Pin.DEVICE_ID ,deviceId);
+            getContentResolver().update(Schema.Pin.CONTENT_URI, contentValuesList.get(i)  , null , null);
+
+        }
+
 
         returnToPreviousLayout();
 
 
-    }
-
-
-
-    private void returnToPreviousLayout(){
-
-        Intent openSpecificDeviceLayoutIntent = new Intent(Add_new_device.this, RetrieveSpecificDeviceBoundary.class);
-
-
-        //send the id of selected device to RetrieveListOfOperationBoundary class
-        openSpecificDeviceLayoutIntent.putExtra("TYPE", type);
-        openSpecificDeviceLayoutIntent.putExtra("MICROCONTROLLER_ID", MicroControllerID);
-
-
-        startActivity(openSpecificDeviceLayoutIntent);
-
-
-    }
-
-
-    @Override
-    public void onBackPressed() {
-
-        new AlertDialog.Builder(this)
-                .setTitle("Really Exit?")
-                .setMessage("Are you sure you want to exit?")
-                .setNegativeButton(android.R.string.no, null)
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        returnToPreviousLayout();
-
-                    }
-                }).create().show();
-
-
-    }
-
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                new AlertDialog.Builder(this)
-                        .setTitle("Really Exit?")
-                        .setMessage("Are you sure you want to exit?")
-                        .setNegativeButton(android.R.string.no, null)
-                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-
-                            public void onClick(DialogInterface arg0, int arg1) {
-                                returnToPreviousLayout();
-
-                            }
-                        }).create().show();
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 
 
@@ -393,16 +346,13 @@ public class Add_new_device extends AppCompatActivity {
 
         retrieveListOfPinsController = new RetrieveListOfPinsController(this);
 
-        Log.e("add new device check Da" , String.valueOf(pins.get(0)));
 
         boolean valid_pin_number = retrieveListOfPinsController.checkAvailabilityOfPins(pins ,MicroControllerID);
         if(valid_pin_number){
-            Log.e("add new device check Da" , "True");
 
             return true;
         }
         else {
-            Log.e("add new device check Da" , "False");
 
             Toast.makeText(this , "Please enter Valid pin number" , Toast.LENGTH_LONG).show();
 
@@ -416,9 +366,11 @@ public class Add_new_device extends AppCompatActivity {
 
         contentValuesArrayList = new ArrayList<>();
 
-        ContentValues contentValues_DeviceTable = new ContentValues();
+        ContentValues contentValues1_PinTable = new ContentValues(); // To update pin table
 
-        ContentValues contentValues_PinTable = new ContentValues(); // To update pin table
+        ContentValues contentValues2_PinTable = new ContentValues(); // To update pin table
+
+        ContentValues contentValues3_PinTable = new ContentValues(); // To update pin table
 
 
         if(number_of_pins == 1){
@@ -427,8 +379,8 @@ public class Add_new_device extends AppCompatActivity {
 
             Integer pinNumber1 = Integer.valueOf(pin1);
 
-            contentValues_PinTable.put(Schema.Pin.PIN_NUMBER , pinNumber1);
-            contentValues_DeviceTable.put(Schema.Device.PIN , pinNumber1);
+            contentValues1_PinTable.put(Schema.Pin.PIN_NUMBER , pinNumber1);
+            contentValues1_PinTable.put(Schema.Pin.AVAILABILITY , 0);
 
 
         }
@@ -443,12 +395,12 @@ public class Add_new_device extends AppCompatActivity {
             Integer pinNumber2 = Integer.valueOf(pin2);
 
 
-            contentValues_PinTable.put(Schema.Pin.PIN_NUMBER , pinNumber1);
-            contentValues_PinTable.put(Schema.Pin.PIN_NUMBER , pinNumber2);
+            contentValues1_PinTable.put(Schema.Pin.PIN_NUMBER , pinNumber1);
+            contentValues1_PinTable.put(Schema.Pin.AVAILABILITY , 0);
 
-            contentValues_DeviceTable.put(Schema.Device.PIN , pinNumber1);
-            contentValues_DeviceTable.put(Schema.Device.PIN , pinNumber2);
 
+            contentValues2_PinTable.put(Schema.Pin.PIN_NUMBER , pinNumber2);
+            contentValues2_PinTable.put(Schema.Pin.AVAILABILITY , 0);
 
 
         }
@@ -465,19 +417,22 @@ public class Add_new_device extends AppCompatActivity {
             Integer pinNumber3 = Integer.valueOf(pin3);
 
 
-            contentValues_PinTable.put(Schema.Pin.PIN_NUMBER , pinNumber1);
-            contentValues_PinTable.put(Schema.Pin.PIN_NUMBER , pinNumber2);
-            contentValues_PinTable.put(Schema.Pin.PIN_NUMBER , pinNumber3);
+            contentValues1_PinTable.put(Schema.Pin.PIN_NUMBER , pinNumber1);
+            contentValues1_PinTable.put(Schema.Pin.AVAILABILITY , 0);
 
-            contentValues_DeviceTable.put(Schema.Device.PIN , pinNumber1);
-            contentValues_DeviceTable.put(Schema.Device.PIN , pinNumber2);
-            contentValues_DeviceTable.put(Schema.Device.PIN , pinNumber3);
 
+            contentValues2_PinTable.put(Schema.Pin.PIN_NUMBER , pinNumber2);
+            contentValues2_PinTable.put(Schema.Pin.AVAILABILITY , 0);
+
+            contentValues3_PinTable.put(Schema.Pin.PIN_NUMBER , pinNumber3);
+            contentValues3_PinTable.put(Schema.Pin.AVAILABILITY , 0);
 
         }
 
-        contentValuesArrayList.add(contentValues_DeviceTable);
-        contentValuesArrayList.add(contentValues_PinTable);
+
+        contentValuesArrayList.add(contentValues1_PinTable);
+        contentValuesArrayList.add(contentValues2_PinTable);
+        contentValuesArrayList.add(contentValues3_PinTable);
 
         return  contentValuesArrayList;
 
@@ -485,4 +440,67 @@ public class Add_new_device extends AppCompatActivity {
     }
 
 
+
+
+
+
+
+
+    private void returnToPreviousLayout(){
+
+        Intent openSpecificDeviceLayoutIntent = new Intent(Add_new_device.this, RetrieveSpecificDeviceBoundary.class);
+
+
+        //send the id of selected device to RetrieveListOfOperationBoundary class
+        openSpecificDeviceLayoutIntent.putExtra("TYPE", type);
+        openSpecificDeviceLayoutIntent.putExtra("MICROCONTROLLER_ID", MicroControllerID);
+
+
+        startActivity(openSpecificDeviceLayoutIntent);
+
+
+    }
+
+
+    @Override
+    public void onBackPressed() {
+
+        new AlertDialog.Builder(this)
+                .setTitle("Really Exit?")
+                .setMessage("Are you sure you want to exit?")
+                .setNegativeButton(android.R.string.no, null)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        returnToPreviousLayout();
+
+                    }
+                }).create().show();
+
+
+    }
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                new AlertDialog.Builder(this)
+                        .setTitle("Really Exit?")
+                        .setMessage("Are you sure you want to exit?")
+                        .setNegativeButton(android.R.string.no, null)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                returnToPreviousLayout();
+
+                            }
+                        }).create().show();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }

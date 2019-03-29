@@ -28,6 +28,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
                 +Schema.MicroController.ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 +Schema.MicroController.NAME +" TEXT NOT NULL ,"
+                +Schema.MicroController.TYPE +" INTEGER NOT NULL ,"
                 +Schema.MicroController.ROOM +" TEXT NOT NULL );";
 
 
@@ -37,18 +38,17 @@ public class DbHelper extends SQLiteOpenHelper {
                 +Schema.Shield.ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 +Schema.Shield.NAME +" TEXT NOT NULL ,"
                 +Schema.Shield.TYPE +" INTEGER NOT NULL ,"
-                +Schema.Shield.MICROCONTROLLER_ID +" INTEGER ,"
-                +"FOREIGN KEY ("+ Schema.Shield.MICROCONTROLLER_ID+") REFERENCES "+Schema.MicroController.TABLE_NAME+"("+Schema.MicroController.ID+"));";
+                +Schema.Shield.MICROCONTROLLER_ID +" INTEGER );";
 
 
         String Pin_Table = "CREATE TABLE "+Schema.Pin.TABLE_NAME +"("
 
                 +Schema.Pin.ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 +Schema.Pin.PIN_NUMBER +" INTEGER NOT NULL ,"
-                +Schema.Pin.AVAILABILITY +" INTEGER NOT NULL ,"
-                +Schema.Pin.TYPE +" INTEGER NOT NULL ,"
-                +Schema.Pin.MICROCONTROLLER_ID +" INTEGER ,"
-                +"FOREIGN KEY ("+ Schema.Pin.MICROCONTROLLER_ID+") REFERENCES "+Schema.MicroController.TABLE_NAME+"("+Schema.MicroController.ID+"));";
+                +Schema.Pin.AVAILABILITY +" INTEGER NOT NULL ,"        // 0 not available  1 available
+                +Schema.Pin.TYPE +" INTEGER NOT NULL ,"               // 0 Digital     1 Analog
+                +Schema.Pin.MICROCONTROLLER_ID +" INTEGER NOT NULL ,"
+                +Schema.Pin.DEVICE_ID +" INTEGER );";
 
 
         String DeviceCategory_Table = "CREATE TABLE "+Schema.DeviceCategory.TABLE_NAME +"("
@@ -65,11 +65,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 +Schema.Device.NAME +" TEXT NOT NULL ,"
                 +Schema.Device.TYPE +" INTEGER NOT NULL ,"
                 +Schema.Device.ROOM+" TEXT NOT NULL ,"
-                +Schema.Device.PIN+" INTEGER NOT NULL ,"
-                +Schema.Device.STATUS+" INTEGER ,"
-                +Schema.Device.MICROCONTROLLER_ID +" INTEGER ,"
-                +"FOREIGN KEY ("+ Schema.Device.MICROCONTROLLER_ID+") REFERENCES "+Schema.MicroController.TABLE_NAME+"("+Schema.MicroController.ID+"));";
-
+                +Schema.Device.MICROCONTROLLER_ID +" INTEGER NOT NULL );";
 
 
         String LightBulb_Table = "CREATE TABLE "+Schema.LightBulb.TABLE_NAME +"("
@@ -86,8 +82,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 +Schema.Operation.ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 +Schema.Operation.NAME+" TEXT NOT NULL , "
                 +Schema.Operation.IMPLEMENTATION+" TEXT NOT NULL , "
-                +Schema.Operation.DEVICE_ID+" INTEGER ,"
-                +"FOREIGN KEY ("+ Schema.Operation.DEVICE_ID+") REFERENCES "+Schema.Device.TABLE_NAME+"("+Schema.Device.ID+"));";
+                +Schema.Operation.DEVICE_ID+" INTEGER );";
 
 
 

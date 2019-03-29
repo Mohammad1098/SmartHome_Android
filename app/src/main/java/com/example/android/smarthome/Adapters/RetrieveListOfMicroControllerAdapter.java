@@ -37,7 +37,11 @@ public class RetrieveListOfMicroControllerAdapter extends ArrayAdapter<MicroCont
 
         microControllerName.setText(currentMicroController.getName());
 
-        //TODO the Image as well
+
+        TextView microControllerRoomName = (TextView) convertView.findViewById(R.id.micro_controller_room_name_Lay_micro_controller_list_item);
+
+        microControllerRoomName.setText(currentMicroController.getRoomName());
+
 
         return convertView;
 

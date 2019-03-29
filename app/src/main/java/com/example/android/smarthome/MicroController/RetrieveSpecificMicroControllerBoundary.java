@@ -36,7 +36,6 @@ public class RetrieveSpecificMicroControllerBoundary extends AppCompatActivity {
         MicroControllerID = previousIntent.getLongExtra("MICROCONTROLLER_ID" , -1);
 
 
-
         Button MicroControllerDevicesImage = findViewById(R.id.DevicesImage_Lay_specific_micro_controller);
 
         Button MicroControllerShieldsImage = findViewById(R.id.ShieldsImage_Lay_specific_micro_controller);

@@ -4,8 +4,11 @@ import android.app.Activity;
 import android.database.Cursor;
 import java.util.ArrayList;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+
 import com.example.android.smarthome.DataBase.Schema;
 import com.example.android.smarthome.DeviceCategory.DeviceCategory;
+import com.example.android.smarthome.Shield.Shield;
 
 
 public class RetrieveListOfDevicesDA extends AppCompatActivity  {
@@ -61,6 +64,28 @@ public class RetrieveListOfDevicesDA extends AppCompatActivity  {
 
     }
 
+
+    public void TEST_displayDeviceTable(){
+
+        cursor.moveToFirst();
+
+
+        for (int i=0 ; i<cursor.getCount() ; i++){
+
+
+            Log.e("Device DA" , "ID "+String.valueOf(cursor.getLong(cursor.getColumnIndex(Schema.Device.ID))));
+            Log.e("Device DA" , "NAME "+cursor.getString(cursor.getColumnIndex(Schema.Device.NAME)));
+            Log.e("Device DA" , "TYPE  "+String.valueOf(cursor.getInt(cursor.getColumnIndex(Schema.Device.TYPE))));
+            Log.e("Device DA" , "Room "+cursor.getString(cursor.getColumnIndex(Schema.Device.ROOM)));
+            Log.e("Device DA" , "MicroController ID "+String.valueOf(cursor.getInt(cursor.getColumnIndex(Schema.Device.MICROCONTROLLER_ID))));
+
+
+            cursor.moveToNext();
+
+
+        }
+
+    }
 
 
 }

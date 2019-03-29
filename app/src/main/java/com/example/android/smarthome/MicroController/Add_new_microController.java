@@ -64,7 +64,8 @@ public class Add_new_microController extends AppCompatActivity {
 
     private ArrayList<MicroController_Category> CreateMicroControllerCategory(){
 
-        microController_categoryArrayList.add(new MicroController_Category("Arduino Uno R3" , R.drawable.arduinoicon , 0 ));
+        microController_categoryArrayList.add(new MicroController_Category("Arduino Uno R3 " , R.drawable.arduinoicon , 0 ));
+        microController_categoryArrayList.add(new MicroController_Category("Arduino Nano " , R.drawable.nano , 1 ));
 
 
         return microController_categoryArrayList;
@@ -92,7 +93,7 @@ public class Add_new_microController extends AppCompatActivity {
                 MicroController_Category MicroController = (MicroController_Category) parent.getItemAtPosition(position);
 
                 selectedMicroControllerName = MicroController.getCategoryName();
-                selectedMicroController = MicroController.getType();  // Type of micro controller  0 --> Arduino Uno R3
+                selectedMicroController = MicroController.getType();  // Type of micro controller  0 --> Arduino_Uno R3   ,   1 --> Nano
 
 
             }
@@ -155,6 +156,7 @@ public class Add_new_microController extends AppCompatActivity {
         ContentValues contentValuesMicroControllerTable = new ContentValues();
 
         contentValuesMicroControllerTable.put(Schema.MicroController.NAME , selectedMicroControllerName);
+        contentValuesMicroControllerTable.put(Schema.MicroController.TYPE , selectedMicroController);
         contentValuesMicroControllerTable.put(Schema.MicroController.ROOM , microControllerRoom);
         Uri uri = getContentResolver().insert(Schema.MicroController.CONTENT_URI, contentValuesMicroControllerTable);
 
@@ -162,37 +164,48 @@ public class Add_new_microController extends AppCompatActivity {
 
 
 
-        // insert the required pins
-        ContentValues contentValuesPinTable = new ContentValues();
+        // insert the required pins for
+        ArrayList<ContentValues> contentValuesPinTable = returnPinTableContentValues(selectedMicroController , MicroControllerID);
 
-        for (int i=0 ; i <14 ; i++) {
+        for (int i = 0 ; i < contentValuesPinTable.size() ; i++){
 
-            contentValuesPinTable.put("PINNUMBER", i);
-            contentValuesPinTable.put("MICROCONTROLLERID", MicroControllerID);
-            // 0 means it's available
-            contentValuesPinTable.put("AVAILABILITY", 0);
-            // 0 means it's Digital
-            contentValuesPinTable.put("TYPE", 0);
+
+            getContentResolver().insert(Schema.Pin.CONTENT_URI, contentValuesPinTable.get(i));
+
+
         }
 
 
-        for (int i=0 ; i <7 ; i++) {
-
-            contentValuesPinTable.put("PINNUMBER", i);
-            contentValuesPinTable.put("MICROCONTROLLERID", MicroControllerID);
-            // 0 means it's available
-            contentValuesPinTable.put("AVAILABILITY", 0);
-            // 0 means it's Analog
-            contentValuesPinTable.put("TYPE", 1);
-        }
-
-
-        getContentResolver().insert(Schema.Pin.CONTENT_URI, contentValuesPinTable);
 
         returnToPreviousLayout();
 
 
     }
+
+
+
+
+
+    private ArrayList<ContentValues> returnPinTableContentValues(int type_micorController , long microControllerId){
+
+
+        switch (type_micorController){
+
+
+            case 0 :
+                Arduino_Uno_R3 arduinoUnoR3 = new Arduino_Uno_R3(microControllerId);
+                return arduinoUnoR3.returnPinTableContentValues();
+            case 1 :
+                Arduino_Nano arduino_nano = new Arduino_Nano(microControllerId);
+                return arduino_nano.returnPinTableContentValues();
+
+            default: return null;
+
+        }
+
+
+    }
+
 
 
     private void returnToPreviousLayout(){

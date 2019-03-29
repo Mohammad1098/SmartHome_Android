@@ -28,6 +28,12 @@ public class RetrieveListOfMicroController_Controller {
 
     }
 
+    public RetrieveListOfMicroController_Controller(Activity activity ){
+
+        this.activity = activity;
+
+    }
+
     public boolean retrieveMicroControllers (){
 
 
@@ -47,7 +53,14 @@ public class RetrieveListOfMicroController_Controller {
 
 
 
+    }
 
+
+    public int returnMicroControllerType(long MicroControllerId){
+
+        retrieveListOfMicroControllerDA = new RetrieveListOfMicroControllerDA(this.activity);
+
+        return retrieveListOfMicroControllerDA.returnMicroControllerType(MicroControllerId);
 
     }
 
