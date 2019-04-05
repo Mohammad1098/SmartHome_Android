@@ -1,22 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".Devices.RetrieveListOfDevicesController">
+    android:layout_height="match_parent">
 
 
-
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/add_new_device_Lay_retrieve_list_of_devices"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:clickable="true"
+        android:src="@drawable/ic_add_black_24dp"
+        app:borderWidth="0dp" />
 
     <ListView
-        android:id="@+id/device_list_view_Lay_retrieve_list_of_devices"
+        android:id="@+id/device_list_view_Lay_retrieve_list_of_specific_device"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:divider="@android:color/transparent"
-        android:dividerHeight="10dp"></ListView>
+        android:dividerHeight="10dp" />
 
 
-</LinearLayout>
+</RelativeLayout>

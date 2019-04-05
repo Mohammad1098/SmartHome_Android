@@ -18,6 +18,10 @@ android {
     }
 }
 
+// Add the following line to the bottom of the file:
+apply plugin: 'com.google.gms.google-services'  // Google Play services Gradle plugin for firebase
+
+
 // this to use the Paho Android Service which implement the MQTT protocol
 repositories {
     maven {
@@ -26,6 +30,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'com.google.firebase:firebase-core:16.0.1'  // for firebase
     implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.0' // this to use the Paho Android Service which implement the MQTT protocol
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:27.1.1'

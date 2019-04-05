@@ -8,6 +8,7 @@ import android.util.Log;
 import com.example.android.smarthome.DataBase.Schema;
 import com.example.android.smarthome.MicroController.MicroController;
 import com.example.android.smarthome.MicroController.RetrieveListOfMicroController_Controller;
+import com.example.android.smarthome.Shield.Shield;
 
 import java.util.ArrayList;
 
@@ -20,13 +21,22 @@ public class RetrieveListOfPinsDA {
     public RetrieveListOfPinsDA(Activity activity , long MicroController_ID){
 
         this.activity = activity;
-        this.microControllerId = MicroController_ID;
-        String selection = "MICROCONTROLLERID="+MicroController_ID;
+        microControllerId=MicroController_ID;
+        String selection = "MICROCONTROLLERID="+this.microControllerId;
+
         cursor = activity.getApplicationContext().getContentResolver().query(Schema.Pin.CONTENT_URI , null , selection , null , null);
+
+
+
+
+        /*
         cursor2 = activity.getApplicationContext().getContentResolver().query(Schema.Pin.CONTENT_URI , null , selection , null , null);
 
 
         cursor2.moveToFirst();
+
+
+        // for testing
         for (int i = 0 ; i < cursor2.getCount() ; i++){
 
             Log.e("PIN DA" , "ID "+String.valueOf(cursor2.getLong(cursor2.getColumnIndex(Schema.Pin.ID)))+"\n");
@@ -39,7 +49,7 @@ public class RetrieveListOfPinsDA {
             cursor2.moveToNext();
 
 
-        }
+        }   */
 
 
     }
@@ -76,6 +86,7 @@ public class RetrieveListOfPinsDA {
     private boolean checkIndividualPin(Integer pin){
 
         if(cursor == null){
+
 
             return false;
         }
@@ -127,4 +138,159 @@ public class RetrieveListOfPinsDA {
 
                 return true;
     }
+
+    public String returnAvailableDigitalPin(){
+
+        String selection = "MICROCONTROLLERID="+this.microControllerId +" AND TYPE= 0";
+
+        cursor = activity.getApplicationContext().getContentResolver().query(Schema.Pin.CONTENT_URI , null , selection , null , null);
+
+
+        if(cursor == null){
+
+
+            return null;
+        }
+
+
+        String AvailableDigitalPin = "";
+
+        cursor.moveToFirst();
+
+        for (int i=0 ; i<cursor.getCount() ; i++){
+
+
+
+            if(cursor.getInt(cursor.getColumnIndex(Schema.Pin.AVAILABILITY)) == 1 ){  // 0 type --> Digital  , 1 AVAILABILITY --> it's free to use
+
+
+               AvailableDigitalPin +=String.valueOf(cursor.getInt(cursor.getColumnIndex(Schema.Pin.PIN_NUMBER)));
+
+               if (i != cursor.getCount()-1 ){
+
+                   AvailableDigitalPin +=" ,";
+
+               }
+           }
+
+            cursor.moveToNext();
+
+
+        }
+
+        Log.e("DD" ,  "text is " +AvailableDigitalPin);
+
+
+        return AvailableDigitalPin;
+
+    }
+
+
+
+
+    public String returnAvailableAnalogPin(){  // it is same to returnAvailableDigitalPin but here we are looking for cursor.getInt(cursor.getColumnIndex(Schema.Pin.TYPE)) == 1
+
+
+        String selection = "MICROCONTROLLERID="+this.microControllerId +" AND TYPE=1";
+
+        cursor = activity.getApplicationContext().getContentResolver().query(Schema.Pin.CONTENT_URI , null , selection , null , null);
+
+        if(cursor == null){
+
+            return null;
+        }
+
+        String AvailableAnalogPin = "";
+
+        cursor.moveToFirst();
+
+        for (int i=0 ; i<cursor.getCount() ; i++){
+
+
+
+            if(cursor.getInt(cursor.getColumnIndex(Schema.Pin.AVAILABILITY)) == 1 ){  //  1 type --> Analog  , 1 AVAILABILITY --> it's free to use
+
+                AvailableAnalogPin +=String.valueOf(cursor.getInt(cursor.getColumnIndex(Schema.Pin.PIN_NUMBER)));
+
+                if (i != cursor.getCount()-1){
+
+                    AvailableAnalogPin +=" ,";
+
+                }
+            }
+
+            cursor.moveToNext();
+
+
+        }
+
+        return AvailableAnalogPin;
+
+    }
+
+
+    public int returnShieldPin(long MicroControllerID ,long ShieldID){
+
+
+        String selection = "MICROCONTROLLERID="+MicroControllerID +" AND SHIELD_ID"+ShieldID;
+
+        cursor = activity.getApplicationContext().getContentResolver().query(Schema.Pin.CONTENT_URI , null , selection , null , null);
+
+
+        cursor.moveToFirst();
+
+        if(cursor == null){
+
+            return -1;
+        }
+
+
+        else {
+
+            return cursor.getInt(cursor.getColumnIndex(Schema.Pin.PIN_NUMBER));
+        }
+
+
+
+    }
+
+
+    public boolean check_RGB_LED_Pins(int pin){
+
+        String selection = "MICROCONTROLLERID="+this.microControllerId +" AND AVAILABILITY=1 AND TYPE=0" ;
+
+        cursor = activity.getApplicationContext().getContentResolver().query(Schema.Pin.CONTENT_URI , null , selection , null , null);
+
+        cursor.moveToFirst();
+
+        for (int i=0 ; i<cursor.getCount() ; i++){
+
+
+
+            if(cursor.getInt(cursor.getColumnIndex(Schema.Pin.PIN_NUMBER)) == pin){
+
+                return Arduino_Uno_PWM_Pins(pin);
+
+            }
+
+            cursor.moveToNext();
+
+
+        }
+
+        return false;
+
+    }
+
+    private boolean Arduino_Uno_PWM_Pins(int pin){  // pwm pin , it's pin that we can use analogWrite(pin , value ) method   value 0-255
+
+        if(pin == 3 || pin == 5 ||  pin == 6 || pin == 9  || pin == 10 || pin == 11){
+
+            return true;
+        }
+
+        else return false;
+
+    }
+
 }

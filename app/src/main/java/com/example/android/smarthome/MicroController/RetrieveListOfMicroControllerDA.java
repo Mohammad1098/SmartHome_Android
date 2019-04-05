@@ -21,7 +21,6 @@ public class RetrieveListOfMicroControllerDA {
     public RetrieveListOfMicroControllerDA(Activity activity ){
 
         this.activity = activity;
-        this.activity.getContentResolver();
 
         cursor = this.activity.getContentResolver().query(Schema.MicroController.CONTENT_URI , null , null , null , null);
 
@@ -57,10 +56,11 @@ public class RetrieveListOfMicroControllerDA {
             microController.setLong_id(cursor.getLong(cursor.getColumnIndex(Schema.MicroController.ID)));
 
 
+            /*
             Log.e("Micro DA" , "ID "+String.valueOf(cursor.getLong(cursor.getColumnIndex(Schema.MicroController.ID))));
             Log.e("Micro DA" , "Name "+cursor.getString(cursor.getColumnIndex(Schema.MicroController.NAME)));
             Log.e("Micro DA" , "Room " +cursor.getString(cursor.getColumnIndex(Schema.MicroController.ROOM)));
-
+        */
 
             // add device to the list
             microControllerArrayList.add(microController);

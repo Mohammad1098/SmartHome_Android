@@ -8,7 +8,7 @@ public class Device {
     private String name;
     private int type;
     private String room;
-    private long id;
+    private long device_Id,microController_Id;
 
 
 
@@ -24,7 +24,9 @@ public class Device {
         return room;
     }
 
-    public long getId() { return id; }
+    public long getId() { return device_Id; }
+
+    public long getMicroController_Id() {return microController_Id;}
 
 
 
@@ -39,6 +41,8 @@ public class Device {
         this.room = room;
     }
 
-    public void setId(long id) { this.id = id;}
+    public void setMicroController_Id(long microController_Id) {this.microController_Id = microController_Id;}
+
+    public void setId(long id) { this.device_Id = id;}
 
 }

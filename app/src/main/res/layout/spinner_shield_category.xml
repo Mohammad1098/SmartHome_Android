@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/shield_category_Image_Lay_shield_category_spinner"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/shield_category_Name_Lay_shield_category_spinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/category_Image_Lay_device_category"
+        android:layout_alignParentTop="true"
+        android:layout_margin="16dp"
+        android:layout_toEndOf="@id/category_Image_Lay_device_category"
+        android:layout_toRightOf="@id/category_Image_Lay_device_category"
+        android:layout_weight="3"
+        android:gravity="center"
+        android:text=""
+        android:textSize="15sp" />
+
+
+    <TextView
+        android:id="@+id/shield_category_pin_number_Lay_shield_category_spinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/category_Image_Lay_device_category"
+        android:layout_alignParentTop="true"
+        android:layout_margin="16dp"
+        android:layout_toEndOf="@id/category_Image_Lay_device_category"
+        android:layout_toRightOf="@id/category_Image_Lay_device_category"
+        android:layout_weight="3"
+        android:gravity="center"
+        android:text=""
+        android:textSize="15sp" />
+
+</LinearLayout>

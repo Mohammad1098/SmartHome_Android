@@ -14,10 +14,10 @@ import java.util.ArrayList;
 // this class is used by any category of devices such as LightBulb , Tv , RGB LightBulb etc to present the list of the devices
 
 
-public class RetrieveSpecificDeviceAdapter extends ArrayAdapter<Device> {
+public class RetrieveDevicesAdapter extends ArrayAdapter<Device> {
 
 
-    public RetrieveSpecificDeviceAdapter(Context context , ArrayList<Device> list){
+    public RetrieveDevicesAdapter(Context context , ArrayList<Device> list){
 
 
         super(context , 0 , list);
@@ -31,20 +31,20 @@ public class RetrieveSpecificDeviceAdapter extends ArrayAdapter<Device> {
 
         if(convertView == null){
 
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.specific_device_list_item, parent , false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.device_list_item, parent , false);
         }
 
 
         Device currentDevice = getItem(position);
 
 
-        TextView deviceName = (TextView) convertView.findViewById(R.id.device_name_Lay_specific_device_list_item);
+        TextView deviceName = (TextView) convertView.findViewById(R.id.device_name_Lay_device_list_item);
 
         deviceName.setText(currentDevice.getName());
 
 
 
-        TextView deviceRoom = (TextView) convertView.findViewById(R.id.device_room_Lay_specific_device_list_item);
+        TextView deviceRoom = (TextView) convertView.findViewById(R.id.device_room_Lay_device_list_item);
 
         deviceRoom.setText(currentDevice.getRoom());
 

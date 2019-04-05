@@ -3,14 +3,11 @@ package com.example.android.smarthome.MicroController;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.example.android.smarthome.Devices.RetrieveSpecificDeviceBoundary;
+import com.example.android.smarthome.Devices.RetrieveMicroControllerDevicesBoundary;
 import com.example.android.smarthome.R;
 import com.example.android.smarthome.Shield.RetrieveShieldBoundary;
 
@@ -18,7 +15,7 @@ public class RetrieveSpecificMicroControllerBoundary extends AppCompatActivity {
 
 
     private long MicroControllerID;
-
+    private RetrieveSpecificMicroControllerController retrieveSpecificMicroControllerController;
     @Override
     protected void onCreate(Bundle savedInstanceState){
 
@@ -36,6 +33,10 @@ public class RetrieveSpecificMicroControllerBoundary extends AppCompatActivity {
         MicroControllerID = previousIntent.getLongExtra("MICROCONTROLLER_ID" , -1);
 
 
+        retrieveSpecificMicroControllerController = new RetrieveSpecificMicroControllerController(RetrieveSpecificMicroControllerBoundary.this ,MicroControllerID ); // this line just for testing
+
+        //retrieveSpecificMicroControllerController.TEST_displaySpecificMicroControllerTable();// this line just for testing
+
         Button MicroControllerDevicesImage = findViewById(R.id.DevicesImage_Lay_specific_micro_controller);
 
         Button MicroControllerShieldsImage = findViewById(R.id.ShieldsImage_Lay_specific_micro_controller);
@@ -45,7 +46,7 @@ public class RetrieveSpecificMicroControllerBoundary extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent MicroControllerDeviceIntent = new Intent(RetrieveSpecificMicroControllerBoundary.this , RetrieveSpecificDeviceBoundary.class);
+                Intent MicroControllerDeviceIntent = new Intent(RetrieveSpecificMicroControllerBoundary.this , RetrieveMicroControllerDevicesBoundary.class);
 
                 MicroControllerDeviceIntent.putExtra("MICROCONTROLLER_ID" , MicroControllerID);
 

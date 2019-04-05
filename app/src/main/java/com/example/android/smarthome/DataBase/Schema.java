@@ -88,6 +88,8 @@ public final class Schema   {
 
         public static final String MICROCONTROLLER_ID = "MICROCONTROLLERID";
 
+        public static final String SHIELD_ID = "SHIELD_ID";
+
         public static final String AVAILABILITY = "AVAILABILITY";
 
         public static final String TYPE = "TYPE";

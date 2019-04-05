@@ -38,7 +38,8 @@ public class DbHelper extends SQLiteOpenHelper {
                 +Schema.Shield.ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 +Schema.Shield.NAME +" TEXT NOT NULL ,"
                 +Schema.Shield.TYPE +" INTEGER NOT NULL ,"
-                +Schema.Shield.MICROCONTROLLER_ID +" INTEGER );";
+                +Schema.Shield.MICROCONTROLLER_ID +" INTEGER  ,"
+                +"FOREIGN KEY ("+ Schema.Shield.MICROCONTROLLER_ID+") REFERENCES "+Schema.MicroController.TABLE_NAME+"("+Schema.MicroController.ID+") );";
 
 
         String Pin_Table = "CREATE TABLE "+Schema.Pin.TABLE_NAME +"("
@@ -48,7 +49,11 @@ public class DbHelper extends SQLiteOpenHelper {
                 +Schema.Pin.AVAILABILITY +" INTEGER NOT NULL ,"        // 0 not available  1 available
                 +Schema.Pin.TYPE +" INTEGER NOT NULL ,"               // 0 Digital     1 Analog
                 +Schema.Pin.MICROCONTROLLER_ID +" INTEGER NOT NULL ,"
-                +Schema.Pin.DEVICE_ID +" INTEGER );";
+                +Schema.Pin.SHIELD_ID +" INTEGER ,"
+                +Schema.Pin.DEVICE_ID +" INTEGER ,"
+                +"FOREIGN KEY ("+ Schema.Pin.MICROCONTROLLER_ID+") REFERENCES "+Schema.MicroController.TABLE_NAME+"("+Schema.MicroController.ID+") ,"
+                +"FOREIGN KEY ("+ Schema.Pin.DEVICE_ID+") REFERENCES "+Schema.Device.TABLE_NAME+"("+Schema.Device.ID+") ,"
+                +"FOREIGN KEY ("+ Schema.Pin.SHIELD_ID+") REFERENCES "+Schema.Shield.TABLE_NAME+"("+Schema.Shield.ID+"));";
 
 
         String DeviceCategory_Table = "CREATE TABLE "+Schema.DeviceCategory.TABLE_NAME +"("
@@ -65,7 +70,10 @@ public class DbHelper extends SQLiteOpenHelper {
                 +Schema.Device.NAME +" TEXT NOT NULL ,"
                 +Schema.Device.TYPE +" INTEGER NOT NULL ,"
                 +Schema.Device.ROOM+" TEXT NOT NULL ,"
-                +Schema.Device.MICROCONTROLLER_ID +" INTEGER NOT NULL );";
+                +Schema.Device.MICROCONTROLLER_ID +" INTEGER NOT NULL ,"
+                +"FOREIGN KEY ("+ Schema.Device.MICROCONTROLLER_ID+") REFERENCES "+Schema.MicroController.TABLE_NAME+"("+Schema.MicroController.ID+"));";
+
+
 
 
         String LightBulb_Table = "CREATE TABLE "+Schema.LightBulb.TABLE_NAME +"("

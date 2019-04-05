@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -57,16 +56,10 @@ public class Add_new_device extends AppCompatActivity {
 
     }
 
-
-//    submit button for add
-
     private void CreatePinSpinner(){
 
         String pinSpinner[] = {"1","2","3"};
 
-        // Selection of the spinner
-
-        // Application of the Array to the Spinner
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this,   android.R.layout.simple_spinner_item, pinSpinner);
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categorySpinner.setAdapter(spinnerArrayAdapter);
@@ -448,7 +441,7 @@ public class Add_new_device extends AppCompatActivity {
 
     private void returnToPreviousLayout(){
 
-        Intent openSpecificDeviceLayoutIntent = new Intent(Add_new_device.this, RetrieveSpecificDeviceBoundary.class);
+        Intent openSpecificDeviceLayoutIntent = new Intent(Add_new_device.this, RetrieveMicroControllerDevicesBoundary.class);
 
 
         //send the id of selected device to RetrieveListOfOperationBoundary class

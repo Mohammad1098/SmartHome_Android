@@ -1,12 +1,9 @@
 package com.example.android.smarthome.Devices;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,25 +14,24 @@ import com.example.android.smarthome.MicroController.RetrieveSpecificMicroContro
 import com.example.android.smarthome.Operation.RetrieveListOfOperationBoundary;
 import com.example.android.smarthome.R;
 
-public class RetrieveSpecificDeviceBoundary extends AppCompatActivity {
+public class RetrieveMicroControllerDevicesBoundary extends AppCompatActivity {
 
 
-    private ListView specificDeviceListView;
-    private RetrieveSpecificDeviceController retrieveSpecificDeviceController;
-    private int type;
+    private ListView MicroControllerDeviceListView;
+    private RetrieveMicroControllerDevicesController retrieveMicroControllerDevicesController;
     private long MicroControllerID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.retrieve_list_of_specific_device);
+        setContentView(R.layout.retrieve_list_of_devices);
 
-        setTitle("Specific Device");
+        setTitle("MicroController Devices");
 
         CreateAddDeviceButton();
 
-        retrieveSpecificDevices();
+        retrieveMicroControllerDevices();
 
         attachListViewToListener();
 
@@ -49,18 +45,15 @@ public class RetrieveSpecificDeviceBoundary extends AppCompatActivity {
     private void CreateAddDeviceButton(){
 
 
-        FloatingActionButton floatingActionButtonAddNewDevice = findViewById(R.id.add_new_device_Lay_retrieve_list_of_specific_devices);
+        FloatingActionButton floatingActionButtonAddNewDevice = findViewById(R.id.add_new_device_Lay_retrieve_list_of_devices);
 
         floatingActionButtonAddNewDevice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent addNewDeviceIntent = new Intent(RetrieveSpecificDeviceBoundary.this , Add_new_device.class);
-
-                addNewDeviceIntent.putExtra("TYPE" ,type );
+                Intent addNewDeviceIntent = new Intent(RetrieveMicroControllerDevicesBoundary.this , Add_Predefined_Devices_Boundary.class);
 
                 addNewDeviceIntent.putExtra("MICROCONTROLLER_ID" ,MicroControllerID );
-
 
                 startActivity(addNewDeviceIntent);
 
@@ -70,38 +63,17 @@ public class RetrieveSpecificDeviceBoundary extends AppCompatActivity {
         });
     }
 
-    private void retrieveSpecificDevices(){
-
-
-        specificDeviceListView = findViewById(R.id.specific_device_list_view_Lay_retrieve_list_of_specific_device);
-
-        retrieveSpecificDeviceController = new RetrieveSpecificDeviceController(RetrieveSpecificDeviceBoundary.this, specificDeviceListView);
+    private void retrieveMicroControllerDevices(){
 
         Intent previousintent = getIntent();
 
-
-
-        type = previousintent.getIntExtra("TYPE" , -1);
-
         MicroControllerID =  previousintent.getLongExtra("MICROCONTROLLER_ID" , -1);
 
+        MicroControllerDeviceListView = findViewById(R.id.device_list_view_Lay_retrieve_list_of_specific_device);
 
+        retrieveMicroControllerDevicesController = new RetrieveMicroControllerDevicesController(RetrieveMicroControllerDevicesBoundary.this, MicroControllerDeviceListView);
 
-        boolean isListEmpty=false;
-
-        if(type != -1){
-
-            isListEmpty = retrieveSpecificDeviceController.retrieveSpecificDevicesByCategory(type);
-
-        }
-
-        if(MicroControllerID != -1){
-
-            isListEmpty = retrieveSpecificDeviceController.retrieveSpecificDevicesByMicroController(MicroControllerID);
-
-        }
-
-
+        boolean isListEmpty = retrieveMicroControllerDevicesController.retrieveMicroControllerDevices(MicroControllerID);
 
 
         if (isListEmpty == false) {
@@ -115,14 +87,14 @@ public class RetrieveSpecificDeviceBoundary extends AppCompatActivity {
 
     private void attachListViewToListener(){
 
-        specificDeviceListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        MicroControllerDeviceListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 //save the selected list view item
                 Device device = (Device) parent.getItemAtPosition(position);
 
-                Intent openSpecificDeviceLayoutIntent = new Intent(RetrieveSpecificDeviceBoundary.this, RetrieveListOfOperationBoundary.class);
+                Intent openSpecificDeviceLayoutIntent = new Intent(RetrieveMicroControllerDevicesBoundary.this, RetrieveListOfOperationBoundary.class);
 
 
                 //send the id of selected device to RetrieveListOfOperationBoundary class
@@ -145,7 +117,7 @@ public class RetrieveSpecificDeviceBoundary extends AppCompatActivity {
 
     private void returnToPreviousLayout(){
 
-        Intent openSpecificMicroControllerLayoutIntent = new Intent(RetrieveSpecificDeviceBoundary.this, RetrieveSpecificMicroControllerBoundary.class);
+        Intent openSpecificMicroControllerLayoutIntent = new Intent(RetrieveMicroControllerDevicesBoundary.this, RetrieveSpecificMicroControllerBoundary.class);
 
 
         //send the id of selected device to RetrieveListOfOperationBoundary class

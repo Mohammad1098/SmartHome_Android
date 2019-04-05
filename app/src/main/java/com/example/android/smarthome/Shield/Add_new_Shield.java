@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,7 +16,9 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.example.android.smarthome.Adapters.Shield_Spinner_Adapter;
 import com.example.android.smarthome.DataBase.Schema;
@@ -43,9 +46,13 @@ public class Add_new_Shield extends AppCompatActivity {
 
     private Button btn_AddShield;
 
+    private TextView availableDigitalPin , availableAnalogPin;
+
+    private RadioButton DigitalPin , AnalogPin;
 
 
 
+    @Override
     protected void onCreate(Bundle sa){
 
         super.onCreate(sa);
@@ -54,6 +61,15 @@ public class Add_new_Shield extends AppCompatActivity {
         createView();
         attachShieldCategorySpinnerToListener();
     }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        createView();
+        attachShieldCategorySpinnerToListener();
+
+    }
+
 
 
     //    submit button for add
@@ -70,6 +86,20 @@ public class Add_new_Shield extends AppCompatActivity {
         Intent previousIntent = getIntent();
 
         Microcontroller_ID = previousIntent.getLongExtra("MICROCONTROLLER_ID", -1);
+
+
+        availableDigitalPin = findViewById(R.id.available_digital_pin_Lay_add_new_shield);
+
+        availableDigitalPin.setText("Available Digital Pins "+returnAvailableDigitalPin());
+
+        availableAnalogPin = findViewById(R.id.available_Analog_pin_Lay_add_new_shield);
+
+        availableAnalogPin.setText("Available Analog Pins "+returnAvailableAnalogPin());
+
+
+        DigitalPin = findViewById(R.id.Digital_pin_Lay_add_new_shield);
+
+        AnalogPin = findViewById(R.id.Analog_pin_Lay_add_new_shield);
 
         shieldCategorySpinner = findViewById(R.id.spinner_Shield_Lay_add_new_shield);
 
@@ -209,7 +239,7 @@ public class Add_new_Shield extends AppCompatActivity {
 
 
             if(TextUtils.isEmpty(relay_pin)){
-                return ;
+                return;
             }
 
             pinNumber = Integer.valueOf(relay_pin);
@@ -227,13 +257,21 @@ public class Add_new_Shield extends AppCompatActivity {
 
 
             if(TextUtils.isEmpty(ir_pin)){
-                return ;
+                return;
             }
 
             pinNumber = Integer.valueOf(ir_pin);
 
 
         }
+
+        if(!DigitalPin.isChecked() && !AnalogPin.isChecked()){
+
+            Toast.makeText(this , "Please select type of pin " , Toast.LENGTH_LONG).show();
+            return;
+
+        }
+
 
         //SHIELD TABLE
         contentValues.put(Schema.Shield.MICROCONTROLLER_ID , Microcontroller_ID);
@@ -242,16 +280,27 @@ public class Add_new_Shield extends AppCompatActivity {
 
 
 
+        int type=-1;
+
+        if(DigitalPin.isChecked()){
+
+            type=0;
+        }
+
+        if(AnalogPin.isChecked()){
+
+            type=1;
+        }
+
 
 
         //PIN TABLE
         ContentValues contentValues1_PinTable = new ContentValues(); //PIN TABLE
 
-        contentValues1_PinTable.put(Schema.Pin.PIN_NUMBER , pinNumber);
         contentValues1_PinTable.put(Schema.Pin.AVAILABILITY , 0);
-        contentValues1_PinTable.put(Schema.Pin.MICROCONTROLLER_ID ,Microcontroller_ID);
 
-        getContentResolver().update(Schema.Pin.CONTENT_URI, contentValues1_PinTable  , null , null);
+
+        getContentResolver().update(Schema.Pin.CONTENT_URI, contentValues1_PinTable  , "PINNUMBER="+pinNumber+" AND MICROCONTROLLERID="+Microcontroller_ID+" AND TYPE="+type , null);
 
 
 
@@ -315,13 +364,29 @@ public class Add_new_Shield extends AppCompatActivity {
     private boolean checkAvailabilityOfPinsInDA(ArrayList<Integer> pins){
 
 
-        retrieveListOfPinsController = new RetrieveListOfPinsController(this);
+        retrieveListOfPinsController = new RetrieveListOfPinsController(Add_new_Shield.this);
 
         return retrieveListOfPinsController.checkAvailabilityOfPins(pins , Microcontroller_ID );
     }
 
 
 
+    private String returnAvailableDigitalPin(){
+
+
+        retrieveListOfPinsController = new RetrieveListOfPinsController(Add_new_Shield.this);
+
+        return retrieveListOfPinsController.returnAvailableDigitalPin(Microcontroller_ID);
+    }
+
+
+    private String returnAvailableAnalogPin(){
+
+        retrieveListOfPinsController = new RetrieveListOfPinsController(Add_new_Shield.this);
+
+
+        return retrieveListOfPinsController.returnAvailableAnalogPin(Microcontroller_ID);
+    }
 
 
 

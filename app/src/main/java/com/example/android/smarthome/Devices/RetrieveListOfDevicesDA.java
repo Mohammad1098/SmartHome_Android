@@ -14,21 +14,24 @@ import com.example.android.smarthome.Shield.Shield;
 public class RetrieveListOfDevicesDA extends AppCompatActivity  {
 
 
-    private ArrayList<DeviceCategory> devicesarrayList;
-    private Cursor cursor;
-
+    private Activity activity;
     public RetrieveListOfDevicesDA(Activity activity ){
-        cursor = activity.getApplicationContext().getContentResolver().query(Schema.DeviceCategory.CONTENT_URI , null , null , null , null);
+
+        this.activity =activity;
 
     }
 
 
 
-    public ArrayList<DeviceCategory> retrieveDevicesDA(){
+    public ArrayList<Device> retrieveDevicesDA(){
 
-        // in this method we will create a list of devices , manipulate the cursor to get the data and add it to list of devices
+        ArrayList<Device> devicesarrayList;
 
-        if(cursor == null){
+        Cursor cursor = activity.getApplicationContext().getContentResolver().query(Schema.Device.CONTENT_URI, null, null, null, null);
+
+
+        if (cursor == null) {
+
 
             return null;
         }
@@ -38,18 +41,19 @@ public class RetrieveListOfDevicesDA extends AppCompatActivity  {
         // by default cursor will point to -1 position
         cursor.moveToFirst();
 
-        for (int i = 0 ; i < cursor.getCount() ; i++){
+        for (int i = 0; i < cursor.getCount(); i++) {
 
-            DeviceCategory deviceCategory = new DeviceCategory();
+            Device device = new Device();
 
             //manipulate data
-            deviceCategory.setCategoryName(cursor.getString(cursor.getColumnIndex(Schema.DeviceCategory.NAME)));
-            deviceCategory.setType(cursor.getInt(cursor.getColumnIndex(Schema.DeviceCategory.TYPE)));
-            deviceCategory.setId(cursor.getInt(cursor.getColumnIndex(Schema.DeviceCategory.ID)));
-
+            device.setName(cursor.getString(cursor.getColumnIndex(Schema.Device.NAME)));
+            device.setType(cursor.getInt(cursor.getColumnIndex(Schema.Device.TYPE)));
+            device.setRoom(cursor.getString(cursor.getColumnIndex(Schema.Device.ROOM)));
+            device.setId(cursor.getInt(cursor.getColumnIndex(Schema.Device.ID)));
+            device.setMicroController_Id(cursor.getInt(cursor.getColumnIndex(Schema.Device.MICROCONTROLLER_ID)));
 
             // add device to the list
-            devicesarrayList.add(deviceCategory);
+            devicesarrayList.add(device);
 
 
             // move to next position
@@ -59,13 +63,15 @@ public class RetrieveListOfDevicesDA extends AppCompatActivity  {
         }
 
 
-
         return devicesarrayList;
 
     }
 
 
     public void TEST_displayDeviceTable(){
+
+
+        Cursor cursor = activity.getApplicationContext().getContentResolver().query(Schema.Device.CONTENT_URI, null, null, null, null);
 
         cursor.moveToFirst();
 

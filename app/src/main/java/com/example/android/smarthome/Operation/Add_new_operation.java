@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,8 +15,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.example.android.smarthome.DataBase.Schema;
-import com.example.android.smarthome.Devices.Device;
-import com.example.android.smarthome.Devices.RetrieveSpecificDeviceBoundary;
 import com.example.android.smarthome.R;
 
 public class Add_new_operation extends AppCompatActivity {

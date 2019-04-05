@@ -8,6 +8,8 @@ import android.util.Log;
 
 import com.example.android.smarthome.DataBase.Schema;
 import com.example.android.smarthome.MicroController.MicroController;
+import com.example.android.smarthome.Pins.RetrieveListOfPinsController;
+import com.example.android.smarthome.R;
 
 import java.util.ArrayList;
 
@@ -17,13 +19,16 @@ public class RetrieveShieldDA extends AppCompatActivity {
 
     private Cursor cursor;
     private ArrayList<Shield> shieldArrayList;
-
+    private long MicroControllerID;
+    private Activity activity;
     public RetrieveShieldDA(Activity activity , long MicroControllerID){
 
+        this.activity = activity;
+        this.MicroControllerID= MicroControllerID;
         String selection = "MICROCONTROLLER_ID="+MicroControllerID;
         cursor = activity.getApplicationContext().getContentResolver().query(Schema.Shield.CONTENT_URI , null , selection , null , null);
 
-
+        /*
         cursor.moveToFirst();
         for (int i = 0 ; i < cursor.getCount() ; i++){
 
@@ -36,7 +41,7 @@ public class RetrieveShieldDA extends AppCompatActivity {
 
 
         }
-
+*/
 
     }
 
@@ -75,6 +80,97 @@ public class RetrieveShieldDA extends AppCompatActivity {
 
     }
 
+
+    public ArrayList<ShieldCategory> returnRelayListSpinner(){
+
+        String selection = "MICROCONTROLLER_ID="+this.MicroControllerID+" AND TYPE=0";
+        cursor = this.activity.getApplicationContext().getContentResolver().query(Schema.Shield.CONTENT_URI , null , selection , null , null);
+
+
+        if(cursor == null){
+
+            return null;
+        }
+
+        ArrayList<ShieldCategory> RelaySpinnerArrayList = new ArrayList<>();
+
+        cursor.moveToFirst();
+
+
+        for (int i=0 ; i<cursor.getCount() ; i++){
+
+            ShieldCategory shieldCategory = new ShieldCategory();
+
+
+            shieldCategory.setShieldName(cursor.getString(cursor.getColumnIndex(Schema.Shield.NAME)));
+            shieldCategory.setShieldImage(R.drawable.relay);
+            shieldCategory.setType(0);
+            shieldCategory.setPin(returnShieldPin(cursor.getLong(cursor.getColumnIndex(Schema.Shield.ID))));
+
+            RelaySpinnerArrayList.add(shieldCategory);
+
+            cursor.moveToNext();
+
+
+        }
+
+
+        return RelaySpinnerArrayList;
+
+
+
+    }
+
+
+    public ArrayList<ShieldCategory> returnIRListListSpinner(){
+
+        String selection = "MICROCONTROLLER_ID="+this.MicroControllerID+" AND TYPE=1";
+        cursor = this.activity.getApplicationContext().getContentResolver().query(Schema.Shield.CONTENT_URI , null , selection , null , null);
+
+
+        if(cursor == null){
+
+            return null;
+        }
+
+        ArrayList<ShieldCategory> IRSpinnerArrayList = new ArrayList<>();
+
+        cursor.moveToFirst();
+
+
+        for (int i=0 ; i<cursor.getCount() ; i++){
+
+            ShieldCategory shieldCategory = new ShieldCategory();
+
+
+            shieldCategory.setShieldName(cursor.getString(cursor.getColumnIndex(Schema.Shield.NAME)));
+            shieldCategory.setShieldImage(R.drawable.ir);
+            shieldCategory.setType(1);
+            shieldCategory.setPin(returnShieldPin(cursor.getLong(cursor.getColumnIndex(Schema.Shield.ID))));
+
+            IRSpinnerArrayList.add(shieldCategory);
+
+            cursor.moveToNext();
+
+
+        }
+
+
+        return IRSpinnerArrayList;
+
+
+
+    }
+
+
+    private int returnShieldPin(long ShieldID){
+
+
+        RetrieveListOfPinsController  retrieveListOfPinsController = new RetrieveListOfPinsController(this.activity);
+
+        return retrieveListOfPinsController.returnShieldPin(MicroControllerID , ShieldID);
+
+    }
 
 
 }

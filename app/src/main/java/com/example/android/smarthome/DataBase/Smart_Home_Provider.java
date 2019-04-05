@@ -142,7 +142,6 @@ public class Smart_Home_Provider extends  ContentProvider {
                 break;
 
             case 9 :
-
                 cursor = db.query(Schema.Pin.TABLE_NAME , projection , selection , selectionArgs , null , null , sortOrder );
                 break;
 
@@ -266,7 +265,7 @@ public class Smart_Home_Provider extends  ContentProvider {
 
         switch (match) {
             case 9:
-                return updatePet(uri, contentValues, selection, selectionArgs , match);
+                return updateRecord(uri, contentValues, selection, selectionArgs , match);
 
             default:
                 throw new IllegalArgumentException("Update is not supported for " + uri);
@@ -274,7 +273,7 @@ public class Smart_Home_Provider extends  ContentProvider {
     }
 
 
-    private int updatePet(Uri uri, ContentValues values, String selection, String[] selectionArgs , int match) {
+    private int updateRecord(Uri uri, ContentValues values, String selection, String[] selectionArgs , int match) {
 
         SQLiteDatabase database = mDataBase.getWritableDatabase();
         int rowsUpdated=-1;

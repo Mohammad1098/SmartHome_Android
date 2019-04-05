@@ -23,6 +23,12 @@ public class RetrieveShieldController extends AppCompatActivity {
 
     }
 
+    public RetrieveShieldController(Activity activity ){
+
+        this.activity = activity;
+
+    }
+
 
 
     public boolean retrieveShields(long MicroControllerID){
@@ -43,5 +49,30 @@ public class RetrieveShieldController extends AppCompatActivity {
         return false;
 
     }
+
+
+    public ArrayList<ShieldCategory> returnRelayListSpinner(long MicroControllerID){
+
+
+        retrieveShieldDA = new RetrieveShieldDA(this.activity , MicroControllerID);
+
+
+        return retrieveShieldDA.returnRelayListSpinner();
+
+    }
+
+
+    public ArrayList<ShieldCategory> returnIRListListSpinner(long MicroControllerID){
+
+
+        retrieveShieldDA = new RetrieveShieldDA(this.activity , MicroControllerID);
+
+
+        return retrieveShieldDA.returnIRListListSpinner();
+
+    }
+
+
+
 
 }

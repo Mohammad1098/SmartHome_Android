@@ -2,14 +2,9 @@ package com.example.android.smarthome.MicroController;
 
 
 import android.app.Activity;
-import android.view.View;
 import android.widget.GridView;
-import android.widget.ListView;
 
-import com.example.android.smarthome.Adapters.RetrieveListOfDevicesAdapter;
 import com.example.android.smarthome.Adapters.RetrieveListOfMicroControllerAdapter;
-import com.example.android.smarthome.DeviceCategory.DeviceCategory;
-import com.example.android.smarthome.Devices.RetrieveListOfDevicesDA;
 
 import java.util.ArrayList;
 

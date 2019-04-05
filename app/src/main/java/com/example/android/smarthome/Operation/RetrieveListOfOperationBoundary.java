@@ -1,17 +1,15 @@
 package com.example.android.smarthome.Operation;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
-import com.example.android.smarthome.Devices.RetrieveSpecificDeviceBoundary;
+import com.example.android.smarthome.Devices.RetrieveMicroControllerDevicesBoundary;
 import com.example.android.smarthome.R;
 
 public class RetrieveListOfOperationBoundary extends AppCompatActivity {
@@ -119,7 +117,7 @@ public class RetrieveListOfOperationBoundary extends AppCompatActivity {
 
     private void returnToPreviousLayout(){
 
-        Intent openSpecificDeviceLayoutIntent = new Intent(RetrieveListOfOperationBoundary.this, RetrieveSpecificDeviceBoundary.class);
+        Intent openSpecificDeviceLayoutIntent = new Intent(RetrieveListOfOperationBoundary.this, RetrieveMicroControllerDevicesBoundary.class);
 
 
         //send the id of selected device to RetrieveListOfOperationBoundary class

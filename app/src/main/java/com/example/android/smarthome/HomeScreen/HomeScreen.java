@@ -61,12 +61,14 @@ public class HomeScreen extends AppCompatActivity {
         });
 
 
+
+        //for testing
         RetrieveListOfDevicesDA retrieveListOfDevicesDA = new RetrieveListOfDevicesDA(HomeScreen.this);
-        retrieveListOfDevicesDA.TEST_displayDeviceTable();
+        //retrieveListOfDevicesDA.TEST_displayDeviceTable();
 
 
         RetrieveListOfMicroControllerDA retrieveListOfMicroControllerDA = new RetrieveListOfMicroControllerDA(HomeScreen.this);
-        retrieveListOfMicroControllerDA.TEST_displayMicroControllerTable();
+        //retrieveListOfMicroControllerDA.TEST_displayMicroControllerTable();
 
 
 

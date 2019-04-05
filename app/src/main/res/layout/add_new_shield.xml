@@ -24,6 +24,37 @@
         android:orientation="vertical">
 
 
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+
+            <RadioButton
+                android:id="@+id/Digital_pin_Lay_add_new_shield"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Digital"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="15dp"
+                />
+
+            <RadioButton
+                android:id="@+id/Analog_pin_Lay_add_new_shield"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Analog"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="15dp"
+                />
+
+        </RadioGroup>
+
+
+
         <EditText
             android:id="@+id/relay_channel_1_Lay_add_new_shield"
             android:layout_width="120dp"
@@ -48,6 +79,33 @@
 
     </LinearLayout>
 
+
+    <TextView
+        android:id="@+id/available_digital_pin_Lay_add_new_shield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
+        android:text=""
+        android:textSize="18sp"
+        android:textColor="@color/colorPrimaryDark"
+        />
+
+    <TextView
+        android:id="@+id/available_Analog_pin_Lay_add_new_shield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="25dp"
+        android:text=""
+        android:textSize="18sp"
+        android:textColor="@color/colorPrimaryDark"
+
+        />
 
     <Button
         android:id="@+id/add_shield_Lay_add_new_shield"

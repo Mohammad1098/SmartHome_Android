@@ -1,6 +1,7 @@
 package com.example.android.smarthome.MicroController;
 
 import android.content.ContentValues;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -19,11 +20,16 @@ public class Arduino_Nano extends MicroController {
     public ArrayList<ContentValues> returnPinTableContentValues() {
 
         ArrayList<ContentValues> contentValuesArrayList = new ArrayList<>();
-        ContentValues contentValuesPinTableDigital = new ContentValues();
-        ContentValues contentValuesPinTableAnalog = new ContentValues();
+        ContentValues contentValuesPinTableDigital;
+        ContentValues contentValuesPinTableAnalog ;
 
+
+        Log.e("Nano ", "Micro ID"+this.getLong_id());
 
         for (int i=0 ; i <13 ; i++) {
+
+            contentValuesPinTableDigital = new ContentValues();
+
 
             contentValuesPinTableDigital.put("PINNUMBER", i);
             contentValuesPinTableDigital.put("MICROCONTROLLERID", this.getLong_id());
@@ -38,6 +44,9 @@ public class Arduino_Nano extends MicroController {
 
 
         for (int i=0 ; i <8 ; i++) {
+
+            contentValuesPinTableAnalog = new ContentValues();
+
 
             contentValuesPinTableAnalog.put("PINNUMBER", i);
             contentValuesPinTableAnalog.put("MICROCONTROLLERID", this.getLong_id());
