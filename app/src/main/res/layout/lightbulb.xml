@@ -15,6 +15,7 @@
 
 
         <Button
+            android:id="@+id/turnOn_Lay_light_bulb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
@@ -23,6 +24,7 @@
             android:textColor="@color/colorPrimary" />
 
         <Button
+            android:id="@+id/turnOff_Lay_light_bulb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -44,6 +46,7 @@
 
 
         <Button
+            android:id="@+id/set_Time_Lay_light_bulb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_command"
