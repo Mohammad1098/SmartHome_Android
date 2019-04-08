@@ -2,63 +2,88 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_vertical"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:weightSum="3">
+
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="24dp"
-        android:layout_marginLeft="24dp"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="64dp"
-            android:layout_height="50dp"
-            android:layout_marginRight="4dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_device" />
+        android:layout_height="match_parent"
+        android:layout_weight="1">
 
         <Button
             android:id="@+id/DevicesImage_Lay_specific_micro_controller"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="16dp"
+            android:layout_weight="1"
             android:background="@drawable/bg_grid"
             android:text="Devices"
             android:textColor="@color/text" />
 
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="64dp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="24dp"
-        android:layout_marginLeft="24dp"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="64dp"
-            android:layout_height="50dp"
-            android:layout_marginRight="4dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_micorontroller" />
 
         <Button
             android:id="@+id/ShieldsImage_Lay_specific_micro_controller"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="16dp"
             android:background="@drawable/bg_grid"
-            android:layout_weight="2"
             android:text="Shields"
             android:textColor="@color/text" />
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="16dp"
+            android:background="@drawable/bg_grid"
+            android:text="Lights"
+            android:textColor="@color/text" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="16dp"
+            android:background="@drawable/bg_grid"
+            android:text="TV"
+            android:textColor="@color/text" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="16dp"
+            android:background="@drawable/bg_grid"
+            android:text="Rceceiver"
+            android:textColor="@color/text" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="16dp"
+            android:background="@drawable/bg_grid"
+            android:text="AC"
+            android:textColor="@color/text" />
+
+    </LinearLayout>
 </LinearLayout>
 
 

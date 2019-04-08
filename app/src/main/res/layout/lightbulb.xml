@@ -1,57 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="36dp"
-        android:background="@drawable/bg_grid"
+        android:layout_height="150dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginRight="36dp"
         android:gravity="center"
         android:orientation="horizontal"
-        android:padding="12dp">
+        android:padding="12dp"
+        android:weightSum="2">
 
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/bg_command"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="16dp"
+            android:layout_weight="1"
+            android:background="@color/mintyGreen"
             android:text="ON"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="@color/text" />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/bg_command"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="16dp"
+            android:layout_weight="1"
+            android:background="@color/sunsetOrange"
             android:text="OFF"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="@color/text" />
 
 
     </LinearLayout>
 
-    <LinearLayout
+    <Button
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="36dp"
-        android:background="@drawable/bg_grid"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="12dp">
-
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_command"
-            android:text="Set Timer"
-            android:textColor="@color/colorPrimary" />
-
-
-    </LinearLayout>
+        android:layout_height="100dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginRight="64dp"
+        android:background="@color/colorPrimary"
+        android:text="Set Timer"
+        android:textColor="@color/text" />
 
 
 </LinearLayout>
