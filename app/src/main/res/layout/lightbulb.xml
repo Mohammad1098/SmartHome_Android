@@ -17,6 +17,7 @@
 
 
         <Button
+            android:id="@+id/turnOn_Lay_light_bulb"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="16dp"
@@ -26,6 +27,7 @@
             android:textColor="@color/text" />
 
         <Button
+            android:id="@+id/turnOff_Lay_light_bulb"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="16dp"
@@ -38,8 +40,10 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/set_Time_Lay_light_bulb"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:layout_marginTop="24dp"
         android:layout_marginLeft="64dp"
         android:layout_marginRight="64dp"
         android:background="@color/colorPrimary"
