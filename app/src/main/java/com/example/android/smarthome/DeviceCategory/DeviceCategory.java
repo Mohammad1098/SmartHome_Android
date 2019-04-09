@@ -5,8 +5,9 @@ public class DeviceCategory {
 
     private String categoryName;
     private int categoryImage;
-    private int type;             // 0 Light Bulb
-    private int id;
+    private int type;           //  0 ---->  Light Bulb     1 ----> Rgb led strib      2 ----> TV     3 ----> Receiver       4 ----> AC
+
+
 
 
 
@@ -26,9 +27,6 @@ public class DeviceCategory {
     }
 
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
@@ -55,8 +53,5 @@ public class DeviceCategory {
         return type;
     }
 
-    public int getId() {
 
-        return id;
-    }
 }

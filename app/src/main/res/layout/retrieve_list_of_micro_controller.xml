@@ -37,7 +37,9 @@
         android:dividerHeight="10dp"
         android:horizontalSpacing="32dp"
         android:verticalSpacing="32dp"
-        android:numColumns="2">
+        android:numColumns="2"
+
+        >
 
     </GridView>
 

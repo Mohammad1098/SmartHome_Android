@@ -1,24 +1,10 @@
-package com.example.android.smarthome.LightBulb;
+package com.example.android.smarthome.Lights;
 
 import android.app.Activity;
-import android.app.TimePickerDialog;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.widget.TextView;
-import android.widget.TimePicker;
 
 import com.example.android.smarthome.MQTT_Connection.MQTT_SEND_COMMANDS;
 import com.example.android.smarthome.MQTT_Connection.openConnectionToMQTT_Server;
-
-import org.eclipse.paho.client.mqttv3.MqttClient;
-import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
-import org.eclipse.paho.client.mqttv3.MqttException;
-import org.eclipse.paho.client.mqttv3.MqttMessage;
-import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
-import java.util.Calendar;
 
 public class LightBulbController extends AppCompatActivity {
 

@@ -1,9 +1,7 @@
-package com.example.android.smarthome.LightBulb;
+package com.example.android.smarthome.Lights;
 
 import android.app.Activity;
-import android.content.ContentUris;
 import android.content.ContentValues;
-import android.net.Uri;
 
 import com.example.android.smarthome.DataBase.Schema;
 

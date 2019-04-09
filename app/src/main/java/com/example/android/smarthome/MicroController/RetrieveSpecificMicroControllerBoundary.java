@@ -20,7 +20,7 @@ public class RetrieveSpecificMicroControllerBoundary extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.specific_micro_controller);
+        setContentView(R.layout.device_category);
         createViews();
 
     }

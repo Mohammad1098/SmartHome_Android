@@ -13,7 +13,7 @@
         android:layout_weight="1">
 
         <Button
-            android:id="@+id/DevicesImage_Lay_specific_micro_controller"
+            android:id="@+id/DevicesImage_Lay_device_category"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_margin="16dp"
@@ -24,7 +24,7 @@
 
 
         <Button
-            android:id="@+id/ShieldsImage_Lay_specific_micro_controller"
+            android:id="@+id/ShieldsImage_Lay_device_category"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -41,6 +41,7 @@
         android:layout_weight="1">
 
         <Button
+            android:id="@+id/LightImage_Lay_device_category"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -50,6 +51,7 @@
             android:textColor="@color/text" />
 
         <Button
+            android:id="@+id/TVImage_Lay_device_category"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -66,6 +68,7 @@
         android:layout_weight="1">
 
         <Button
+            android:id="@+id/ReceiverImage_Lay_device_category"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -75,6 +78,7 @@
             android:textColor="@color/text" />
 
         <Button
+            android:id="@+id/ACImage_Lay_device_category"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
