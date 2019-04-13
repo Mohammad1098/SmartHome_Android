@@ -12,6 +12,7 @@ import com.example.android.smarthome.MicroController.RetrieveListOfMicroControll
 import com.example.android.smarthome.MicroController.RetrieveListOfMicroControllerDA;
 import com.example.android.smarthome.Pins.RetrieveListOfPinsDA;
 import com.example.android.smarthome.R;
+import com.example.android.smarthome.RGB_LED.RGBLEDBoundary;
 import com.example.android.smarthome.Shield.RetrieveShieldDA;
 
 public class HomeScreen extends AppCompatActivity {
@@ -32,6 +33,16 @@ public class HomeScreen extends AppCompatActivity {
         Button openDevices = findViewById(R.id.openDevices);
 
         Button openMicroControllers = findViewById(R.id.openMicroController);
+
+        Button openRGBLed = findViewById(R.id.rgb_led_home_screen);
+
+        openRGBLed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent openRGBIntent = new Intent(HomeScreen.this, RGBLEDBoundary.class);
+                startActivity(openRGBIntent);
+            }
+        });
 
 
         openDevices.setOnClickListener(new View.OnClickListener() {

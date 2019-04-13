@@ -37,9 +37,9 @@ public class RetrieveSpecificMicroControllerBoundary extends AppCompatActivity {
 
         //retrieveSpecificMicroControllerController.TEST_displaySpecificMicroControllerTable();// this line just for testing
 
-        Button MicroControllerDevicesImage = findViewById(R.id.DevicesImage_Lay_specific_micro_controller);
+        Button MicroControllerDevicesImage = findViewById(R.id.DevicesImage_Lay_device_category);
 
-        Button MicroControllerShieldsImage = findViewById(R.id.ShieldsImage_Lay_specific_micro_controller);
+        Button MicroControllerShieldsImage = findViewById(R.id.ShieldsImage_Lay_device_category);
 
 
         MicroControllerDevicesImage.setOnClickListener(new View.OnClickListener() {

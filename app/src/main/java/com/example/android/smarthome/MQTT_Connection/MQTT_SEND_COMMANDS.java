@@ -41,8 +41,6 @@ public class MQTT_SEND_COMMANDS {
 
     }
 
-
-
     public boolean turnOffLightBulb(MqttClient client, String topic , String messageContent){
 
         // topic which topic to subscribe to
@@ -70,4 +68,67 @@ public class MQTT_SEND_COMMANDS {
 
     }
 
+    public boolean turnOnRGBLED(MqttClient client, String topic, String messageContent){
+
+        if(TextUtils.isEmpty(topic) || TextUtils.isEmpty(messageContent)){
+
+            return false;
+
+        }
+
+        MqttMessage message = new MqttMessage(messageContent.getBytes());
+        message.setQos(qos);
+        try {
+            client.publish(topic, message);
+            return true;
+        }
+        catch(MqttException exception) {
+
+            exception.printStackTrace();
+            return false;
+
+        }
+    }
+
+    public boolean turnOffRGBLED(MqttClient client, String topic, String messageContent){
+
+        if(TextUtils.isEmpty(topic) || TextUtils.isEmpty(messageContent)){
+
+            return false;
+
+        }
+
+        MqttMessage message = new MqttMessage(messageContent.getBytes());
+        message.setQos(qos);
+        try {
+            client.publish(topic, message);
+            return true;
+        }
+        catch(MqttException exception) {
+
+            exception.printStackTrace();
+            return false;
+
+        }
+    }
+
+    public boolean changeColor(MqttClient client, String topic, String messageContent){
+        if (TextUtils.isEmpty(topic) || TextUtils.isEmpty(messageContent)) {
+
+            return false;
+
+        }
+
+        MqttMessage message = new MqttMessage(messageContent.getBytes());
+        message.setQos(qos);
+        try {
+            client.publish(topic, message);
+            return true;
+        } catch (MqttException exception) {
+
+            exception.printStackTrace();
+            return false;
+
+        }
+    }
 }

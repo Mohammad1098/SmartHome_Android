@@ -35,6 +35,7 @@
         <activity android:parentActivityName=".MicroController.RetrieveSpecificMicroControllerBoundary" android:name=".Shield.RetrieveShieldBoundary"></activity>
         <activity android:parentActivityName=".MicroController.RetrieveSpecificMicroControllerBoundary" android:name=".Shield.Add_new_Shield"></activity>
         <activity android:parentActivityName=".Devices.RetrieveMicroControllerDevicesBoundary" android:name=".Devices.Add_Predefined_Devices_Boundary"></activity>
+        <activity android:parentActivityName=".HomeScreen.HomeScreen" android:name=".RGB_LED.RGBLEDBoundary"></activity>
 
 
 
