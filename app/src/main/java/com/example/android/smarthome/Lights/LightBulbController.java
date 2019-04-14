@@ -29,7 +29,7 @@ public class LightBulbController extends AppCompatActivity {
 
             MQTT_SEND_COMMANDS commands = new MQTT_SEND_COMMANDS();
 
-            return commands.turnOnLightBulb(connection.returnClient() , "esp/test" , "LightBulb2ON"); // "device" LightBulb  "pin number" 2   action ON
+            return commands.sendCommand(connection.returnClient() , "SMARTHOME" , "LightBulb2ON"); // "device" LightBulb  "pin number" 2   action ON
 
     }
 
@@ -41,7 +41,7 @@ public class LightBulbController extends AppCompatActivity {
 
         MQTT_SEND_COMMANDS commands = new MQTT_SEND_COMMANDS();
 
-        return commands.turnOffLightBulb(connection.returnClient() , "esp/test" , "LightBulb2OFF"); // "device" LightBulb  "pin number" 2   action OFF
+        return commands.sendCommand(connection.returnClient() , "SMARTHOME" , "LightBulb2OFF"); // "device" LightBulb  "pin number" 2   action OFF
 
     }
 

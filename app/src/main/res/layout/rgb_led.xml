@@ -17,6 +17,7 @@
 
 
         <Button
+            android:id="@+id/turnOn_Lay_rgb_led"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="16dp"
@@ -26,6 +27,7 @@
             android:textColor="@color/text" />
 
         <Button
+            android:id="@+id/turnOff_Lay_rgb_led"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="16dp"
@@ -46,36 +48,49 @@
         android:weightSum="3">
 
         <EditText
+            android:backgroundTint="@color/sizzlinRed"
+            android:inputType="number"
+            android:id="@+id/red_Lay_rgb_led"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginRight="6dp"
-            android:layout_marginLeft="16dp" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:hint="Red 0-255"
             android:layout_marginRight="6dp"
             android:layout_marginLeft="6dp" />
 
         <EditText
+            android:backgroundTint="@color/mintyGreen"
+            android:inputType="number"
+            android:id="@+id/green_Lay_rgb_led"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginRight="16dp"
+            android:hint="Green 0-255"
+            android:layout_marginRight="6dp"
+            android:layout_marginLeft="6dp" />
+
+        <EditText
+            android:backgroundTint="@color/megaman"
+            android:inputType="number"
+            android:id="@+id/blue_Lay_rgb_led"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Blue 0-255"
+            android:layout_marginRight="6dp"
             android:layout_marginLeft="6dp" />
 
     </LinearLayout>
 
     <Button
+        android:id="@+id/change_color_Lay_rgb_led"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:layout_marginLeft="52dp"
-        android:layout_marginRight="52dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginRight="36dp"
         android:background="@drawable/bg_command"
-        android:text="go"
+        android:text="CHANGE COLOR"
         android:textColor="@color/colorPrimary"/>
 
 

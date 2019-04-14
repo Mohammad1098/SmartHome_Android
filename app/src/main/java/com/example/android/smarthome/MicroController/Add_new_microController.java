@@ -65,8 +65,6 @@ public class Add_new_microController extends AppCompatActivity {
     private ArrayList<MicroController_Category> CreateMicroControllerCategory(){
 
         microController_categoryArrayList.add(new MicroController_Category("Arduino Uno R3 " , R.drawable.arduinoicon , 0 ));
-        //microController_categoryArrayList.add(new MicroController_Category("Arduino Nano " , R.drawable.nano , 1 ));
-
 
         return microController_categoryArrayList;
     }

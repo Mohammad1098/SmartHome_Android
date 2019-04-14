@@ -58,7 +58,7 @@ public class Add_Predefined_Devices_Controller {
 
         ArrayList<ShieldCategory> RelayList  = retrieveShieldController.returnRelayListSpinner(MicroControllerID);
 
-        Log.e()
+        Log.e("Add device con" , "Relay list "+RelayList.size());
 
         if(RelayList.size() != 0 ){
 
