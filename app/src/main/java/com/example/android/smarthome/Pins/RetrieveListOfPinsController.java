@@ -1,6 +1,7 @@
 package com.example.android.smarthome.Pins;
 
 import android.app.Activity;
+
 import java.util.ArrayList;
 
 public class RetrieveListOfPinsController {
