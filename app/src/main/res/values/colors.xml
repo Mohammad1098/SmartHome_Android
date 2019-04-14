@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#006aa3</color>
     <color name="colorPrimaryLight">#63c9ff</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="colorSecondary">#F9AA33</color>
+    <color name="colorSecondary">#FF4081</color>
     <color name="text">#fff</color>
     <color name="sunsetOrange">#ff5e57</color>
     <color name="vibrantYello">#ffd32a</color>

@@ -54,10 +54,10 @@ public class RetrieveListOfShieldsAdapter extends ArrayAdapter<Shield> {
         switch (type){
 
             case 1 :
-                imageView.setImageResource(R.drawable.relay);
+                imageView.setImageResource(R.drawable.ic_relay);
                 break;
             case 2 :
-                imageView.setImageResource(R.drawable.ir);
+                imageView.setImageResource(R.drawable.ic_ir);
                 break;
 
         }

@@ -11,6 +11,7 @@ import com.example.android.smarthome.Devices.RetrieveDevicesBoundary;
 import com.example.android.smarthome.Devices.RetrieveMicroControllerDevicesBoundary;
 import com.example.android.smarthome.MicroController.RetrieveListOfMicroControllerBoundary;
 import com.example.android.smarthome.R;
+import com.example.android.smarthome.RGB_LED.RGBLEDBoundary;
 import com.example.android.smarthome.Shield.RetrieveShieldBoundary;
 
 
@@ -121,7 +122,7 @@ public class DeviceCategoryBoundary extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent lightsIntent = new Intent(DeviceCategoryBoundary.this , RetrieveDevicesBoundary.class);
+                Intent lightsIntent = new Intent(DeviceCategoryBoundary.this , RGBLEDBoundary.class);
 
                 lightsIntent.putExtra("MICROCONTROLLER_ID" , MicrocontrollerId);
                 lightsIntent.putExtra("TYPE" , 1);

@@ -165,8 +165,8 @@ public class Add_new_Shield extends AppCompatActivity {
         ArrayList<Shield> shieldList = new ArrayList();
 
 
-        shieldList.add(new Shield("Relay" , R.drawable.relay , 1 )); // 1 for Relay 1 CHANNEL
-        shieldList.add(new Shield("IR" , R.drawable.ir , 2)); //2 for IR
+        shieldList.add(new Shield("Relay" , R.drawable.ic_relay , 1 )); // 1 for Relay 1 CHANNEL
+        shieldList.add(new Shield("IR" , R.drawable.ic_ir , 2)); //2 for IR
 
         Shield_Spinner_Adapter shieldSpinnerAdapter = new Shield_Spinner_Adapter(this , shieldList);
 

@@ -8,7 +8,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:weightSum="2">
+        android:weightSum="2"
+        android:background="@drawable/bg_command"
+        >
 
         <TextView
             android:id="@+id/shield_name_Lay_shield_list_item"
@@ -26,9 +28,10 @@
 
         <ImageView
             android:id="@+id/shield_image_Lay_shield_list_item"
-            android:layout_width="90dp"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
             android:layout_alignParentRight="true"
+            android:layout_margin="8dp"
             android:layout_weight="1"
             android:src="@mipmap/ic_launcher"
             android:text="Relay"

@@ -37,9 +37,10 @@
 
     <Spinner
         android:id="@+id/spinner_device_category_Lay_add_new_predefined_device"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:layout_marginTop="25dp"
 
         >
@@ -61,9 +62,10 @@
 
     <Spinner
         android:id="@+id/shield_spinner_Lay_add_new_predefined_device"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="15dp"
         >

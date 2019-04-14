@@ -37,12 +37,12 @@ public class Add_Predefined_Devices_Controller {
 
         ArrayList<DeviceCategory> deviceCategoryArrayList = new ArrayList<>();
 
-        deviceCategoryArrayList.add(new DeviceCategory("Light Bulb " , R.drawable.light_bulb_64 , 0 )); //0 ---->  Light Bulb   ,  1 ----> Rgb led strib ,  2 ----> TV  ,   3 ----> Receiver , 4 ----> AC  ,  5 ----> OTHER
-        deviceCategoryArrayList.add(new DeviceCategory("Rgb LED Strip " , R.drawable.light_bulb_64 , 1 ));
-        deviceCategoryArrayList.add(new DeviceCategory("TV " , R.drawable.light_bulb_64 , 2 ));
-        deviceCategoryArrayList.add(new DeviceCategory("Receiver " , R.drawable.light_bulb_64 , 3 ));
-        deviceCategoryArrayList.add(new DeviceCategory("AC " , R.drawable.light_bulb_64 , 4 ));
-        deviceCategoryArrayList.add(new DeviceCategory("OTHER " , R.drawable.light_bulb_64 , 5 ));
+        deviceCategoryArrayList.add(new DeviceCategory("Light Bulb " , R.drawable.ic_light_bulb , 0 )); //0 ---->  Light Bulb   ,  1 ----> Rgb led strib ,  2 ----> TV  ,   3 ----> Receiver , 4 ----> AC  ,  5 ----> OTHER
+        deviceCategoryArrayList.add(new DeviceCategory("Rgb LED Strip " , R.drawable.ic_rgb , 1 ));
+        deviceCategoryArrayList.add(new DeviceCategory("TV " , R.drawable.ic_computer , 2 ));
+        deviceCategoryArrayList.add(new DeviceCategory("Receiver " , R.drawable.ic_remote_control , 3 ));
+        deviceCategoryArrayList.add(new DeviceCategory("AC " , R.drawable.ic_air_conditioner , 4 ));
+        deviceCategoryArrayList.add(new DeviceCategory("OTHER " , R.drawable.ic_devices , 5 ));
 
         Device_Category_Spinner_Adapter deviceCategorySpinnerAdapter = new Device_Category_Spinner_Adapter(this.activity , deviceCategoryArrayList);
 

@@ -24,8 +24,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginRight="15dp"
         android:hint="Room"
-        android:inputType="text"
-        android:theme="@style/EditTextTheme"/>
+        android:inputType="text"/>
 
 
     <Button

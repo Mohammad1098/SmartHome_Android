@@ -97,7 +97,7 @@ public class RetrieveShieldDA extends AppCompatActivity {
 
 
             shieldCategory.setShieldName(cursor.getString(cursor.getColumnIndex(Schema.Shield.NAME)));
-            shieldCategory.setShieldImage(R.drawable.relay);
+            shieldCategory.setShieldImage(R.drawable.ic_relay);
             shieldCategory.setType(1);
             shieldCategory.setPin(returnShieldPin(cursor.getLong(cursor.getColumnIndex(Schema.Shield.ID))));
 
@@ -140,7 +140,7 @@ public class RetrieveShieldDA extends AppCompatActivity {
 
 
             shieldCategory.setShieldName(cursor.getString(cursor.getColumnIndex(Schema.Shield.NAME)));
-            shieldCategory.setShieldImage(R.drawable.ir);
+            shieldCategory.setShieldImage(R.drawable.ic_ir);
             shieldCategory.setType(2);
             shieldCategory.setPin(returnShieldPin(cursor.getLong(cursor.getColumnIndex(Schema.Shield.ID))));
 

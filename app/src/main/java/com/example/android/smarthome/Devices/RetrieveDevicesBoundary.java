@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.example.android.smarthome.DeviceCategory.DeviceCategoryBoundary;
 import com.example.android.smarthome.Lights.LightBulbBoundary;
 import com.example.android.smarthome.R;
+import com.example.android.smarthome.RGB_LED.RGBLEDBoundary;
 
 public class RetrieveDevicesBoundary extends AppCompatActivity{
 
@@ -140,6 +141,9 @@ public class RetrieveDevicesBoundary extends AppCompatActivity{
 
             case 0 :
                 return  new Intent(RetrieveDevicesBoundary.this , LightBulbBoundary.class);
+
+            case 1 :
+                return  new Intent(RetrieveDevicesBoundary.this , RGBLEDBoundary.class);
 
             default:
                 return null;

@@ -35,6 +35,8 @@
         <activity android:parentActivityName=".Operation.RetrieveListOfOperationBoundary" android:name=".Operation.Add_new_operation"></activity>
         <activity android:parentActivityName=".Devices.RetrieveMicroControllerDevicesBoundary" android:name=".Devices.Add_Predefined_Devices_Boundary"></activity>
         <activity android:parentActivityName=".DeviceCategory.DeviceCategoryBoundary" android:name=".Devices.RetrieveDevicesBoundary"></activity>
+        <activity android:parentActivityName=".DeviceCategory.DeviceCategoryBoundary" android:name=".RGB_LED.RGBLEDBoundary"></activity>
+        <activity android:parentActivityName=".MicroController.RetrieveListOfMicroControllerBoundary" android:name=".MicroController.Add_new_microController"></activity>
 
 
 

@@ -6,13 +6,6 @@
     android:layout_height="match_parent">
 
 
-    <!--<Button-->
-    <!--android:id="@+id/addMicro"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:text="add micro"-->
-    <!--/>-->
-
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/add_new_MicroController_Lay_retrieve_list_of_micro_controller"
         android:layout_width="wrap_content"
@@ -21,7 +14,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginRight="24dp"
         android:layout_marginBottom="24dp"
-        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTint="@color/colorAccent"
         android:clickable="true"
         android:src="@drawable/ic_add_black_24dp"
         app:borderWidth="0dp" />

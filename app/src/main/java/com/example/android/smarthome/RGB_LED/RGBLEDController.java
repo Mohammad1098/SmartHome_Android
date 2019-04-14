@@ -24,7 +24,7 @@ public class RGBLEDController extends AppCompatActivity {
 
         MQTT_SEND_COMMANDS commands = new MQTT_SEND_COMMANDS();
 
-        return commands.sendCommand(connection.returnClient() , "SMARTHOME" , "RGB2ON"); // "device" RGB  "pin number" 2   action ON
+        return commands.sendCommand(connection.returnClient() , "SMARTHOME" , "RGBON"); // "device" RGB  "pin number" 2   action ON
 
     }
 
@@ -33,12 +33,29 @@ public class RGBLEDController extends AppCompatActivity {
 
         MQTT_SEND_COMMANDS commands = new MQTT_SEND_COMMANDS();
 
-        return commands.sendCommand(connection.returnClient() , "SMARTHOME" , "RGB2OFF"); // "device" RGB  "pin number" 2   action ON
+        return commands.sendCommand(connection.returnClient() , "SMARTHOME" , "RGBOFF"); // "device" RGB  "pin number" 2   action ON
 
     }
 
     public boolean changeColor(String red, String green, String blue){
-         openConnectionToMQTT_Server connection = new openConnectionToMQTT_Server(); // to return the connection to MQTT server
+
+//        covert values to 3 digits
+        if(red.length() == 1)
+            red = "00"+red;
+        else if(red.length() == 2)
+            red = "0"+red;
+        
+        if(green.length() == 1)
+            green = "00"+green;
+        else if(green.length() == 2)
+            green = "0"+green;
+
+        if(blue.length() == 1)
+            blue = "00"+blue;
+        else if(blue.length() == 2)
+            blue = "0"+blue;
+
+        openConnectionToMQTT_Server connection = new openConnectionToMQTT_Server(); // to return the connection to MQTT server
 
         MQTT_SEND_COMMANDS commands = new MQTT_SEND_COMMANDS();
 
