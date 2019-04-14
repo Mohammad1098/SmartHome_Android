@@ -19,24 +19,25 @@
             android:layout_weight="1" />
 
         <TextView
-            android:id="@+id/micro_controller_name_Lay_micro_controller_list_item"
+            android:id="@+id/micro_controller_room_name_Lay_micro_controller_list_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:layout_weight="1"
-            android:text="microcontroller"
+            android:text="room"
             android:textColor="@color/text"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/micro_controller_room_name_Lay_micro_controller_list_item"
+            android:id="@+id/micro_controller_name_Lay_micro_controller_list_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:text="room"
             android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            android:text="microcontroller"
             android:textColor="@color/text"
-            />
+            android:textSize="12sp" />
+
+
     </LinearLayout>
 
 

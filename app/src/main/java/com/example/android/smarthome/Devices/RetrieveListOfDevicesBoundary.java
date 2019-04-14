@@ -70,7 +70,11 @@ public class RetrieveListOfDevicesBoundary extends AppCompatActivity {
                 Intent openSpecificDeviceLayoutIntent = new Intent(RetrieveListOfDevicesBoundary.this , RetrieveMicroControllerDevicesBoundary.class);
 
                 //send the info of selected category device
+<<<<<<< HEAD
+//                openSpecificDeviceLayoutIntent.putExtra("ID" , deviceCategory.getId());
+=======
                 //openSpecificDeviceLayoutIntent.putExtra("ID" , deviceCategory.getId());
+>>>>>>> 9ca2e9d25d029740ccea06ebff98655882715165
                 openSpecificDeviceLayoutIntent.putExtra("TYPE" , deviceCategory.getType());
 
 
