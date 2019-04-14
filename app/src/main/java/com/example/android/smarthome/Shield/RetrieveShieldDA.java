@@ -76,7 +76,6 @@ public class RetrieveShieldDA extends AppCompatActivity {
         String selection = "MICROCONTROLLER_ID="+this.MicroControllerID+" AND TYPE=1"; //TYPE 1 for relay , 2 for IR
         Cursor cursor = this.activity.getApplicationContext().getContentResolver().query(Schema.Shield.CONTENT_URI , null , selection , null , null);
 
-        Log.e("shield da " , "Relay micro id"+this.MicroControllerID +" cursor size is "+cursor.getCount());
 
 
         if(cursor == null){
@@ -93,16 +92,19 @@ public class RetrieveShieldDA extends AppCompatActivity {
         for (int i=0 ; i<cursor.getCount() ; i++){
 
 
-            ShieldCategory shieldCategory = new ShieldCategory();
+            if(cursor.getInt(cursor.getColumnIndex(Schema.Shield.AVAILABILITY))==0) {  // AVAILABILITY ==0 we want relay that not been used by other devices
+
+                ShieldCategory shieldCategory = new ShieldCategory();
 
 
-            shieldCategory.setShieldName(cursor.getString(cursor.getColumnIndex(Schema.Shield.NAME)));
-            shieldCategory.setShieldImage(R.drawable.relay);
-            shieldCategory.setType(1);
-            shieldCategory.setPin(returnShieldPin(cursor.getLong(cursor.getColumnIndex(Schema.Shield.ID))));
+                shieldCategory.setShieldName(cursor.getString(cursor.getColumnIndex(Schema.Shield.NAME)));
+                shieldCategory.setShieldImage(R.drawable.relay);
+                shieldCategory.setType(1);
+                shieldCategory.setPin(returnShieldPin(cursor.getLong(cursor.getColumnIndex(Schema.Shield.ID))));
+                shieldCategory.setShieldID(cursor.getInt(cursor.getColumnIndex(Schema.Shield.ID)));
+                RelaySpinnerArrayList.add(shieldCategory);
 
-            RelaySpinnerArrayList.add(shieldCategory);
-
+            }
             cursor.moveToNext();
 
 
@@ -121,7 +123,6 @@ public class RetrieveShieldDA extends AppCompatActivity {
         String selection = "MICROCONTROLLER_ID="+this.MicroControllerID+" AND TYPE=2"; // TYPE 1 for relay , 2 for IR
         Cursor cursor = this.activity.getApplicationContext().getContentResolver().query(Schema.Shield.CONTENT_URI , null , selection , null , null);
 
-        Log.e("shield da " , "IR micro id"+this.MicroControllerID +" cursor size is "+cursor.getCount());
 
 
         if(cursor == null){
@@ -143,6 +144,7 @@ public class RetrieveShieldDA extends AppCompatActivity {
             shieldCategory.setShieldImage(R.drawable.ir);
             shieldCategory.setType(2);
             shieldCategory.setPin(returnShieldPin(cursor.getLong(cursor.getColumnIndex(Schema.Shield.ID))));
+            shieldCategory.setShieldID(cursor.getInt(cursor.getColumnIndex(Schema.Shield.ID)));
 
             IRSpinnerArrayList.add(shieldCategory);
 

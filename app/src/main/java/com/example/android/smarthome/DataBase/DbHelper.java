@@ -71,7 +71,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 +Schema.Device.NAME +" TEXT NOT NULL ,"
                 +Schema.Device.TYPE +" INTEGER NOT NULL ,"
                 +Schema.Device.ROOM+" TEXT NOT NULL ,"
-                +Schema.Device.MICROCONTROLLER_ID +" INTEGER NOT NULL ,"
+                +Schema.Device.MICROCONTROLLER_ID +" INTEGER ,"
                 +"FOREIGN KEY ("+ Schema.Device.MICROCONTROLLER_ID+") REFERENCES "+Schema.MicroController.TABLE_NAME+"("+Schema.MicroController.ID+"));";
 
 

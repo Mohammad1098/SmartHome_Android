@@ -1,13 +1,14 @@
 package com.example.android.smarthome.Shield;
 
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -72,15 +73,10 @@ public class Add_new_Shield extends AppCompatActivity {
 
 
 
-
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_check, menu);
-        return true;
-    }
-
     private void createView(){
+
+        setTitle("Add new Shield");
+
 
         Intent previousIntent = getIntent();
 
@@ -225,6 +221,7 @@ public class Add_new_Shield extends AppCompatActivity {
 
 
             if(TextUtils.isEmpty(relay_pin)){
+                Toast.makeText(this , "Please enter pin number" , Toast.LENGTH_LONG).show();
                 return;
             }
 
@@ -243,6 +240,7 @@ public class Add_new_Shield extends AppCompatActivity {
 
 
             if(TextUtils.isEmpty(ir_pin)){
+                Toast.makeText(this , "Please enter pin number" , Toast.LENGTH_LONG).show();
                 return;
             }
 
@@ -276,8 +274,9 @@ public class Add_new_Shield extends AppCompatActivity {
         contentValues.put(Schema.Shield.MICROCONTROLLER_ID , Microcontroller_ID);
         contentValues.put(Schema.Shield.TYPE , selectedShield);      // 1 relay  , 2 Ir
         contentValues.put(Schema.Shield.AVAILABILITY , 0);      // 0 free to use   , 1 has already used by device else
-        getContentResolver().insert(Schema.Shield.CONTENT_URI, contentValues);
+        Uri uri = getContentResolver().insert(Schema.Shield.CONTENT_URI, contentValues);
 
+        long shieldID = ContentUris.parseId(uri);
 
 
         int type=-1;
@@ -298,6 +297,8 @@ public class Add_new_Shield extends AppCompatActivity {
         ContentValues contentValues1_PinTable = new ContentValues(); //PIN TABLE
 
         contentValues1_PinTable.put(Schema.Pin.AVAILABILITY , 0);
+        contentValues1_PinTable.put(Schema.Pin.SHIELD_ID , shieldID);
+
 
 
         getContentResolver().update(Schema.Pin.CONTENT_URI, contentValues1_PinTable  , "PINNUMBER="+pinNumber+" AND MICROCONTROLLERID="+Microcontroller_ID+" AND TYPE="+type , null);

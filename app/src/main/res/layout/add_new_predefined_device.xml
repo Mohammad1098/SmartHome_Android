@@ -61,7 +61,7 @@
 
     <Spinner
         android:id="@+id/shield_spinner_Lay_add_new_predefined_device"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="20dp"
@@ -85,7 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="55dp"
-            android:hint="pin1"
+            android:hint="pin"
             android:inputType="number" />
 
 

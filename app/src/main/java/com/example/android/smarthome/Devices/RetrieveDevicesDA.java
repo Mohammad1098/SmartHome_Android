@@ -3,6 +3,7 @@ package com.example.android.smarthome.Devices;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.util.Log;
 
 import com.example.android.smarthome.DataBase.Schema;
 import com.example.android.smarthome.MicroController.MicroController;
@@ -26,22 +27,30 @@ public class RetrieveDevicesDA {
 
     public ArrayList<Device> retrieveDevices(long MicroControllerId , int deviceType ){
 
+        Cursor cursor =null;
+
         if (deviceType == 100){ // devicetype ---> 100 means return all devices of microcontroller
+            Log.e("dev DA " , " TYPE "+deviceType +" Micro "+MicroControllerId);
 
             String selection = "MICROCONTROLLER_ID="+MicroControllerId;
-            Cursor cursor = this.activity.getContentResolver().query(Schema.Device.CONTENT_URI , null , selection , null , null);
+             cursor = this.activity.getContentResolver().query(Schema.Device.CONTENT_URI , null , selection , null , null);
 
         }
+        if(deviceType != 100) {
 
+            Log.e("dev DA " , " TYPE "+deviceType +" Micro "+MicroControllerId);
 
-        String selection = "MICROCONTROLLER_ID="+MicroControllerId +" AND TYPE="+deviceType;
-        Cursor cursor = this.activity.getContentResolver().query(Schema.Device.CONTENT_URI , null , selection , null , null);
-
+            String selection = "MICROCONTROLLER_ID="+MicroControllerId + " AND TYPE=" + deviceType;
+             cursor = this.activity.getContentResolver().query(Schema.Device.CONTENT_URI, null, selection, null, null);
+        }
 
         if(cursor == null){
 
             return null;
         }
+
+        Log.e("dev DA " , " cursor "+cursor.getCount());
+
 
         devicesArrayList = new ArrayList<>();
 

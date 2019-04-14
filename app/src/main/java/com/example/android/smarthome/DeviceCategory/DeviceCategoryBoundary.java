@@ -6,9 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-
 import com.example.android.smarthome.Devices.RetrieveDevicesBoundary;
-import com.example.android.smarthome.Devices.RetrieveMicroControllerDevicesBoundary;
 import com.example.android.smarthome.MicroController.RetrieveListOfMicroControllerBoundary;
 import com.example.android.smarthome.R;
 import com.example.android.smarthome.Shield.RetrieveShieldBoundary;

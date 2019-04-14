@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import com.example.android.smarthome.DeviceCategory.DeviceCategoryBoundary;
 import com.example.android.smarthome.Lights.LightBulbBoundary;
 import com.example.android.smarthome.R;
+import com.example.android.smarthome.RGB_LED.RGBLEDBoundary;
 
 public class RetrieveDevicesBoundary extends AppCompatActivity{
 
@@ -38,6 +40,7 @@ public class RetrieveDevicesBoundary extends AppCompatActivity{
         Intent previousIntent = getIntent();
 
         type = previousIntent.getIntExtra("TYPE" , -1);
+        addNewDevice = findViewById(R.id.add_new_device_Lay_device_list);
         makeTitle(type);
         MicrocontrollerId = previousIntent.getLongExtra("MICROCONTROLLER_ID" , -1);
         devicesGridView = findViewById(R.id.device_list_view_Lay_device_list);
@@ -64,7 +67,6 @@ public class RetrieveDevicesBoundary extends AppCompatActivity{
 
     private void createAddDeviceButton(){
 
-       addNewDevice = findViewById(R.id.add_new_device_Lay_device_list);
 
         addNewDevice.setVisibility(View.VISIBLE);
 
@@ -124,6 +126,7 @@ public class RetrieveDevicesBoundary extends AppCompatActivity{
 
                 SpecificDeviceIntent.putExtra("MICROCONTROLLER_ID", currentDevice.getMicroController_Id());
                 SpecificDeviceIntent.putExtra("TYPE" , currentDevice.getType());
+                SpecificDeviceIntent.putExtra("DEVICEID" , currentDevice.getId());
 
 
                 startActivity(SpecificDeviceIntent);
@@ -140,6 +143,9 @@ public class RetrieveDevicesBoundary extends AppCompatActivity{
 
             case 0 :
                 return  new Intent(RetrieveDevicesBoundary.this , LightBulbBoundary.class);
+
+            case 1 :
+                return  new Intent(RetrieveDevicesBoundary.this , RGBLEDBoundary.class);
 
             default:
                 return null;
