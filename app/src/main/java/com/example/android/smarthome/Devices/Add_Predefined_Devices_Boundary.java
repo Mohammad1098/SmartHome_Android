@@ -328,13 +328,6 @@ public class Add_Predefined_Devices_Boundary extends AppCompatActivity {
 
         ContentValues DeviceContent = new ContentValues();
 
-        if(selectedDevice == 0) { //means LIGHT BULB
-
-            DeviceContent.put(Schema.Device.NAME , "Light Bulb");
-
-        }
-
-
 
         if(selectedDevice == 1) { //means RGB
 
@@ -375,44 +368,15 @@ public class Add_Predefined_Devices_Boundary extends AppCompatActivity {
         }
 
 
-        if(selectedDevice == 2) { //means TV
-
-
-            DeviceContent.put(Schema.Device.NAME , "TV");
-
-
-        }
-
-
-        if(selectedDevice == 3) { //means RECEIVER
-
-
-            DeviceContent.put(Schema.Device.NAME , "RECEIVER");
-
-
-        }
 
 
 
-        if(selectedDevice == 4) { //means AC
-
-
-            DeviceContent.put(Schema.Device.NAME , "AC");
-
-
-        }
-
-
-        if(selectedDevice == 5) { //means OTHERS
-
-
-            DeviceContent.put(Schema.Device.NAME , "OTHER");
-
-
-        }
 
 
 
+
+
+        DeviceContent.put(Schema.Device.NAME , deviceName);
         DeviceContent.put(Schema.Device.TYPE , selectedDevice);
         DeviceContent.put(Schema.Device.ROOM , deviceRoom);
         DeviceContent.put(Schema.Device.TYPE , MicroControllerID);

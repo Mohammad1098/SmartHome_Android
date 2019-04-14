@@ -219,6 +219,7 @@ public class Add_new_microController extends AppCompatActivity {
 
                     public void onClick(DialogInterface arg0, int arg1) {
                         returnToPreviousLayout();
+                        finish();
 
                     }
                 }).create().show();
@@ -240,6 +241,7 @@ public class Add_new_microController extends AppCompatActivity {
 
                             public void onClick(DialogInterface arg0, int arg1) {
                                 returnToPreviousLayout();
+                                finish();
 
                             }
                         }).create().show();

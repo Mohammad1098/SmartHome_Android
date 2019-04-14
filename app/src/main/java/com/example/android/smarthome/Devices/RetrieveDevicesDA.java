@@ -40,7 +40,7 @@ public class RetrieveDevicesDA {
 
             Log.e("dev DA " , " TYPE "+deviceType +" Micro "+MicroControllerId);
 
-            String selection = "MICROCONTROLLER_ID="+MicroControllerId + " AND TYPE=" + deviceType;
+             String selection = "MICROCONTROLLER_ID="+MicroControllerId + " AND TYPE="+deviceType;
              cursor = this.activity.getContentResolver().query(Schema.Device.CONTENT_URI, null, selection, null, null);
         }
 
@@ -49,8 +49,17 @@ public class RetrieveDevicesDA {
             return null;
         }
 
-        Log.e("dev DA " , " cursor "+cursor.getCount());
+        cursor = this.activity.getContentResolver().query(Schema.Device.CONTENT_URI, null, null, null, null);
 
+        cursor.moveToFirst();
+
+        for (int i = 0 ; i < cursor.getCount() ; i++) {
+            Log.e("dev DA ", "device id " + cursor.getLong(cursor.getColumnIndex(Schema.Device.ID)) + "\n");
+            Log.e("dev DA ", "MICRO id " + cursor.getLong(cursor.getColumnIndex(Schema.Device.MICROCONTROLLER_ID)) + "\n");
+            Log.e("dev DA ", "device name " + cursor.getString(cursor.getColumnIndex(Schema.Device.NAME)) + "\n");
+            cursor.moveToNext();
+
+        }
 
         devicesArrayList = new ArrayList<>();
 
