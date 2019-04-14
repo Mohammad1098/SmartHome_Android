@@ -21,32 +21,22 @@ public class RetrieveShieldDA extends AppCompatActivity {
     private ArrayList<Shield> shieldArrayList;
     private long MicroControllerID;
     private Activity activity;
+
+
     public RetrieveShieldDA(Activity activity , long MicroControllerID){
 
         this.activity = activity;
         this.MicroControllerID= MicroControllerID;
-        String selection = "MICROCONTROLLER_ID="+MicroControllerID;
-        cursor = activity.getApplicationContext().getContentResolver().query(Schema.Shield.CONTENT_URI , null , selection , null , null);
-
-        /*
-        cursor.moveToFirst();
-        for (int i = 0 ; i < cursor.getCount() ; i++){
-
-            Log.e("Shield DA" , "ID "+String.valueOf(cursor.getLong(cursor.getColumnIndex(Schema.Shield.ID))));
-            Log.e("Shield DA" , "NAME "+cursor.getString(cursor.getColumnIndex(Schema.Shield.NAME)));
-            Log.e("Shield DA" , "TYPE  "+String.valueOf(cursor.getInt(cursor.getColumnIndex(Schema.Shield.TYPE))));
-            Log.e("Shield DA" , "MicroController ID "+String.valueOf(cursor.getInt(cursor.getColumnIndex(Schema.Shield.MICROCONTROLLER_ID))));
-
-            cursor.moveToNext();
 
 
-        }
-*/
 
     }
 
 
     public ArrayList<Shield> retrieveShields(){
+
+        String selection = "MICROCONTROLLER_ID="+this.MicroControllerID;
+        Cursor cursor = this.activity.getApplicationContext().getContentResolver().query(Schema.Shield.CONTENT_URI , null , selection , null , null);
 
         if(cursor == null){
 
@@ -83,14 +73,17 @@ public class RetrieveShieldDA extends AppCompatActivity {
 
     public ArrayList<ShieldCategory> returnRelayListSpinner(){
 
-        String selection = "MICROCONTROLLER_ID="+this.MicroControllerID+" AND TYPE=0";
-        cursor = this.activity.getApplicationContext().getContentResolver().query(Schema.Shield.CONTENT_URI , null , selection , null , null);
+        String selection = "MICROCONTROLLER_ID="+this.MicroControllerID+" AND TYPE=1"; //TYPE 1 for relay , 2 for IR
+        Cursor cursor = this.activity.getApplicationContext().getContentResolver().query(Schema.Shield.CONTENT_URI , null , selection , null , null);
+
+        Log.e("shield da " , "Relay micro id"+this.MicroControllerID +" cursor size is "+cursor.getCount());
 
 
         if(cursor == null){
 
             return null;
         }
+
 
         ArrayList<ShieldCategory> RelaySpinnerArrayList = new ArrayList<>();
 
@@ -99,12 +92,13 @@ public class RetrieveShieldDA extends AppCompatActivity {
 
         for (int i=0 ; i<cursor.getCount() ; i++){
 
+
             ShieldCategory shieldCategory = new ShieldCategory();
 
 
             shieldCategory.setShieldName(cursor.getString(cursor.getColumnIndex(Schema.Shield.NAME)));
             shieldCategory.setShieldImage(R.drawable.relay);
-            shieldCategory.setType(0);
+            shieldCategory.setType(1);
             shieldCategory.setPin(returnShieldPin(cursor.getLong(cursor.getColumnIndex(Schema.Shield.ID))));
 
             RelaySpinnerArrayList.add(shieldCategory);
@@ -124,8 +118,10 @@ public class RetrieveShieldDA extends AppCompatActivity {
 
     public ArrayList<ShieldCategory> returnIRListListSpinner(){
 
-        String selection = "MICROCONTROLLER_ID="+this.MicroControllerID+" AND TYPE=1";
-        cursor = this.activity.getApplicationContext().getContentResolver().query(Schema.Shield.CONTENT_URI , null , selection , null , null);
+        String selection = "MICROCONTROLLER_ID="+this.MicroControllerID+" AND TYPE=2"; // TYPE 1 for relay , 2 for IR
+        Cursor cursor = this.activity.getApplicationContext().getContentResolver().query(Schema.Shield.CONTENT_URI , null , selection , null , null);
+
+        Log.e("shield da " , "IR micro id"+this.MicroControllerID +" cursor size is "+cursor.getCount());
 
 
         if(cursor == null){
@@ -145,7 +141,7 @@ public class RetrieveShieldDA extends AppCompatActivity {
 
             shieldCategory.setShieldName(cursor.getString(cursor.getColumnIndex(Schema.Shield.NAME)));
             shieldCategory.setShieldImage(R.drawable.ir);
-            shieldCategory.setType(1);
+            shieldCategory.setType(2);
             shieldCategory.setPin(returnShieldPin(cursor.getLong(cursor.getColumnIndex(Schema.Shield.ID))));
 
             IRSpinnerArrayList.add(shieldCategory);
@@ -171,6 +167,9 @@ public class RetrieveShieldDA extends AppCompatActivity {
         return retrieveListOfPinsController.returnShieldPin(MicroControllerID , ShieldID);
 
     }
+
+
+
 
 
 }

@@ -2,6 +2,7 @@ package com.example.android.smarthome.Shield;
 
 import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ListView;
 
 import com.example.android.smarthome.Adapters.RetrieveListOfShieldsAdapter;
@@ -24,6 +25,7 @@ public class RetrieveShieldController extends AppCompatActivity {
     }
 
     public RetrieveShieldController(Activity activity ){
+
 
         this.activity = activity;
 
@@ -71,6 +73,7 @@ public class RetrieveShieldController extends AppCompatActivity {
         return retrieveShieldDA.returnIRListListSpinner();
 
     }
+
 
 
 

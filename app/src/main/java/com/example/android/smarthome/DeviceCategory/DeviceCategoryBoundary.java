@@ -61,7 +61,7 @@ public class DeviceCategoryBoundary extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-               Intent devicesIntent = new Intent(DeviceCategoryBoundary.this , RetrieveMicroControllerDevicesBoundary.class);
+               Intent devicesIntent = new Intent(DeviceCategoryBoundary.this , RetrieveDevicesBoundary.class);
 
                devicesIntent.putExtra("MICROCONTROLLER_ID" , MicrocontrollerId);
                devicesIntent.putExtra("TYPE" , 100);

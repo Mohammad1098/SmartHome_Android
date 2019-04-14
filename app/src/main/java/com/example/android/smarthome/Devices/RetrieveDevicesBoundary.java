@@ -2,6 +2,7 @@ package com.example.android.smarthome.Devices;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,6 +20,7 @@ public class RetrieveDevicesBoundary extends AppCompatActivity{
     private RetrieveDevicesController devicesController;
     private int type;
     private long MicrocontrollerId;
+    private FloatingActionButton addNewDevice;
     @Override
     protected void onCreate(Bundle savedInstanceState){
 
@@ -26,7 +28,7 @@ public class RetrieveDevicesBoundary extends AppCompatActivity{
         setContentView(R.layout.device_list);
 
         createViews();
-        retrieveMicroControllers();
+        retrieveDevices();
         attachListViewToListener();
     }
 
@@ -36,14 +38,61 @@ public class RetrieveDevicesBoundary extends AppCompatActivity{
         Intent previousIntent = getIntent();
 
         type = previousIntent.getIntExtra("TYPE" , -1);
-        MicrocontrollerId = previousIntent.getLongExtra("MicrocontrollerId" , -1);
+        makeTitle(type);
+        MicrocontrollerId = previousIntent.getLongExtra("MICROCONTROLLER_ID" , -1);
         devicesGridView = findViewById(R.id.device_list_view_Lay_device_list);
 
 
     }
 
 
-    private void retrieveMicroControllers(){
+    private void makeTitle(int type){
+
+        if(type ==100){createAddDeviceButton();}
+        else {removeAddDeviceButton();}
+
+        if(type==0){setTitle("Light Bulb");}
+        if(type==1){setTitle("RGB LED");}
+        if(type==2){setTitle("TV");}
+        if(type==3){setTitle("Receiver");}
+        if(type==4){setTitle("AC");}
+        if(type==100){setTitle("All devices");}
+
+
+    }
+
+
+    private void createAddDeviceButton(){
+
+       addNewDevice = findViewById(R.id.add_new_device_Lay_device_list);
+
+        addNewDevice.setVisibility(View.VISIBLE);
+
+        addNewDevice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent addNewDeviceIntent = new Intent(RetrieveDevicesBoundary.this , Add_Predefined_Devices_Boundary.class);
+
+                addNewDeviceIntent.putExtra("MICROCONTROLLER_ID" ,MicrocontrollerId );
+
+                startActivity(addNewDeviceIntent);
+
+
+
+            }
+        });
+
+    }
+
+    private void removeAddDeviceButton(){
+
+        addNewDevice.setVisibility(View.GONE);
+
+
+    }
+
+    private void retrieveDevices(){
 
 
 
@@ -103,7 +152,7 @@ public class RetrieveDevicesBoundary extends AppCompatActivity{
 
         Intent intent = new Intent(RetrieveDevicesBoundary.this, DeviceCategoryBoundary.class);
 
-        intent.putExtra("MicrocontrollerId"  , MicrocontrollerId);
+        intent.putExtra("MICROCONTROLLER_ID"  , MicrocontrollerId);
 
         startActivity(intent);
 

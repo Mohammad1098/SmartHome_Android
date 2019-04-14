@@ -56,6 +56,8 @@ public final class Schema   {
 
         public static final String NAME="NAME";
 
+        public static final String AVAILABILITY = "AVAILABILITY";
+
         public static final String MICROCONTROLLER_ID ="MICROCONTROLLER_ID";
 
         public static final String TYPE ="TYPE";

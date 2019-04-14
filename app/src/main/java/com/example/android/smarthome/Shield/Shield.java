@@ -5,6 +5,7 @@ public class Shield {
     private long MicroControllerID;
     private String Name;
     private int type;
+    private int pin;
     private int shieldImage;
 
 

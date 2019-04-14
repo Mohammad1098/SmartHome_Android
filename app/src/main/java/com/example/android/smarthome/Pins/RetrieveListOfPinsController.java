@@ -1,11 +1,6 @@
 package com.example.android.smarthome.Pins;
 
 import android.app.Activity;
-import android.util.Log;
-
-import com.example.android.smarthome.Devices.RetrieveListOfDevicesDA;
-import com.example.android.smarthome.Shield.RetrieveShieldDA;
-
 import java.util.ArrayList;
 
 public class RetrieveListOfPinsController {

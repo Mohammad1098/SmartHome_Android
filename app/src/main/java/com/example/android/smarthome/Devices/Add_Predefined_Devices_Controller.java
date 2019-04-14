@@ -1,6 +1,7 @@
 package com.example.android.smarthome.Devices;
 
 import android.app.Activity;
+import android.util.Log;
 import android.widget.EditText;
 
 import com.example.android.smarthome.Adapters.Device_Category_Spinner_Adapter;
@@ -56,6 +57,8 @@ public class Add_Predefined_Devices_Controller {
         RetrieveShieldController retrieveShieldController = new  RetrieveShieldController(this.activity );
 
         ArrayList<ShieldCategory> RelayList  = retrieveShieldController.returnRelayListSpinner(MicroControllerID);
+
+        Log.e()
 
         if(RelayList.size() != 0 ){
 

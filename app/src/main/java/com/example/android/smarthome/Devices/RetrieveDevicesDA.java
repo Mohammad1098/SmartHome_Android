@@ -26,6 +26,13 @@ public class RetrieveDevicesDA {
 
     public ArrayList<Device> retrieveDevices(long MicroControllerId , int deviceType ){
 
+        if (deviceType == 100){ // devicetype ---> 100 means return all devices of microcontroller
+
+            String selection = "MICROCONTROLLER_ID="+MicroControllerId;
+            Cursor cursor = this.activity.getContentResolver().query(Schema.Device.CONTENT_URI , null , selection , null , null);
+
+        }
+
 
         String selection = "MICROCONTROLLER_ID="+MicroControllerId +" AND TYPE="+deviceType;
         Cursor cursor = this.activity.getContentResolver().query(Schema.Device.CONTENT_URI , null , selection , null , null);

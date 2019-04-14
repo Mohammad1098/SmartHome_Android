@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -26,6 +27,7 @@ import com.example.android.smarthome.DeviceCategory.DeviceCategory;
 import com.example.android.smarthome.Pins.RetrieveListOfPinsController;
 import com.example.android.smarthome.R;
 import com.example.android.smarthome.Shield.RetrieveShieldController;
+import com.example.android.smarthome.Shield.Shield;
 import com.example.android.smarthome.Shield.ShieldCategory;
 
 import java.util.ArrayList;
@@ -150,6 +152,7 @@ public class Add_Predefined_Devices_Boundary extends AppCompatActivity {
         firstPinEditText.setVisibility(View.GONE);
 
         Add_Predefined_Devices_Controller controller = new Add_Predefined_Devices_Controller(Add_Predefined_Devices_Boundary.this);
+
 
 
         if (controller.returnRelaySpinner(MicroControllerID) != null){
@@ -437,14 +440,58 @@ public class Add_Predefined_Devices_Boundary extends AppCompatActivity {
     }
 
 
+    private ArrayList<Shield> returnListOfShield(int selectedDevice){
+
+        // selectedDevice 0 ---->  Light Bulb we need relay    1 ----> Rgb led strip no need of shield        2 ----> TV   3 ----> Receiver  4 ----> AC  we need ir
+
+        switch (selectedDevice){
+
+
+            case 0 :
+                returnRelayShield();
+                break;
+
+            case 2 :
+                returnIRShield();
+                break;
+
+            case 3 :
+                returnIRShield();
+                break;
+            case 4 :
+                returnIRShield();
+                break;
+
+
+        }
+
+        return null;
+
+
+    }
+
+
+    private ArrayList<Shield> returnRelayShield(){
+
+        return null;
+
+    }
+
+    private ArrayList<Shield> returnIRShield(){
+
+        return null;
+
+    }
+
     private void returnToPreviousLayout(){
 
-        Intent openSpecificDeviceLayoutIntent = new Intent(Add_Predefined_Devices_Boundary.this, RetrieveMicroControllerDevicesBoundary.class);
+        Intent openDeviceLayoutIntent = new Intent(Add_Predefined_Devices_Boundary.this, RetrieveDevicesBoundary.class);
 
 
-        openSpecificDeviceLayoutIntent.putExtra("MICROCONTROLLER_ID", MicroControllerID);
+        openDeviceLayoutIntent.putExtra("MICROCONTROLLER_ID", MicroControllerID);
+        openDeviceLayoutIntent.putExtra("TYPE", 100);
 
-        startActivity(openSpecificDeviceLayoutIntent);
+        startActivity(openDeviceLayoutIntent);
 
 
     }

@@ -8,15 +8,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ListView;
 import android.widget.Toast;
-
-import com.example.android.smarthome.DeviceCategory.DeviceCategory;
 import com.example.android.smarthome.DeviceCategory.DeviceCategoryBoundary;
-import com.example.android.smarthome.Devices.RetrieveListOfDevicesBoundary;
-import com.example.android.smarthome.HomeScreen.HomeScreen;
 import com.example.android.smarthome.R;
-import com.example.android.smarthome.Shield.Add_new_Shield;
 
 
 public class RetrieveListOfMicroControllerBoundary extends AppCompatActivity {
@@ -99,31 +93,5 @@ public class RetrieveListOfMicroControllerBoundary extends AppCompatActivity {
     }
 
 
-    private void returnToPreviousLayout(){
-
-        Intent openHomeScreenLayoutIntent = new Intent(RetrieveListOfMicroControllerBoundary.this, HomeScreen.class);
-
-        startActivity(openHomeScreenLayoutIntent);
-
-
-    }
-
-
-    @Override
-    public void onBackPressed() {
-
-        returnToPreviousLayout();
-
-    }
-
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        returnToPreviousLayout();
-        return true;
-
-    }
 
 }

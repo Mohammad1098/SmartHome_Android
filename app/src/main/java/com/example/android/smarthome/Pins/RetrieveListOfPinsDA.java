@@ -169,7 +169,6 @@ public class RetrieveListOfPinsDA {
 
         }
 
-        Log.e("DD" ,  "text is " +AvailableDigitalPin);
 
 
         return AvailableDigitalPin;
@@ -222,14 +221,14 @@ public class RetrieveListOfPinsDA {
     public int returnShieldPin(long MicroControllerID ,long ShieldID){
 
 
-        String selection = "MICROCONTROLLERID="+MicroControllerID +" AND SHIELD_ID"+ShieldID;
+        String selection = "MICROCONTROLLERID="+MicroControllerID +" AND SHIELD_ID="+ShieldID;
 
         Cursor cursor = activity.getApplicationContext().getContentResolver().query(Schema.Pin.CONTENT_URI , null , selection , null , null);
 
 
         cursor.moveToFirst();
 
-        if(cursor == null){
+        if(cursor == null || cursor.getCount()==0){
 
             return -1;
         }

@@ -275,6 +275,7 @@ public class Add_new_Shield extends AppCompatActivity {
         //SHIELD TABLE
         contentValues.put(Schema.Shield.MICROCONTROLLER_ID , Microcontroller_ID);
         contentValues.put(Schema.Shield.TYPE , selectedShield);      // 1 relay  , 2 Ir
+        contentValues.put(Schema.Shield.AVAILABILITY , 0);      // 0 free to use   , 1 has already used by device else
         getContentResolver().insert(Schema.Shield.CONTENT_URI, contentValues);
 
 
