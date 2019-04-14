@@ -14,7 +14,6 @@ import java.util.ArrayList;
 
 public class RetrieveListOfPinsDA {
 
-    private Cursor cursor,cursor2;
     private Activity activity;
     private long microControllerId;
 
@@ -22,34 +21,6 @@ public class RetrieveListOfPinsDA {
 
         this.activity = activity;
         microControllerId=MicroController_ID;
-        String selection = "MICROCONTROLLERID="+this.microControllerId;
-
-        cursor = activity.getApplicationContext().getContentResolver().query(Schema.Pin.CONTENT_URI , null , selection , null , null);
-
-
-
-
-        /*
-        cursor2 = activity.getApplicationContext().getContentResolver().query(Schema.Pin.CONTENT_URI , null , selection , null , null);
-
-
-        cursor2.moveToFirst();
-
-
-        // for testing
-        for (int i = 0 ; i < cursor2.getCount() ; i++){
-
-            Log.e("PIN DA" , "ID "+String.valueOf(cursor2.getLong(cursor2.getColumnIndex(Schema.Pin.ID)))+"\n");
-            Log.e("PIN DA" , "Pin Number "+String.valueOf(cursor2.getString(cursor2.getColumnIndex(Schema.Pin.PIN_NUMBER)))+"\n");
-            Log.e("PIN DA" , "Pin AVAILABILITY "+String.valueOf(cursor2.getString(cursor2.getColumnIndex(Schema.Pin.AVAILABILITY)))+"\n");
-            Log.e("PIN DA" , "Pin Type "+String.valueOf(cursor2.getString(cursor2.getColumnIndex(Schema.Pin.TYPE)))+"\n");
-            Log.e("PIN DA" , "MicroController Id "+String.valueOf(cursor2.getString(cursor2.getColumnIndex(Schema.Pin.MICROCONTROLLER_ID)))+"\n");
-            Log.e("PIN DA" , "Device Id "+String.valueOf(cursor2.getString(cursor2.getColumnIndex(Schema.Pin.DEVICE_ID)))+"\n");
-            Log.e("PIN DA" , " =====================================================================================================================");
-            cursor2.moveToNext();
-
-
-        }   */
 
 
     }
@@ -61,9 +32,15 @@ public class RetrieveListOfPinsDA {
         RetrieveListOfMicroController_Controller microController_controller = new RetrieveListOfMicroController_Controller(this.activity);
 
 
+
         for (int i=0 ; i<pins.size() ; i++){
 
+
+
             if(!checkArduinoPins(pins.get(i) , microController_controller.returnMicroControllerType(this.microControllerId))){
+
+                Log.e("Pins DA " , " PIN > 13 OR PIN < 0 ");
+
 
                 return false;
             }
@@ -71,6 +48,8 @@ public class RetrieveListOfPinsDA {
             availability =checkIndividualPin(pins.get(i));
 
             if(availability ==false){
+
+                Log.e("Pins DA " , " PIN ALREADY EXISIT ");
 
                 return false;
             }
@@ -85,7 +64,15 @@ public class RetrieveListOfPinsDA {
 
     private boolean checkIndividualPin(Integer pin){
 
+
+
+        String selection = "MICROCONTROLLERID="+this.microControllerId;
+
+        Cursor cursor = activity.getApplicationContext().getContentResolver().query(Schema.Pin.CONTENT_URI , null , selection , null , null);
+
         if(cursor == null){
+
+            Log.e("Pins DA " , " NULL ");
 
 
             return false;
@@ -96,9 +83,11 @@ public class RetrieveListOfPinsDA {
         for (int i=0 ; i<cursor.getCount() ; i++){
 
 
-                if(cursor.getInt(cursor.getColumnIndex(Schema.Pin.PIN_NUMBER)) == pin){
+            if(cursor.getInt(cursor.getColumnIndex(Schema.Pin.PIN_NUMBER)) == pin){
 
                     if(cursor.getInt(cursor.getColumnIndex(Schema.Pin.AVAILABILITY)) == 0){
+
+                        Log.e("Pin da " , " "+pin);
 
                         return false;
                     }
@@ -141,9 +130,11 @@ public class RetrieveListOfPinsDA {
 
     public String returnAvailableDigitalPin(){
 
+
         String selection = "MICROCONTROLLERID="+this.microControllerId +" AND TYPE= 0";
 
-        cursor = activity.getApplicationContext().getContentResolver().query(Schema.Pin.CONTENT_URI , null , selection , null , null);
+        Cursor cursor = activity.getApplicationContext().getContentResolver().query(Schema.Pin.CONTENT_URI , null , selection , null , null);
+
 
 
         if(cursor == null){
@@ -190,10 +181,9 @@ public class RetrieveListOfPinsDA {
 
     public String returnAvailableAnalogPin(){  // it is same to returnAvailableDigitalPin but here we are looking for cursor.getInt(cursor.getColumnIndex(Schema.Pin.TYPE)) == 1
 
-
         String selection = "MICROCONTROLLERID="+this.microControllerId +" AND TYPE=1";
 
-        cursor = activity.getApplicationContext().getContentResolver().query(Schema.Pin.CONTENT_URI , null , selection , null , null);
+        Cursor cursor = activity.getApplicationContext().getContentResolver().query(Schema.Pin.CONTENT_URI , null , selection , null , null);
 
         if(cursor == null){
 
@@ -234,7 +224,7 @@ public class RetrieveListOfPinsDA {
 
         String selection = "MICROCONTROLLERID="+MicroControllerID +" AND SHIELD_ID"+ShieldID;
 
-        cursor = activity.getApplicationContext().getContentResolver().query(Schema.Pin.CONTENT_URI , null , selection , null , null);
+        Cursor cursor = activity.getApplicationContext().getContentResolver().query(Schema.Pin.CONTENT_URI , null , selection , null , null);
 
 
         cursor.moveToFirst();
@@ -259,7 +249,13 @@ public class RetrieveListOfPinsDA {
 
         String selection = "MICROCONTROLLERID="+this.microControllerId +" AND AVAILABILITY=1 AND TYPE=0" ;
 
-        cursor = activity.getApplicationContext().getContentResolver().query(Schema.Pin.CONTENT_URI , null , selection , null , null);
+        Cursor cursor = activity.getApplicationContext().getContentResolver().query(Schema.Pin.CONTENT_URI , null , selection , null , null);
+
+        if(cursor == null){
+
+
+            return false;
+        }
 
         cursor.moveToFirst();
 

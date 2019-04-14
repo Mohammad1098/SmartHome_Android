@@ -9,8 +9,10 @@ import android.widget.Button;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.android.smarthome.DataBase.Schema;
 import com.example.android.smarthome.R;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 
@@ -50,6 +52,8 @@ public class LightBulbBoundary extends AppCompatActivity {
         setListenerToSetTimeButton(setTime);
 
     }
+
+
 
     private void setListenerToTurnOnButton(Button button ){
 

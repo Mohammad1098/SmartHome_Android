@@ -21,6 +21,8 @@ public class RetrieveListOfPinsController {
 
     public boolean checkAvailabilityOfPins(ArrayList<Integer> pins , long MicroController_ID){
 
+
+
         retrieveListOfPinsDA = new RetrieveListOfPinsDA(this.activity,MicroController_ID);
 
         return retrieveListOfPinsDA.checkAvailabilityOfPins(pins);
