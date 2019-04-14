@@ -24,16 +24,19 @@
             </intent-filter>
         </activity>
 
-        <activity android:parentActivityName=".MicroController.RetrieveListOfMicroControllerBoundary" android:name=".DeviceCategory.DeviceCategoryBoundary"></activity>
         <activity android:parentActivityName=".DeviceCategory.DeviceCategoryBoundary" android:name=".Shield.RetrieveShieldBoundary"></activity>
         <activity android:parentActivityName=".Shield.RetrieveShieldBoundary" android:name=".Shield.Add_new_Shield"></activity>
+        <activity android:parentActivityName=".DeviceCategory.DeviceCategoryBoundary" android:name=".RGB_LED.RGBLEDBoundary"></activity>
+        <activity android:parentActivityName=".Devices.RetrieveDevicesBoundary" android:name=".Devices.Add_Predefined_Devices_Boundary"></activity>
 
 
 
-        <activity android:parentActivityName=".Devices.RetrieveMicroControllerDevicesBoundary" android:name=".Operation.RetrieveListOfOperationBoundary"></activity>
-        <activity android:parentActivityName=".Devices.RetrieveMicroControllerDevicesBoundary" android:name=".Devices.Add_new_device"></activity>
+        <activity  android:name=".MicroController.Add_new_microController"  android:screenOrientation="portrait" />
+        <activity  android:name=".DeviceCategory.DeviceCategoryBoundary"  android:screenOrientation="portrait" />
+
+
+
         <activity android:parentActivityName=".Operation.RetrieveListOfOperationBoundary" android:name=".Operation.Add_new_operation"></activity>
-        <activity android:parentActivityName=".Devices.RetrieveMicroControllerDevicesBoundary" android:name=".Devices.Add_Predefined_Devices_Boundary"></activity>
         <activity android:parentActivityName=".DeviceCategory.DeviceCategoryBoundary" android:name=".Devices.RetrieveDevicesBoundary"></activity>
         <activity android:parentActivityName=".DeviceCategory.DeviceCategoryBoundary" android:name=".RGB_LED.RGBLEDBoundary"></activity>
         <activity android:parentActivityName=".MicroController.RetrieveListOfMicroControllerBoundary" android:name=".MicroController.Add_new_microController"></activity>

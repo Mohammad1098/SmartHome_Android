@@ -51,14 +51,6 @@ public class Add_new_microController extends AppCompatActivity {
     }
 
 
-    //    submit button for add
-
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_check, menu);
-        return true;
-    }
 
 
     private ArrayList<MicroController_Category> CreateMicroControllerCategory(){
@@ -108,7 +100,7 @@ public class Add_new_microController extends AppCompatActivity {
     private void CreateViews(){
 
 
-
+        setTitle("Add new MicroController");
         microControllerRoomEditText = findViewById(R.id.micro_controller_room_Lay_add_new_microcontroller);
 
         add_microController_button = findViewById(R.id.add_microController_Lay_add_new_microController);
@@ -227,6 +219,7 @@ public class Add_new_microController extends AppCompatActivity {
 
                     public void onClick(DialogInterface arg0, int arg1) {
                         returnToPreviousLayout();
+                        finish();
 
                     }
                 }).create().show();
@@ -248,6 +241,7 @@ public class Add_new_microController extends AppCompatActivity {
 
                             public void onClick(DialogInterface arg0, int arg1) {
                                 returnToPreviousLayout();
+                                finish();
 
                             }
                         }).create().show();

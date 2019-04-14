@@ -3,12 +3,11 @@ package com.example.android.smarthome.DeviceCategory;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-
 import com.example.android.smarthome.Devices.RetrieveDevicesBoundary;
-import com.example.android.smarthome.Devices.RetrieveMicroControllerDevicesBoundary;
 import com.example.android.smarthome.MicroController.RetrieveListOfMicroControllerBoundary;
 import com.example.android.smarthome.R;
 import com.example.android.smarthome.RGB_LED.RGBLEDBoundary;
@@ -21,20 +20,23 @@ public class DeviceCategoryBoundary extends AppCompatActivity {
     private Button devices , shields , lightbulb ,RGBLED, tv , receiver , ac;
 
     @Override
-    public void onCreate(Bundle sa){
+    public void onCreate(Bundle savedInstanceState){
 
-        super.onCreate(sa);
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.device_category);
-
         createViews();
     }
 
     private void createViews(){
 
+        setTitle("Categories");
+
         Intent previousIntent = getIntent();
+
 
         MicrocontrollerId = previousIntent.getLongExtra("MICROCONTROLLER_ID" , -1);
 
+        Log.e("Device cat" , "Micro id"+ MicrocontrollerId);
 
         devices = findViewById(R.id.DevicesImage_Lay_device_category);
         shields = findViewById(R.id.ShieldsImage_Lay_device_category);
@@ -216,6 +218,7 @@ public class DeviceCategoryBoundary extends AppCompatActivity {
     public void onBackPressed() {
 
         returnToPreviousLayout();
+        finish();
 
     }
 
@@ -225,6 +228,7 @@ public class DeviceCategoryBoundary extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         returnToPreviousLayout();
+        finish();
         return true;
 
     }

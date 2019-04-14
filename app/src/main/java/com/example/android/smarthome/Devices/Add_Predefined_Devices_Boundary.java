@@ -20,13 +20,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.example.android.smarthome.Adapters.Device_Category_Spinner_Adapter;
-import com.example.android.smarthome.Adapters.Shield_Category_Spinner_Adapter;
 import com.example.android.smarthome.DataBase.Schema;
-import com.example.android.smarthome.DeviceCategory.DeviceCategory;
-import com.example.android.smarthome.Pins.RetrieveListOfPinsController;
 import com.example.android.smarthome.R;
-import com.example.android.smarthome.Shield.RetrieveShieldController;
 import com.example.android.smarthome.Shield.Shield;
 import com.example.android.smarthome.Shield.ShieldCategory;
 
@@ -36,7 +31,7 @@ public class Add_Predefined_Devices_Boundary extends AppCompatActivity {
 
 
     private Spinner predefinedDevicesSpinner ,shieldSpinner;
-    private long MicroControllerID;
+    private long MicroControllerID,ShieldID;
     private EditText deviceNameEditText ,deviceRoomEditText,firstPinEditText;
     private Button add_device_button;
     private int selectedDevice , selectedPin=-1;
@@ -62,7 +57,7 @@ public class Add_Predefined_Devices_Boundary extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-
+        setTitle("Add new Device");
         MicroControllerID = intent.getLongExtra("MICROCONTROLLER_ID" , -1);
 
         predefinedDevicesSpinner = findViewById(R.id.spinner_device_category_Lay_add_new_predefined_device);
@@ -157,6 +152,8 @@ public class Add_Predefined_Devices_Boundary extends AppCompatActivity {
 
         if (controller.returnRelaySpinner(MicroControllerID) != null){
 
+            shieldSpinner.setVisibility(View.VISIBLE);
+            shield_spinner_text.setVisibility(View.GONE);
 
             shieldSpinner.setAdapter(controller.returnRelaySpinner(MicroControllerID));
 
@@ -164,7 +161,7 @@ public class Add_Predefined_Devices_Boundary extends AppCompatActivity {
 
         else{
 
-
+            shield_spinner_text.setVisibility(View.VISIBLE);
             shield_spinner_text.setText("No Relay Available");
         }
 
@@ -183,12 +180,14 @@ public class Add_Predefined_Devices_Boundary extends AppCompatActivity {
 
         if (controller.returnIRSpinner(MicroControllerID) != null){
 
-
+            shieldSpinner.setVisibility(View.VISIBLE);
+            shield_spinner_text.setVisibility(View.GONE);
 
             shieldSpinner.setAdapter(controller.returnIRSpinner(MicroControllerID));
 
         }
         else{
+            shield_spinner_text.setVisibility(View.VISIBLE);
             shield_spinner_text.setText("No IR Available");
 
         }
@@ -225,7 +224,12 @@ public class Add_Predefined_Devices_Boundary extends AppCompatActivity {
                 ShieldCategory currentShiled = (ShieldCategory) parent.getItemAtPosition(position);
 
                 selectedPin = currentShiled.getPin();
+                ShieldID=-1;
+                if(currentShiled.getType() == 1) {  // we want to use the relay only for one device
+                    ShieldID = currentShiled.getShieldID();
+                }
 
+                Log.e("add bounda" , "shield name "+currentShiled.getShieldName() +" shield pin "+currentShiled.getPin());
 
             }
 
@@ -241,13 +245,7 @@ public class Add_Predefined_Devices_Boundary extends AppCompatActivity {
 
 
 
-    public boolean onCreateOptionsMenu(Menu menu) {
 
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_check, menu);
-        //addDeviceToDB();
-        return true;
-    }
 
 
     private void attachDeviceSpinnerToListener(){
@@ -330,13 +328,6 @@ public class Add_Predefined_Devices_Boundary extends AppCompatActivity {
 
         ContentValues DeviceContent = new ContentValues();
 
-        if(selectedDevice == 0) { //means LIGHT BULB
-
-            DeviceContent.put(Schema.Device.NAME , "Light Bulb");
-
-        }
-
-
 
         if(selectedDevice == 1) { //means RGB
 
@@ -377,44 +368,15 @@ public class Add_Predefined_Devices_Boundary extends AppCompatActivity {
         }
 
 
-        if(selectedDevice == 2) { //means TV
-
-
-            DeviceContent.put(Schema.Device.NAME , "TV");
-
-
-        }
-
-
-        if(selectedDevice == 3) { //means RECEIVER
-
-
-            DeviceContent.put(Schema.Device.NAME , "RECEIVER");
-
-
-        }
 
 
 
-        if(selectedDevice == 4) { //means AC
-
-
-            DeviceContent.put(Schema.Device.NAME , "AC");
-
-
-        }
-
-
-        if(selectedDevice == 5) { //means OTHERS
-
-
-            DeviceContent.put(Schema.Device.NAME , "OTHER");
-
-
-        }
 
 
 
+
+
+        DeviceContent.put(Schema.Device.NAME , deviceName);
         DeviceContent.put(Schema.Device.TYPE , selectedDevice);
         DeviceContent.put(Schema.Device.ROOM , deviceRoom);
         DeviceContent.put(Schema.Device.TYPE , MicroControllerID);
@@ -432,7 +394,18 @@ public class Add_Predefined_Devices_Boundary extends AppCompatActivity {
         updatePinTable.put(Schema.Pin.AVAILABILITY , 0);
         updatePinTable.put(Schema.Pin.DEVICE_ID , deviceId);
 
-        getContentResolver().update(Schema.Pin.CONTENT_URI , updatePinTable , "PINNUMBER="+selectedPin , null);
+        getContentResolver().update(Schema.Pin.CONTENT_URI , updatePinTable , "MICROCONTROLLERID="+MicroControllerID+" AND PINNUMBER="+selectedPin , null);
+
+        if(ShieldID !=-1){
+
+            ContentValues updateShieldTable = new ContentValues();
+
+            updateShieldTable.put(Schema.Shield.AVAILABILITY , 1);  // 1 means busy
+
+            getContentResolver().update(Schema.Shield.CONTENT_URI , updateShieldTable , "MICROCONTROLLER_ID="+MicroControllerID+" AND _id="+ShieldID , null);
+
+        }
+
 
         returnToPreviousLayout();
 
@@ -533,6 +506,7 @@ public class Add_Predefined_Devices_Boundary extends AppCompatActivity {
                             }
                         }).create().show();
                 return true;
+
 
             default:
                 return super.onOptionsItemSelected(item);

@@ -26,22 +26,21 @@
 
 
     <TextView
-        android:text="Device Category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="18dp"
-        android:layout_marginRight="15dp"
         android:layout_marginTop="15dp"
-        android:textSize="19sp"
-        />
+        android:layout_marginRight="15dp"
+        android:text="Device Category"
+        android:textSize="19sp" />
 
     <Spinner
         android:id="@+id/spinner_device_category_Lay_add_new_predefined_device"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
         android:layout_marginTop="25dp"
+        android:layout_marginRight="15dp"
 
         >
 
@@ -51,24 +50,22 @@
 
     <TextView
         android:id="@+id/shield_spinner_text_Lay_add_new_predefined_device"
-        android:text="Shield"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="19dp"
-        android:layout_marginRight="15dp"
         android:layout_marginTop="25dp"
-        android:textSize="19sp"
-        />
+        android:layout_marginRight="15dp"
+        android:text="Shield"
+        android:textSize="19sp" />
 
     <Spinner
         android:id="@+id/shield_spinner_Lay_add_new_predefined_device"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="15dp"
-        >
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp">
 
     </Spinner>
 
@@ -76,10 +73,9 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
-        >
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/first_pin_Lay_add_new_predefined_device"
@@ -87,9 +83,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="55dp"
-            android:hint="pin1"
+            android:hint="pin"
             android:inputType="number" />
-
 
 
     </LinearLayout>
@@ -100,8 +95,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:layout_marginRight="15dp"
         android:layout_marginTop="35dp"
+        android:layout_marginRight="15dp"
         android:background="@drawable/bg_command"
         android:text="Add"
         android:textColor="@color/colorPrimary" />

@@ -1,9 +1,12 @@
 package com.example.android.smarthome.MicroController;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -93,6 +96,24 @@ public class RetrieveListOfMicroControllerBoundary extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+
+        finish();
+        System.exit(0);
+
+    }
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        finish();
+        System.exit(0);
+        return true;
+
+    }
 
 
 }

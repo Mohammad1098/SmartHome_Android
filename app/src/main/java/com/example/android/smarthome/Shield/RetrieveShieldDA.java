@@ -16,29 +16,27 @@ import java.util.ArrayList;
 public class RetrieveShieldDA extends AppCompatActivity {
 
 
-
     private Cursor cursor;
     private ArrayList<Shield> shieldArrayList;
     private long MicroControllerID;
     private Activity activity;
 
 
-    public RetrieveShieldDA(Activity activity , long MicroControllerID){
+    public RetrieveShieldDA(Activity activity, long MicroControllerID) {
 
         this.activity = activity;
-        this.MicroControllerID= MicroControllerID;
-
+        this.MicroControllerID = MicroControllerID;
 
 
     }
 
 
-    public ArrayList<Shield> retrieveShields(){
+    public ArrayList<Shield> retrieveShields() {
 
-        String selection = "MICROCONTROLLER_ID="+this.MicroControllerID;
-        Cursor cursor = this.activity.getApplicationContext().getContentResolver().query(Schema.Shield.CONTENT_URI , null , selection , null , null);
+        String selection = "MICROCONTROLLER_ID=" + this.MicroControllerID;
+        Cursor cursor = this.activity.getApplicationContext().getContentResolver().query(Schema.Shield.CONTENT_URI, null, selection, null, null);
 
-        if(cursor == null){
+        if (cursor == null) {
 
             return null;
         }
@@ -48,7 +46,7 @@ public class RetrieveShieldDA extends AppCompatActivity {
         cursor.moveToFirst();
 
 
-        for (int i=0 ; i<cursor.getCount() ; i++){
+        for (int i = 0; i < cursor.getCount(); i++) {
 
             Shield shield = new Shield();
 
@@ -71,15 +69,13 @@ public class RetrieveShieldDA extends AppCompatActivity {
     }
 
 
-    public ArrayList<ShieldCategory> returnRelayListSpinner(){
+    public ArrayList<ShieldCategory> returnRelayListSpinner() {
 
-        String selection = "MICROCONTROLLER_ID="+this.MicroControllerID+" AND TYPE=1"; //TYPE 1 for relay , 2 for IR
-        Cursor cursor = this.activity.getApplicationContext().getContentResolver().query(Schema.Shield.CONTENT_URI , null , selection , null , null);
-
-        Log.e("shield da " , "Relay micro id"+this.MicroControllerID +" cursor size is "+cursor.getCount());
+        String selection = "MICROCONTROLLER_ID=" + this.MicroControllerID + " AND TYPE=1"; //TYPE 1 for relay , 2 for IR
+        Cursor cursor = this.activity.getApplicationContext().getContentResolver().query(Schema.Shield.CONTENT_URI, null, selection, null, null);
 
 
-        if(cursor == null){
+        if (cursor == null) {
 
             return null;
         }
@@ -90,19 +86,25 @@ public class RetrieveShieldDA extends AppCompatActivity {
         cursor.moveToFirst();
 
 
-        for (int i=0 ; i<cursor.getCount() ; i++){
+        for (int i = 0; i < cursor.getCount(); i++) {
 
 
-            ShieldCategory shieldCategory = new ShieldCategory();
+            if (cursor.getInt(cursor.getColumnIndex(Schema.Shield.AVAILABILITY)) == 0) {  // AVAILABILITY ==0 we want relay that not been used by other devices
 
+                ShieldCategory shieldCategory = new ShieldCategory();
+                shieldCategory.setShieldName(cursor.getString(cursor.getColumnIndex(Schema.Shield.NAME)));
+                shieldCategory.setShieldImage(R.drawable.ic_relay);
+                shieldCategory.setType(1);
+                shieldCategory.setPin(returnShieldPin(cursor.getLong(cursor.getColumnIndex(Schema.Shield.ID))));
 
-            shieldCategory.setShieldName(cursor.getString(cursor.getColumnIndex(Schema.Shield.NAME)));
-            shieldCategory.setShieldImage(R.drawable.ic_relay);
-            shieldCategory.setType(1);
-            shieldCategory.setPin(returnShieldPin(cursor.getLong(cursor.getColumnIndex(Schema.Shield.ID))));
+                shieldCategory.setShieldName(cursor.getString(cursor.getColumnIndex(Schema.Shield.NAME)));
+                shieldCategory.setShieldImage(R.drawable.relay);
+                shieldCategory.setType(1);
+                shieldCategory.setPin(returnShieldPin(cursor.getLong(cursor.getColumnIndex(Schema.Shield.ID))));
+                shieldCategory.setShieldID(cursor.getInt(cursor.getColumnIndex(Schema.Shield.ID)));
+                RelaySpinnerArrayList.add(shieldCategory);
 
-            RelaySpinnerArrayList.add(shieldCategory);
-
+            }
             cursor.moveToNext();
 
 
@@ -112,19 +114,16 @@ public class RetrieveShieldDA extends AppCompatActivity {
         return RelaySpinnerArrayList;
 
 
-
     }
 
 
-    public ArrayList<ShieldCategory> returnIRListListSpinner(){
+    public ArrayList<ShieldCategory> returnIRListListSpinner() {
 
-        String selection = "MICROCONTROLLER_ID="+this.MicroControllerID+" AND TYPE=2"; // TYPE 1 for relay , 2 for IR
-        Cursor cursor = this.activity.getApplicationContext().getContentResolver().query(Schema.Shield.CONTENT_URI , null , selection , null , null);
-
-        Log.e("shield da " , "IR micro id"+this.MicroControllerID +" cursor size is "+cursor.getCount());
+        String selection = "MICROCONTROLLER_ID=" + this.MicroControllerID + " AND TYPE=2"; // TYPE 1 for relay , 2 for IR
+        Cursor cursor = this.activity.getApplicationContext().getContentResolver().query(Schema.Shield.CONTENT_URI, null, selection, null, null);
 
 
-        if(cursor == null){
+        if (cursor == null) {
 
             return null;
         }
@@ -134,7 +133,7 @@ public class RetrieveShieldDA extends AppCompatActivity {
         cursor.moveToFirst();
 
 
-        for (int i=0 ; i<cursor.getCount() ; i++){
+        for (int i = 0; i < cursor.getCount(); i++) {
 
             ShieldCategory shieldCategory = new ShieldCategory();
 
@@ -143,6 +142,7 @@ public class RetrieveShieldDA extends AppCompatActivity {
             shieldCategory.setShieldImage(R.drawable.ic_ir);
             shieldCategory.setType(2);
             shieldCategory.setPin(returnShieldPin(cursor.getLong(cursor.getColumnIndex(Schema.Shield.ID))));
+            shieldCategory.setShieldID(cursor.getInt(cursor.getColumnIndex(Schema.Shield.ID)));
 
             IRSpinnerArrayList.add(shieldCategory);
 
@@ -155,21 +155,17 @@ public class RetrieveShieldDA extends AppCompatActivity {
         return IRSpinnerArrayList;
 
 
-
     }
 
 
-    private int returnShieldPin(long ShieldID){
+    private int returnShieldPin(long ShieldID) {
 
 
-        RetrieveListOfPinsController  retrieveListOfPinsController = new RetrieveListOfPinsController(this.activity);
+        RetrieveListOfPinsController retrieveListOfPinsController = new RetrieveListOfPinsController(this.activity);
 
-        return retrieveListOfPinsController.returnShieldPin(MicroControllerID , ShieldID);
+        return retrieveListOfPinsController.returnShieldPin(MicroControllerID, ShieldID);
 
     }
-
-
-
 
 
 }

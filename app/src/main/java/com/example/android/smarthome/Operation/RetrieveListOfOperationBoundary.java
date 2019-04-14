@@ -9,8 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
-
-import com.example.android.smarthome.Devices.RetrieveMicroControllerDevicesBoundary;
 import com.example.android.smarthome.R;
 
 public class RetrieveListOfOperationBoundary extends AppCompatActivity {
@@ -118,14 +116,14 @@ public class RetrieveListOfOperationBoundary extends AppCompatActivity {
 
     private void returnToPreviousLayout(){
 
-        Intent openSpecificDeviceLayoutIntent = new Intent(RetrieveListOfOperationBoundary.this, RetrieveMicroControllerDevicesBoundary.class);
+        //Intent openSpecificDeviceLayoutIntent = new Intent(RetrieveListOfOperationBoundary.this, RetrieveMicroControllerDevicesBoundary.class);
 
 
         //send the id of selected device to RetrieveListOfOperationBoundary class
-        openSpecificDeviceLayoutIntent.putExtra("TYPE", type);
+        //openSpecificDeviceLayoutIntent.putExtra("TYPE", type);
 
 
-        startActivity(openSpecificDeviceLayoutIntent);
+        //startActivity(openSpecificDeviceLayoutIntent);
 
 
     }

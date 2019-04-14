@@ -39,7 +39,6 @@ public class RetrieveListOfPinsDA {
 
             if(!checkArduinoPins(pins.get(i) , microController_controller.returnMicroControllerType(this.microControllerId))){
 
-                Log.e("Pins DA " , " PIN > 13 OR PIN < 0 ");
 
 
                 return false;
@@ -49,7 +48,6 @@ public class RetrieveListOfPinsDA {
 
             if(availability ==false){
 
-                Log.e("Pins DA " , " PIN ALREADY EXISIT ");
 
                 return false;
             }
@@ -72,7 +70,6 @@ public class RetrieveListOfPinsDA {
 
         if(cursor == null){
 
-            Log.e("Pins DA " , " NULL ");
 
 
             return false;
@@ -87,7 +84,6 @@ public class RetrieveListOfPinsDA {
 
                     if(cursor.getInt(cursor.getColumnIndex(Schema.Pin.AVAILABILITY)) == 0){
 
-                        Log.e("Pin da " , " "+pin);
 
                         return false;
                     }
@@ -228,7 +224,7 @@ public class RetrieveListOfPinsDA {
 
         cursor.moveToFirst();
 
-        if(cursor == null || cursor.getCount()==0){
+        if(cursor == null ){
 
             return -1;
         }

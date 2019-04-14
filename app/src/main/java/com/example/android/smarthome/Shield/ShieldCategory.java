@@ -7,7 +7,15 @@ public class ShieldCategory {
     private int ShieldImage;
     private int type;             // 0 Relay   , 1 IR
     private int pin;
+    private long shieldID;
 
+    public long getShieldID() {
+        return shieldID;
+    }
+
+    public void setShieldID(long shieldID) {
+        this.shieldID = shieldID;
+    }
 
     public ShieldCategory(){
 

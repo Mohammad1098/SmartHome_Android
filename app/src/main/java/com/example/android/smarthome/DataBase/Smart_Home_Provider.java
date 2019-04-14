@@ -264,6 +264,9 @@ public class Smart_Home_Provider extends  ContentProvider {
         int match = sUriMatcher.match(uri);
 
         switch (match) {
+            case 8:
+                return updateRecord(uri, contentValues, selection, selectionArgs , match);
+
             case 9:
                 return updateRecord(uri, contentValues, selection, selectionArgs , match);
 
@@ -279,6 +282,9 @@ public class Smart_Home_Provider extends  ContentProvider {
         int rowsUpdated=-1;
 
         switch (match) {
+
+            case 8 :
+                return rowsUpdated = database.update(Schema.Shield.TABLE_NAME, values, selection, selectionArgs);
 
             case 9 :
                 return rowsUpdated = database.update(Schema.Pin.TABLE_NAME, values, selection, selectionArgs);
