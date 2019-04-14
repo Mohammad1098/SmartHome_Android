@@ -24,7 +24,7 @@ public class RGBLEDController extends AppCompatActivity {
 
         MQTT_SEND_COMMANDS commands = new MQTT_SEND_COMMANDS();
 
-        return commands.turnOnRGBLED(connection.returnClient() , "SMARTHOME" , "RGB2ON"); // "device" RGB  "pin number" 2   action ON
+        return commands.sendCommand(connection.returnClient() , "SMARTHOME" , "RGB2ON"); // "device" RGB  "pin number" 2   action ON
 
     }
 
@@ -33,7 +33,7 @@ public class RGBLEDController extends AppCompatActivity {
 
         MQTT_SEND_COMMANDS commands = new MQTT_SEND_COMMANDS();
 
-        return commands.turnOffRGBLED(connection.returnClient() , "SMARTHOME" , "RGB2OFF"); // "device" RGB  "pin number" 2   action ON
+        return commands.sendCommand(connection.returnClient() , "SMARTHOME" , "RGB2OFF"); // "device" RGB  "pin number" 2   action ON
 
     }
 
@@ -42,7 +42,7 @@ public class RGBLEDController extends AppCompatActivity {
 
         MQTT_SEND_COMMANDS commands = new MQTT_SEND_COMMANDS();
 
-        return commands.changeColor(connection.returnClient() , "SMARTHOME" , "RGB2R"+red+"G"+green+"B"+blue); // "device" RGB  "pin number" 2   action changeColor
+        return commands.sendCommand(connection.returnClient() , "SMARTHOME" , "R"+red+"G"+green+"B"+blue); // "device" RGB  "pin number" 2   action changeColor
 
     }
 

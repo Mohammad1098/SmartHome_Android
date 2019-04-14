@@ -10,26 +10,29 @@ public class openConnectionToMQTT_Server {
     MqttClient sampleClient;
 
 
-    public openConnectionToMQTT_Server(){
+    public openConnectionToMQTT_Server() {
 
 
         // prepare the the attribute needed to set up the connection to MQTT server
 
-         final String  broker       = "tcp://m15.cloudmqtt.com:11163"; // it should be tcp:// followed by MQTT server name
-         final String clientId     = "JavaSample";
-         final MemoryPersistence persistence = new MemoryPersistence();
+//         final String  broker       = "tcp://m15.cloudmqtt.com:11163"; // it should be tcp:// followed by MQTT server name
+//         final String clientId     = "JavaSample";
+
+        final String broker = "tcp://m24.cloudmqtt.com:14895";
+        final String clientId     = "JavaSample";
+        final MemoryPersistence persistence = new MemoryPersistence();
 
         try {
             sampleClient = new MqttClient(broker, clientId, persistence); // establish the connection to MQTT server
             MqttConnectOptions connOpts = new MqttConnectOptions();
             connOpts.setCleanSession(true);
-            connOpts.setUserName("txfqakyv");
-            connOpts.setPassword("HAZCM0Fn8NVn".toCharArray());
+            // connOpts.setUserName("txfqakyv");
+            // connOpts.setPassword("HAZCM0Fn8NVn".toCharArray());
+            connOpts.setUserName("zoeyibtv");
+            connOpts.setPassword("K9BswtQGZGSD".toCharArray());
             sampleClient.connect(connOpts);
 
-        }
-
-        catch(MqttException exception) {
+        } catch (MqttException exception) {
 
             exception.printStackTrace();
         }
@@ -37,8 +40,7 @@ public class openConnectionToMQTT_Server {
     }
 
 
-
-    public MqttClient returnClient(){
+    public MqttClient returnClient() {
 
         return this.sampleClient;
 

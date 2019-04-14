@@ -26,7 +26,7 @@ public class RGBLEDBoundary extends AppCompatActivity {
 
     }
 
-    private void createViews(){
+    private void createViews() {
 //        Intent previousIntent = getIntent();
 //
 //        RGBID = previousIntent.getLongExtra("LightBulbID" , -1);
@@ -39,14 +39,10 @@ public class RGBLEDBoundary extends AppCompatActivity {
         red = findViewById(R.id.red_Lay_rgb_led);
 
         green = findViewById(R.id.green_Lay_rgb_led);
-        
+
         blue = findViewById(R.id.blue_Lay_rgb_led);
 
         changeColor = findViewById(R.id.change_color_Lay_rgb_led);
-
-
-
-
 
 
         setListenerToTurnOnButton(turnOn);
@@ -54,64 +50,78 @@ public class RGBLEDBoundary extends AppCompatActivity {
         setListenerToChangeColor(changeColor);
     }
 
-    private void setListenerToTurnOnButton(Button button){
+    private void setListenerToTurnOnButton(Button button) {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 RGBLEDController = new RGBLEDController();
-                if(RGBLEDController.turnOnRGB()){
+                if (RGBLEDController.turnOnRGB()) {
 
-                    Toast.makeText(RGBLEDBoundary.this , "turn on sent " , Toast.LENGTH_LONG).show();
-                }
-                else {
+                    Toast.makeText(RGBLEDBoundary.this, "turn on sent ", Toast.LENGTH_LONG).show();
+                } else {
 
-                    Toast.makeText(RGBLEDBoundary.this , "failed to turn on " , Toast.LENGTH_LONG).show();
+                    Toast.makeText(RGBLEDBoundary.this, "failed to turn on ", Toast.LENGTH_LONG).show();
 
                 }
             }
         });
     }
 
-    private void setListenerToTurnOffButton(Button button){
+    private void setListenerToTurnOffButton(Button button) {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 RGBLEDController = new RGBLEDController();
-                if(RGBLEDController.turnOffRGB()){
+                if (RGBLEDController.turnOffRGB()) {
 
-                    Toast.makeText(RGBLEDBoundary.this , "turn off sent " , Toast.LENGTH_LONG).show();
-                }
-                else {
+                    Toast.makeText(RGBLEDBoundary.this, "turn off sent ", Toast.LENGTH_LONG).show();
+                } else {
 
-                    Toast.makeText(RGBLEDBoundary.this , "failed to turn off " , Toast.LENGTH_LONG).show();
+                    Toast.makeText(RGBLEDBoundary.this, "failed to turn off ", Toast.LENGTH_LONG).show();
 
                 }
             }
         });
     }
 
-    private void setListenerToChangeColor(Button button){
+    private void setListenerToChangeColor(Button button) {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                RGBLEDController = new RGBLEDController();
                 String R = red.getText().toString().trim();
                 String G = green.getText().toString().trim();
                 String B = blue.getText().toString().trim();
-                RGBLEDController = new RGBLEDController();
-                if(RGBLEDController.changeColor(R, G, B)){
 
-                    Toast.makeText(RGBLEDBoundary.this , "change color sent " , Toast.LENGTH_LONG).show();
+
+                if (R.matches("") || G.matches("") || B.matches("")) {
+                    Toast.makeText(RGBLEDBoundary.this, "please enter RGB values ", Toast.LENGTH_LONG).show();
+                    return;
                 }
-                else {
 
-                    Toast.makeText(RGBLEDBoundary.this , "failed to change color " , Toast.LENGTH_LONG).show();
 
-                }
+                int redValue = Integer.parseInt(R);
+                int greenValue = Integer.parseInt(G);
+                int blueValue = Integer.parseInt(B);
+
+                // validation , values must be from 0-255
+                if (redValue >= 0 && redValue <= 255 && greenValue >= 0 && greenValue <= 255 && blueValue >= 0 && blueValue <= 255) {
+                    if (RGBLEDController.changeColor(R, G, B)) {
+
+                        Toast.makeText(RGBLEDBoundary.this, "change color sent ", Toast.LENGTH_LONG).show();
+                    } else {
+
+                        Toast.makeText(RGBLEDBoundary.this, "failed to change color ", Toast.LENGTH_LONG).show();
+
+                    }
+                } else
+                    Toast.makeText(RGBLEDBoundary.this, "values must be in (0-255) ", Toast.LENGTH_LONG).show();
             }
 
 
         });
     }
 
-    
+
 }
