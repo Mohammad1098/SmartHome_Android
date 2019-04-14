@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.android.smarthome">
 
-    //these permission fot the Paho Android Service
+    <!--//these permission fot the Paho Android Service-->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -16,7 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HomeScreen.HomeScreen">
+        <activity android:name=".MicroController.RetrieveListOfMicroControllerBoundary">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,18 +24,22 @@
             </intent-filter>
         </activity>
 
-        <activity android:parentActivityName=".HomeScreen.HomeScreen" android:name=".Devices.RetrieveListOfDevicesBoundary"></activity>
+        <activity android:parentActivityName=".MicroController.RetrieveListOfMicroControllerBoundary" android:name=".DeviceCategory.DeviceCategoryBoundary"></activity>
+        <activity android:parentActivityName=".DeviceCategory.DeviceCategoryBoundary" android:name=".Shield.RetrieveShieldBoundary"></activity>
+        <activity android:parentActivityName=".Shield.RetrieveShieldBoundary" android:name=".Shield.Add_new_Shield"></activity>
+
+
+
         <activity android:parentActivityName=".Devices.RetrieveMicroControllerDevicesBoundary" android:name=".Operation.RetrieveListOfOperationBoundary"></activity>
-        <activity android:parentActivityName=".Devices.RetrieveListOfDevicesBoundary" android:name=".Devices.RetrieveMicroControllerDevicesBoundary"></activity>
         <activity android:parentActivityName=".Devices.RetrieveMicroControllerDevicesBoundary" android:name=".Devices.Add_new_device"></activity>
         <activity android:parentActivityName=".Operation.RetrieveListOfOperationBoundary" android:name=".Operation.Add_new_operation"></activity>
         <activity android:parentActivityName=".Devices.RetrieveListOfDevicesBoundary" android:name=".MicroController.Add_new_microController"></activity>
-        <activity android:parentActivityName=".Devices.RetrieveListOfDevicesBoundary" android:name=".MicroController.RetrieveListOfMicroControllerBoundary"></activity>
-        <activity android:parentActivityName=".MicroController.RetrieveListOfMicroControllerBoundary" android:name=".MicroController.RetrieveSpecificMicroControllerBoundary"></activity>
-        <activity android:parentActivityName=".MicroController.RetrieveSpecificMicroControllerBoundary" android:name=".Shield.RetrieveShieldBoundary"></activity>
-        <activity android:parentActivityName=".MicroController.RetrieveSpecificMicroControllerBoundary" android:name=".Shield.Add_new_Shield"></activity>
         <activity android:parentActivityName=".Devices.RetrieveMicroControllerDevicesBoundary" android:name=".Devices.Add_Predefined_Devices_Boundary"></activity>
+
         <activity android:parentActivityName=".HomeScreen.HomeScreen" android:name=".RGB_LED.RGBLEDBoundary"></activity>
+
+
+        <activity android:parentActivityName=".DeviceCategory.DeviceCategoryBoundary" android:name=".Devices.RetrieveDevicesBoundary"></activity>
 
 
 

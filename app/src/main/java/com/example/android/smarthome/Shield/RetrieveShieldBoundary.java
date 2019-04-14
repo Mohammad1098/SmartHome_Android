@@ -9,7 +9,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
-import com.example.android.smarthome.MicroController.RetrieveSpecificMicroControllerBoundary;
+
+import com.example.android.smarthome.DeviceCategory.DeviceCategoryBoundary;
 import com.example.android.smarthome.R;
 
 public class RetrieveShieldBoundary extends AppCompatActivity {
@@ -75,7 +76,9 @@ public class RetrieveShieldBoundary extends AppCompatActivity {
 
     private void returnToPreviousLayout(){
 
-        Intent openSpecificMicroControllerLayoutIntent = new Intent(RetrieveShieldBoundary.this, RetrieveSpecificMicroControllerBoundary.class);
+
+
+        Intent openSpecificMicroControllerLayoutIntent = new Intent(RetrieveShieldBoundary.this, DeviceCategoryBoundary.class);
 
 
         //send the id of selected device to RetrieveListOfOperationBoundary class

@@ -410,6 +410,8 @@ public class Add_Predefined_Devices_Boundary extends AppCompatActivity {
 
         }
 
+
+
         DeviceContent.put(Schema.Device.TYPE , selectedDevice);
         DeviceContent.put(Schema.Device.ROOM , deviceRoom);
         DeviceContent.put(Schema.Device.TYPE , MicroControllerID);

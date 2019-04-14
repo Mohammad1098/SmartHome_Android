@@ -32,7 +32,10 @@ public class Arduino_Uno_R3 extends MicroController{
             contentValuesPinTableDigital = new ContentValues();
 
             contentValuesPinTableDigital.put("PINNUMBER", i);
+            Log.e("Uno 3", "micro id "+this.getLong_id());
             contentValuesPinTableDigital.put("MICROCONTROLLERID", this.getLong_id());
+
+
             // 1 means it's available
             contentValuesPinTableDigital.put("AVAILABILITY", 1);
             // 0 means it's Digital
@@ -46,9 +49,11 @@ public class Arduino_Uno_R3 extends MicroController{
 
 
             contentValuesPinTableAnalog = new ContentValues();
+            Log.e("Uno 3", "micro id "+this.getLong_id());
 
             contentValuesPinTableAnalog.put("PINNUMBER", i);
             contentValuesPinTableAnalog.put("MICROCONTROLLERID", this.getLong_id());
+
             // 1 means it's available
             contentValuesPinTableAnalog.put("AVAILABILITY", 1);
             // 1 means it's Analog

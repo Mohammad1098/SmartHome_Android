@@ -72,7 +72,6 @@ public class Add_new_Shield extends AppCompatActivity {
 
 
 
-    //    submit button for add
 
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -143,7 +142,7 @@ public class Add_new_Shield extends AppCompatActivity {
 
                 Shield selectedShieldObj = (Shield) parent.getItemAtPosition(position);
 
-                selectedShield = selectedShieldObj.getType(); // 1 for Relay 1 CHANNEL , 2 for Relay 2 CHANNEL , 3 for IR
+                selectedShield = selectedShieldObj.getType(); // 1 for Relay , 2 for  IR
 
                 createAppropriateEditText(selectedShield);
 
@@ -214,19 +213,6 @@ public class Add_new_Shield extends AppCompatActivity {
         }
 
 
-        boolean availability = checkAvailabilityOfPins(selectedShield);
-
-
-
-        if(!availability){
-
-            Toast.makeText(this , "Please enter Valid pin number" , Toast.LENGTH_LONG).show();
-            return;
-
-        }
-
-
-
         ContentValues contentValues = new ContentValues(); //SHIELD TABLE
 
         Integer pinNumber = -1;
@@ -262,6 +248,19 @@ public class Add_new_Shield extends AppCompatActivity {
 
             pinNumber = Integer.valueOf(ir_pin);
 
+
+
+        }
+
+
+        boolean availability = checkAvailabilityOfPins(selectedShield);
+
+
+
+        if(!availability){
+
+            Toast.makeText(this , "Please enter Valid pin number" , Toast.LENGTH_LONG).show();
+            return;
 
         }
 

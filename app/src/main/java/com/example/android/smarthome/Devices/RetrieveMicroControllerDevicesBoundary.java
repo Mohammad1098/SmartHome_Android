@@ -9,8 +9,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
-
-import com.example.android.smarthome.MicroController.RetrieveSpecificMicroControllerBoundary;
 import com.example.android.smarthome.Operation.RetrieveListOfOperationBoundary;
 import com.example.android.smarthome.R;
 
@@ -117,7 +115,7 @@ public class RetrieveMicroControllerDevicesBoundary extends AppCompatActivity {
 
     private void returnToPreviousLayout(){
 
-        Intent openSpecificMicroControllerLayoutIntent = new Intent(RetrieveMicroControllerDevicesBoundary.this, RetrieveSpecificMicroControllerBoundary.class);
+        /*Intent openSpecificMicroControllerLayoutIntent = new Intent(RetrieveMicroControllerDevicesBoundary.this, RetrieveSpecificMicroControllerBoundary.class);
 
 
         //send the id of selected device to RetrieveListOfOperationBoundary class
@@ -125,7 +123,7 @@ public class RetrieveMicroControllerDevicesBoundary extends AppCompatActivity {
 
 
         startActivity(openSpecificMicroControllerLayoutIntent);
-
+        */
 
     }
 
@@ -134,7 +132,7 @@ public class RetrieveMicroControllerDevicesBoundary extends AppCompatActivity {
 
 
 
-            returnToPreviousLayout();
+        returnToPreviousLayout();
 
 
 
@@ -146,8 +144,8 @@ public class RetrieveMicroControllerDevicesBoundary extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
 
-            returnToPreviousLayout();
-            return true;
+        returnToPreviousLayout();
+        return true;
 
 
 

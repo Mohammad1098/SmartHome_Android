@@ -11,6 +11,8 @@ import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.android.smarthome.DeviceCategory.DeviceCategory;
+import com.example.android.smarthome.DeviceCategory.DeviceCategoryBoundary;
 import com.example.android.smarthome.Devices.RetrieveListOfDevicesBoundary;
 import com.example.android.smarthome.HomeScreen.HomeScreen;
 import com.example.android.smarthome.R;
@@ -85,7 +87,7 @@ public class RetrieveListOfMicroControllerBoundary extends AppCompatActivity {
 
                 MicroController currentMicroController = (MicroController) parent.getItemAtPosition(position);
 
-                Intent SpecificMicroControllerIntent = new Intent(RetrieveListOfMicroControllerBoundary.this , RetrieveSpecificMicroControllerBoundary.class);
+                Intent SpecificMicroControllerIntent = new Intent(RetrieveListOfMicroControllerBoundary.this , DeviceCategoryBoundary.class);
 
                 SpecificMicroControllerIntent.putExtra("MICROCONTROLLER_ID", currentMicroController.getLong_id());
 

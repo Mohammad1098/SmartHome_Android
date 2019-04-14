@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -51,13 +58,13 @@
             android:textColor="@color/text" />
 
         <Button
-            android:id="@+id/TVImage_Lay_device_category"
+            android:id="@+id/RGBLEDImage_Lay_device_category"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_margin="16dp"
             android:background="@drawable/bg_grid"
-            android:text="TV"
+            android:text="RGB LED"
             android:textColor="@color/text" />
 
     </LinearLayout>
@@ -66,6 +73,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1">
+
+        <Button
+            android:id="@+id/TVImage_Lay_device_category"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="16dp"
+            android:background="@drawable/bg_grid"
+            android:text="TV"
+            android:textColor="@color/text" />
 
         <Button
             android:id="@+id/ReceiverImage_Lay_device_category"
@@ -77,21 +94,34 @@
             android:text="Rceceiver"
             android:textColor="@color/text" />
 
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
         <Button
             android:id="@+id/ACImage_Lay_device_category"
-            android:layout_width="wrap_content"
+            android:layout_width="133dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:layout_margin="16dp"
             android:background="@drawable/bg_grid"
             android:text="AC"
             android:textColor="@color/text" />
 
+
+
+
     </LinearLayout>
+
+
+
 </LinearLayout>
 
-
-
+</ScrollView>
 
 
 
