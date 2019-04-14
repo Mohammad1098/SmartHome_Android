@@ -13,7 +13,7 @@ import com.example.android.smarthome.R;
 public class RGBLEDBoundary extends AppCompatActivity {
 
     private RGBLEDController RGBLEDController;
-    private Button turnOn, turnOff, changeColor;
+    private Button turnOn, turnOff, changeColor, wave;
     private EditText red, green, blue;
     private long RGBID;
 
@@ -44,10 +44,13 @@ public class RGBLEDBoundary extends AppCompatActivity {
 
         changeColor = findViewById(R.id.change_color_Lay_rgb_led);
 
+        wave = findViewById(R.id.wave_Lay_rgb_led);
+
 
         setListenerToTurnOnButton(turnOn);
         setListenerToTurnOffButton(turnOff);
         setListenerToChangeColor(changeColor);
+        setListenerToWaveButton(wave);
     }
 
     private void setListenerToTurnOnButton(Button button) {
@@ -120,6 +123,23 @@ public class RGBLEDBoundary extends AppCompatActivity {
             }
 
 
+        });
+    }
+
+    private void setListenerToWaveButton(Button button) {
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RGBLEDController = new RGBLEDController();
+                if (RGBLEDController.wave()) {
+
+                    Toast.makeText(RGBLEDBoundary.this, "wave sent ", Toast.LENGTH_LONG).show();
+                } else {
+
+                    Toast.makeText(RGBLEDBoundary.this, "failed to send wave ", Toast.LENGTH_LONG).show();
+
+                }
+            }
         });
     }
 

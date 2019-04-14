@@ -63,4 +63,15 @@ public class RGBLEDController extends AppCompatActivity {
 
     }
 
+    public boolean wave(){
+
+
+        openConnectionToMQTT_Server connection = new openConnectionToMQTT_Server(); // to return the connection to MQTT server
+
+        MQTT_SEND_COMMANDS commands = new MQTT_SEND_COMMANDS();
+
+        return commands.sendCommand(connection.returnClient() , "SMARTHOME" , "WAVE"); // "device" RGB  "pin number" 2   action ON
+
+    }
+
 }

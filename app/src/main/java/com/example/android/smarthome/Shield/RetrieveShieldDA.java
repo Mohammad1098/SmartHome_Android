@@ -92,13 +92,9 @@ public class RetrieveShieldDA extends AppCompatActivity {
             if (cursor.getInt(cursor.getColumnIndex(Schema.Shield.AVAILABILITY)) == 0) {  // AVAILABILITY ==0 we want relay that not been used by other devices
 
                 ShieldCategory shieldCategory = new ShieldCategory();
-                shieldCategory.setShieldName(cursor.getString(cursor.getColumnIndex(Schema.Shield.NAME)));
-                shieldCategory.setShieldImage(R.drawable.ic_relay);
-                shieldCategory.setType(1);
-                shieldCategory.setPin(returnShieldPin(cursor.getLong(cursor.getColumnIndex(Schema.Shield.ID))));
 
                 shieldCategory.setShieldName(cursor.getString(cursor.getColumnIndex(Schema.Shield.NAME)));
-                shieldCategory.setShieldImage(R.drawable.relay);
+                shieldCategory.setShieldImage(R.drawable.ic_relay);
                 shieldCategory.setType(1);
                 shieldCategory.setPin(returnShieldPin(cursor.getLong(cursor.getColumnIndex(Schema.Shield.ID))));
                 shieldCategory.setShieldID(cursor.getInt(cursor.getColumnIndex(Schema.Shield.ID)));

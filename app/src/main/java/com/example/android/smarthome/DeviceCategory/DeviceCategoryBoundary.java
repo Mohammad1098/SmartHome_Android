@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import com.example.android.smarthome.Devices.RetrieveDevicesBoundary;
+import com.example.android.smarthome.Lights.LightBulbBoundary;
 import com.example.android.smarthome.MicroController.RetrieveListOfMicroControllerBoundary;
 import com.example.android.smarthome.R;
 import com.example.android.smarthome.RGB_LED.RGBLEDBoundary;
@@ -104,7 +105,7 @@ public class DeviceCategoryBoundary extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent lightsIntent = new Intent(DeviceCategoryBoundary.this , RetrieveDevicesBoundary.class);
+                Intent lightsIntent = new Intent(DeviceCategoryBoundary.this , LightBulbBoundary.class);
 
                 lightsIntent.putExtra("MICROCONTROLLER_ID" , MicrocontrollerId);
                 lightsIntent.putExtra("TYPE" , 0);
