@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,7 +19,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import com.example.android.smarthome.Adapters.MicroController_Category_Spinner_Adapter;
 import com.example.android.smarthome.DataBase.Schema;
-import com.example.android.smarthome.Devices.RetrieveListOfDevicesBoundary;
 import com.example.android.smarthome.R;
 import java.util.ArrayList;
 
