@@ -4,6 +4,9 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -164,10 +167,38 @@ public class LightBulbBoundary extends AppCompatActivity {
 
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+
+        MenuInflater inflater = getMenuInflater();
+        getMenuInflater().inflate(R.menu.main_menu , menu);
+
+        return true;
+    }
+
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+
+            case R.id.delete :
+                DeleteDevice();
+                return true;
+        }
 
         returnToPreviousLayout();
         return true;
+
+    }
+
+
+    private void DeleteDevice(){
+
+        Log.e("dele" , "deeelete ");
+
+        String selection = "MICROCONTROLLER_ID="+MicroControllerID +" AND _id="+deviceId;
+        getContentResolver().delete(Schema.Device.CONTENT_URI ,selection , null );
+        returnToPreviousLayout();
 
     }
 

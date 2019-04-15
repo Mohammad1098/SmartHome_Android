@@ -249,9 +249,25 @@ public class Smart_Home_Provider extends  ContentProvider {
     @Override
     public int delete( Uri uri,  String selection,  String[] selectionArgs) {
 
-        //TODO
+        SQLiteDatabase db = mDataBase.getWritableDatabase();
+        int match = sUriMatcher.match(uri);
+        int rows;
+        switch (match){
 
-        return 0;
+
+            case 1:
+                rows = db.delete(Schema.Device.TABLE_NAME , selection , selectionArgs);
+                break;
+
+
+            default:
+                return -1;
+
+
+        }
+
+
+        return rows;
     }
 
 

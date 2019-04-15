@@ -4,12 +4,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.android.smarthome.DataBase.Schema;
 import com.example.android.smarthome.Devices.RetrieveDevicesBoundary;
 import com.example.android.smarthome.Lights.LightBulbBoundary;
 import com.example.android.smarthome.Operation.Add_new_operation;
@@ -137,11 +141,40 @@ public class IR_Devices_Boundary extends AppCompatActivity{
 
 
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+
+        MenuInflater inflater = getMenuInflater();
+        getMenuInflater().inflate(R.menu.main_menu , menu);
+
+        return true;
+    }
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
+        switch (item.getItemId()){
+
+            case R.id.delete :
+                DeleteDevice();
+                return true;
+        }
+
         returnToPreviousLayout();
         return true;
+
+    }
+
+
+    private void DeleteDevice(){
+
+        Log.e("dele" , "deeelete ");
+
+        String selection = "MICROCONTROLLER_ID="+MicrocontrollerId +" AND _id="+deviceid;
+        getContentResolver().delete(Schema.Device.CONTENT_URI ,selection , null );
+        returnToPreviousLayout();
 
     }
 }
