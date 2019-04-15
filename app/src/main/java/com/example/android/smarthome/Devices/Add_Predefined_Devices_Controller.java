@@ -42,7 +42,6 @@ public class Add_Predefined_Devices_Controller {
         deviceCategoryArrayList.add(new DeviceCategory("TV " , R.drawable.ic_computer , 2 ));
         deviceCategoryArrayList.add(new DeviceCategory("Receiver " , R.drawable.ic_remote_control , 3 ));
         deviceCategoryArrayList.add(new DeviceCategory("AC " , R.drawable.ic_air_conditioner , 4 ));
-        deviceCategoryArrayList.add(new DeviceCategory("OTHER " , R.drawable.ic_devices , 5 ));
 
         Device_Category_Spinner_Adapter deviceCategorySpinnerAdapter = new Device_Category_Spinner_Adapter(this.activity , deviceCategoryArrayList);
 

@@ -133,10 +133,12 @@ public class LightBulbBoundary extends AppCompatActivity {
                     public void onTimeSet(TimePicker timePicker, int hourOfDay, int minutes) {
 
                         lightBulbController.setTimer(deviceId , hourOfDay , minutes);
+                        Toast.makeText(LightBulbBoundary.this , "Time "+hourOfDay+":"+minutes , Toast.LENGTH_LONG).show();
 
                     }
                 }, currentHour, currentMinute, false);
 
+                timePickerDialog.show();
             }
         });
 

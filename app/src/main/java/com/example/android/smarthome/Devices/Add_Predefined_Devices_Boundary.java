@@ -32,7 +32,8 @@ public class Add_Predefined_Devices_Boundary extends AppCompatActivity {
 
     private Spinner predefinedDevicesSpinner ,shieldSpinner;
     private long MicroControllerID,ShieldID;
-    private EditText deviceNameEditText ,deviceRoomEditText,firstPinEditText;
+    private EditText deviceNameEditText ,deviceRoomEditText;
+    private TextView rgbPin;
     private Button add_device_button;
     private int selectedDevice , selectedPin=-1;
     private TextView shield_spinner_text;
@@ -76,9 +77,9 @@ public class Add_Predefined_Devices_Boundary extends AppCompatActivity {
 
         shield_spinner_text.setVisibility(View.GONE);
 
-        firstPinEditText = findViewById(R.id.first_pin_Lay_add_new_predefined_device);
+        rgbPin = findViewById(R.id.first_pin_Lay_add_new_predefined_device);
 
-        firstPinEditText.setVisibility(View.GONE);
+        rgbPin.setVisibility(View.GONE);
 
         add_device_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,7 +145,7 @@ public class Add_Predefined_Devices_Boundary extends AppCompatActivity {
 
         shield_spinner_text.setVisibility(View.VISIBLE);
         shieldSpinner.setVisibility(View.GONE);
-        firstPinEditText.setVisibility(View.GONE);
+        rgbPin.setVisibility(View.GONE);
 
         Add_Predefined_Devices_Controller controller = new Add_Predefined_Devices_Controller(Add_Predefined_Devices_Boundary.this);
 
@@ -173,7 +174,7 @@ public class Add_Predefined_Devices_Boundary extends AppCompatActivity {
 
         shield_spinner_text.setVisibility(View.VISIBLE);
         shieldSpinner.setVisibility(View.GONE);
-        firstPinEditText.setVisibility(View.GONE);
+        rgbPin.setVisibility(View.GONE);
 
         Add_Predefined_Devices_Controller controller = new Add_Predefined_Devices_Controller(Add_Predefined_Devices_Boundary.this);
 
@@ -199,19 +200,18 @@ public class Add_Predefined_Devices_Boundary extends AppCompatActivity {
 
         shieldSpinner.setVisibility(View.GONE);
         shield_spinner_text.setVisibility(View.GONE);
-        firstPinEditText.setVisibility(View.VISIBLE);
-
-
+        rgbPin.setVisibility(View.VISIBLE);
+        Toast.makeText(Add_Predefined_Devices_Boundary.this , "LED strip must plugged in pin 6" ,Toast.LENGTH_LONG).show();
     }
 
-
+    /*
     private int check_RGB_LED_PinSelected(){
 
 
         Add_Predefined_Devices_Controller controller = new Add_Predefined_Devices_Controller(Add_Predefined_Devices_Boundary.this);
 
-        return controller.check_RGB_LED_PinSelected(firstPinEditText , MicroControllerID);
-    }
+        return controller.check_RGB_LED_PinSelected(rgbPin , MicroControllerID);
+    }*/
 
 
 
@@ -331,6 +331,10 @@ public class Add_Predefined_Devices_Boundary extends AppCompatActivity {
 
         if(selectedDevice == 1) { //means RGB
 
+
+            selectedPin=6;
+
+            /*
             String pinAsString = firstPinEditText.getText().toString().trim();
 
             if(TextUtils.isEmpty(pinAsString)){
@@ -354,7 +358,7 @@ public class Add_Predefined_Devices_Boundary extends AppCompatActivity {
             else {
                 Toast.makeText(getApplicationContext() , "Select valid pin for RGB " , Toast.LENGTH_LONG).show();
                 return;
-            }
+            }*/
 
         }
 
@@ -391,6 +395,8 @@ public class Add_Predefined_Devices_Boundary extends AppCompatActivity {
         ContentValues updatePinTable = new ContentValues();
 
         updatePinTable.put(Schema.Pin.AVAILABILITY , 0);
+
+
         updatePinTable.put(Schema.Pin.DEVICE_ID , deviceId);
 
         getContentResolver().update(Schema.Pin.CONTENT_URI , updatePinTable , "MICROCONTROLLERID="+MicroControllerID+" AND PINNUMBER="+selectedPin , null);

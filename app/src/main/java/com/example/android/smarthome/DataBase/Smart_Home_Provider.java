@@ -171,6 +171,10 @@ public class Smart_Home_Provider extends  ContentProvider {
                 // Helper method
                 return insertRecord(uri , values , match);
 
+            case 3:
+                // Helper method
+                return insertRecord(uri , values , match);
+
 
             case 5:
                 // Helper method
