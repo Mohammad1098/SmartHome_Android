@@ -28,6 +28,7 @@ public class Add_new_operation extends AppCompatActivity {
     private Button add_operation_button;
 
     private long deviceID,MicrocontrollerId;
+    private int type;
 
 
     @Override
@@ -56,7 +57,9 @@ public class Add_new_operation extends AppCompatActivity {
         Intent intent = getIntent();
 
         MicrocontrollerId = intent.getLongExtra("MICROCONTROLLER_ID" , -1);
-        deviceID = intent.getIntExtra("DEVICEID" , -1);
+        deviceID = intent.getLongExtra("DEVICEID" , -1);
+        type = intent.getIntExtra("TYPE" , -1);
+
 
         operationNameEditText = findViewById(R.id.Operation_name_Lay_add_new_operation);
 
@@ -130,6 +133,8 @@ public class Add_new_operation extends AppCompatActivity {
         //send the id of selected device to RetrieveListOfOperationBoundary class
         openIRBoundaryLayoutIntent.putExtra("MICROCONTROLLER_ID", MicrocontrollerId);
         openIRBoundaryLayoutIntent.putExtra("DEVICEID", deviceID);
+        openIRBoundaryLayoutIntent.putExtra("TYPE", type);
+
 
 
         startActivity(openIRBoundaryLayoutIntent);

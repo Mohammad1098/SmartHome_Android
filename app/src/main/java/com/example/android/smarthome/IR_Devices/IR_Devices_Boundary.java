@@ -60,6 +60,7 @@ public class IR_Devices_Boundary extends AppCompatActivity{
 
                 addNewOperationIntent.putExtra("MICROCONTROLLER_ID" ,MicrocontrollerId );
                 addNewOperationIntent.putExtra("DEVICEID" ,deviceid );
+                addNewOperationIntent.putExtra("TYPE" ,type );
 
                 startActivity(addNewOperationIntent);
 

@@ -2,6 +2,8 @@ package com.example.android.smarthome.IR_Devices;
 
 import android.app.Activity;
 import android.database.Cursor;
+import android.util.Log;
+
 import com.example.android.smarthome.DataBase.Schema;
 import com.example.android.smarthome.Operation.Operation;
 
@@ -36,6 +38,8 @@ public class IR_Devices_DA {
             return null;
         }
 
+
+        Log.e("IR DA" , "CURSOR "+cursor.getCount());
 
         cursor.moveToFirst();
 

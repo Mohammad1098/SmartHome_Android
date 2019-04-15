@@ -22,14 +22,7 @@
             android:textColor="@color/text"
             android:textSize="23sp" />
 
-        <TextView
-            android:id="@+id/operation_implementation_Lay_retrieve_list_of_operation_item"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="28dp"
-            android:text="implementation "
-            android:textColor="@color/text"
-            android:textSize="12sp" />
+
     </LinearLayout>
 
 
