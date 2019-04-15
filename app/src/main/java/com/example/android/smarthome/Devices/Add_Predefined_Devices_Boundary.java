@@ -345,7 +345,6 @@ public class Add_Predefined_Devices_Boundary extends AppCompatActivity {
 
             if(check_RGB_LED_PinSelected() !=-1){
 
-                DeviceContent.put(Schema.Device.NAME , "W2812B RGB LED");
 
                 selectedPin = check_RGB_LED_PinSelected();
 
@@ -379,7 +378,7 @@ public class Add_Predefined_Devices_Boundary extends AppCompatActivity {
         DeviceContent.put(Schema.Device.NAME , deviceName);
         DeviceContent.put(Schema.Device.TYPE , selectedDevice);
         DeviceContent.put(Schema.Device.ROOM , deviceRoom);
-        DeviceContent.put(Schema.Device.TYPE , MicroControllerID);
+        DeviceContent.put(Schema.Device.MICROCONTROLLER_ID , MicroControllerID);
 
 
 

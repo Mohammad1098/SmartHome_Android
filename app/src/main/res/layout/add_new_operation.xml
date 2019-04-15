@@ -17,13 +17,13 @@
 
 
     <EditText
-        android:id="@+id/Operation_Implementation_Lay_add_new_operation"
+        android:id="@+id/Operation_frequency_Lay_add_new_operation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:hint="Implementation"
-        android:inputType="text" />
+        android:hint="frequency"
+        android:inputType="numberSigned" />
 
 
     <Button

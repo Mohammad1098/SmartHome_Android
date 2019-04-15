@@ -3,11 +3,14 @@ package com.example.android.smarthome.RGB_LED;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.android.smarthome.Devices.RetrieveDevicesBoundary;
+import com.example.android.smarthome.IR_Devices.IR_Devices_Boundary;
 import com.example.android.smarthome.R;
 
 public class RGBLEDBoundary extends AppCompatActivity {
@@ -16,6 +19,8 @@ public class RGBLEDBoundary extends AppCompatActivity {
     private Button turnOn, turnOff, changeColor, wave;
     private EditText red, green, blue;
     private long RGBID;
+    private long deviceId,MicroControllerID;
+    private int type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +32,12 @@ public class RGBLEDBoundary extends AppCompatActivity {
     }
 
     private void createViews() {
-//        Intent previousIntent = getIntent();
-//
-//        RGBID = previousIntent.getLongExtra("LightBulbID" , -1);
+
+        Intent previousIntent = getIntent();
+
+        MicroControllerID = previousIntent.getLongExtra("MICROCONTROLLER_ID" , -1);
+        deviceId = previousIntent.getLongExtra("DEVICEID" , -1);
+        type = previousIntent.getIntExtra("TYPE" , -1);
 
 
         turnOn = findViewById(R.id.turnOn_Lay_rgb_led);
@@ -143,5 +151,36 @@ public class RGBLEDBoundary extends AppCompatActivity {
         });
     }
 
+
+    private void returnToPreviousLayout(){
+
+        Intent intent = new Intent(RGBLEDBoundary.this, RetrieveDevicesBoundary.class);
+
+        intent.putExtra("MICROCONTROLLER_ID"  , MicroControllerID);
+        intent.putExtra("DEVICEID"  , deviceId);
+        intent.putExtra("TYPE"  , type);
+
+        startActivity(intent);
+
+
+    }
+
+
+    @Override
+    public void onBackPressed() {
+
+        returnToPreviousLayout();
+
+    }
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        returnToPreviousLayout();
+        return true;
+
+    }
 
 }

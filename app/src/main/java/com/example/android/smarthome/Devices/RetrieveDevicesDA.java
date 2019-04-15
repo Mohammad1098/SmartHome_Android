@@ -30,7 +30,6 @@ public class RetrieveDevicesDA {
         Cursor cursor =null;
 
         if (deviceType == 100){ // devicetype ---> 100 means return all devices of microcontroller
-            Log.e("dev DA " , " TYPE "+deviceType +" Micro "+MicroControllerId);
 
             String selection = "MICROCONTROLLER_ID="+MicroControllerId;
              cursor = this.activity.getContentResolver().query(Schema.Device.CONTENT_URI , null , selection , null , null);
@@ -38,10 +37,13 @@ public class RetrieveDevicesDA {
         }
         if(deviceType != 100) {
 
-            Log.e("dev DA " , " TYPE "+deviceType +" Micro "+MicroControllerId);
 
              String selection = "MICROCONTROLLER_ID="+MicroControllerId + " AND TYPE="+deviceType;
              cursor = this.activity.getContentResolver().query(Schema.Device.CONTENT_URI, null, selection, null, null);
+            Log.e("device da" , "micro id  "+MicroControllerId +" type "+deviceType);
+
+            Log.e("device da" , "cursor size "+cursor.getCount());
+
         }
 
         if(cursor == null){
@@ -49,17 +51,6 @@ public class RetrieveDevicesDA {
             return null;
         }
 
-        cursor = this.activity.getContentResolver().query(Schema.Device.CONTENT_URI, null, null, null, null);
-
-        cursor.moveToFirst();
-
-        for (int i = 0 ; i < cursor.getCount() ; i++) {
-            Log.e("dev DA ", "device id " + cursor.getLong(cursor.getColumnIndex(Schema.Device.ID)) + "\n");
-            Log.e("dev DA ", "MICRO id " + cursor.getLong(cursor.getColumnIndex(Schema.Device.MICROCONTROLLER_ID)) + "\n");
-            Log.e("dev DA ", "device name " + cursor.getString(cursor.getColumnIndex(Schema.Device.NAME)) + "\n");
-            cursor.moveToNext();
-
-        }
 
         devicesArrayList = new ArrayList<>();
 
@@ -73,7 +64,7 @@ public class RetrieveDevicesDA {
 
             device.setId(cursor.getInt(cursor.getColumnIndex(Schema.Device.ID)));
             device.setMicroController_Id(cursor.getInt(cursor.getColumnIndex(Schema.Device.MICROCONTROLLER_ID)));
-            device.setType(deviceType);
+            device.setType(cursor.getInt(cursor.getColumnIndex(Schema.Device.TYPE)));
             device.setName(cursor.getString(cursor.getColumnIndex(Schema.Device.NAME)));
             device.setRoom(cursor.getString(cursor.getColumnIndex(Schema.Device.ROOM)));
 

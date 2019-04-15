@@ -29,6 +29,7 @@
         <activity android:parentActivityName=".DeviceCategory.DeviceCategoryBoundary" android:name=".RGB_LED.RGBLEDBoundary"></activity>
         <activity android:parentActivityName=".DeviceCategory.DeviceCategoryBoundary" android:name=".Lights.LightBulbBoundary"></activity>
         <activity android:parentActivityName=".Devices.RetrieveDevicesBoundary" android:name=".Devices.Add_Predefined_Devices_Boundary"></activity>
+        <activity android:parentActivityName=".DeviceCategory.DeviceCategoryBoundary" android:name=".IR_Devices.IR_Devices_Boundary"></activity>
 
 
         <activity  android:name=".MicroController.Add_new_microController"  android:screenOrientation="portrait" />

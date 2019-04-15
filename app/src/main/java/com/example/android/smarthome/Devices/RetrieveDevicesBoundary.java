@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 import com.example.android.smarthome.DeviceCategory.DeviceCategoryBoundary;
+import com.example.android.smarthome.IR_Devices.IR_Devices_Boundary;
 import com.example.android.smarthome.Lights.LightBulbBoundary;
 import com.example.android.smarthome.R;
 import com.example.android.smarthome.RGB_LED.RGBLEDBoundary;
@@ -94,9 +95,12 @@ public class RetrieveDevicesBoundary extends AppCompatActivity{
 
     }
 
+
+
+
     private void retrieveDevices(){
 
-
+        Log.e("Retr devic" , "type"+type);
 
         devicesController = new RetrieveDevicesController(RetrieveDevicesBoundary.this , devicesGridView);
 
@@ -108,6 +112,8 @@ public class RetrieveDevicesBoundary extends AppCompatActivity{
 
 
     }
+
+
 
 
     private void attachListViewToListener(){
@@ -123,6 +129,7 @@ public class RetrieveDevicesBoundary extends AppCompatActivity{
 
 
                 Intent SpecificDeviceIntent = returnApproriteIntent(currentDevice.getType());
+
 
                 SpecificDeviceIntent.putExtra("MICROCONTROLLER_ID", currentDevice.getMicroController_Id());
                 SpecificDeviceIntent.putExtra("TYPE" , currentDevice.getType());
@@ -146,6 +153,16 @@ public class RetrieveDevicesBoundary extends AppCompatActivity{
 
             case 1 :
                 return  new Intent(RetrieveDevicesBoundary.this , RGBLEDBoundary.class);
+
+            case 2 :
+                return  new Intent(RetrieveDevicesBoundary.this , IR_Devices_Boundary.class);
+
+            case 3 :
+                return  new Intent(RetrieveDevicesBoundary.this , IR_Devices_Boundary.class);
+
+            case 4 :
+                return  new Intent(RetrieveDevicesBoundary.this , IR_Devices_Boundary.class);
+
 
             default:
                 return null;

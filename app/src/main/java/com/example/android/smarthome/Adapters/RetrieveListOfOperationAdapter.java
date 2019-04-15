@@ -40,11 +40,8 @@ public class RetrieveListOfOperationAdapter extends ArrayAdapter<Operation> {
 
         TextView operationName = convertView.findViewById(R.id.operation_name_Lay_retrieve_list_of_operation_item);
 
-        TextView operationImplementation = convertView.findViewById(R.id.operation_implementation_Lay_retrieve_list_of_operation_item);
-
         operationName.setText(currentOperation.getName());
 
-        operationImplementation.setText(currentOperation.getImplementation());
 
         return convertView;
 

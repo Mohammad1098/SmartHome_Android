@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.example.android.smarthome.DataBase.Schema;
+import com.example.android.smarthome.IR_Devices.IR_Devices_Boundary;
 import com.example.android.smarthome.R;
 
 public class Add_new_operation extends AppCompatActivity {
@@ -22,13 +23,12 @@ public class Add_new_operation extends AppCompatActivity {
 
     private EditText operationNameEditText;
 
-    private EditText operationImplementationEditText;
+    private EditText operationfrequencyEditText;
 
     private Button add_operation_button;
 
-    private long selected_Device;
+    private long deviceID,MicrocontrollerId;
 
-    private int type;
 
     @Override
     protected void onCreate( Bundle savedInstanceState) {
@@ -55,12 +55,12 @@ public class Add_new_operation extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        selected_Device = intent.getLongExtra("DEVICEID" , -1);
-        type = intent.getIntExtra("TYPE" , -1);
+        MicrocontrollerId = intent.getLongExtra("MICROCONTROLLER_ID" , -1);
+        deviceID = intent.getIntExtra("DEVICEID" , -1);
 
         operationNameEditText = findViewById(R.id.Operation_name_Lay_add_new_operation);
 
-        operationImplementationEditText = findViewById(R.id.Operation_Implementation_Lay_add_new_operation);
+        operationfrequencyEditText = findViewById(R.id.Operation_frequency_Lay_add_new_operation);
 
 
 
@@ -83,7 +83,7 @@ public class Add_new_operation extends AppCompatActivity {
 
         String operationName = operationNameEditText.getText().toString().trim();
 
-        String operationImplementation = operationImplementationEditText.getText().toString().trim();
+        String operationFrequency = operationfrequencyEditText.getText().toString().trim();
 
 
 
@@ -94,9 +94,9 @@ public class Add_new_operation extends AppCompatActivity {
 
         }
 
-        if(TextUtils.isEmpty(operationImplementation)){
+        if(TextUtils.isEmpty(operationFrequency)){
 
-            Toast.makeText(getApplicationContext() , "Please write the Operation Implementation" , Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext() , "Please write the Operation frequency" , Toast.LENGTH_LONG).show();
             return;
 
         }
@@ -106,8 +106,8 @@ public class Add_new_operation extends AppCompatActivity {
         ContentValues contentValues = new ContentValues();
 
         contentValues.put(Schema.Operation.NAME , operationName);
-        contentValues.put(Schema.Operation.IMPLEMENTATION , operationImplementation);
-        contentValues.put(Schema.Operation.DEVICE_ID , selected_Device);
+        contentValues.put(Schema.Operation.FREQUENCY , operationFrequency);
+        contentValues.put(Schema.Operation.DEVICE_ID , deviceID);
 
         getContentResolver().insert(Schema.Operation.CONTENT_URI, contentValues);
 
@@ -124,16 +124,15 @@ public class Add_new_operation extends AppCompatActivity {
 
     private void returnToPreviousLayout(){
 
-        Intent openListOfOperationLayoutIntent = new Intent(Add_new_operation.this, RetrieveListOfOperationBoundary.class);
+        Intent openIRBoundaryLayoutIntent = new Intent(Add_new_operation.this, IR_Devices_Boundary.class);
 
 
         //send the id of selected device to RetrieveListOfOperationBoundary class
-        openListOfOperationLayoutIntent.putExtra("DEVICEID", selected_Device);
-        openListOfOperationLayoutIntent.putExtra("TYPE", type);
+        openIRBoundaryLayoutIntent.putExtra("MICROCONTROLLER_ID", MicrocontrollerId);
+        openIRBoundaryLayoutIntent.putExtra("DEVICEID", deviceID);
 
 
-
-        startActivity(openListOfOperationLayoutIntent);
+        startActivity(openIRBoundaryLayoutIntent);
 
 
     }

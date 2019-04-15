@@ -37,7 +37,7 @@ public class DeviceCategoryBoundary extends AppCompatActivity {
 
         MicrocontrollerId = previousIntent.getLongExtra("MICROCONTROLLER_ID" , -1);
 
-        Log.e("Device cat" , "Micro id"+ MicrocontrollerId);
+        Log.e("Device category" , "Micro id"+ MicrocontrollerId);
 
         devices = findViewById(R.id.DevicesImage_Lay_device_category);
         shields = findViewById(R.id.ShieldsImage_Lay_device_category);
@@ -105,7 +105,7 @@ public class DeviceCategoryBoundary extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent lightsIntent = new Intent(DeviceCategoryBoundary.this , LightBulbBoundary.class);
+                Intent lightsIntent = new Intent(DeviceCategoryBoundary.this , RetrieveDevicesBoundary.class);
 
                 lightsIntent.putExtra("MICROCONTROLLER_ID" , MicrocontrollerId);
                 lightsIntent.putExtra("TYPE" , 0);
@@ -125,7 +125,7 @@ public class DeviceCategoryBoundary extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent lightsIntent = new Intent(DeviceCategoryBoundary.this , RGBLEDBoundary.class);
+                Intent lightsIntent = new Intent(DeviceCategoryBoundary.this , RetrieveDevicesBoundary.class);
 
                 lightsIntent.putExtra("MICROCONTROLLER_ID" , MicrocontrollerId);
                 lightsIntent.putExtra("TYPE" , 1);

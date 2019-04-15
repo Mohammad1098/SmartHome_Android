@@ -227,6 +227,8 @@ public final class Schema   {
 
         public static final String NAME = "NAME";
 
+        public static final String FREQUENCY = "FREQUENCY";
+
         public static final String IMPLEMENTATION = "IMPLEMENTATION";
 
     }
